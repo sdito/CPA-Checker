@@ -1,0 +1,6 @@
+framework module Pods_cpaCheckerUITests {
+  umbrella header "Pods-cpaCheckerUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
