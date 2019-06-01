@@ -36,19 +36,22 @@ class ClassListSelectionVC: UIViewController {
 
 extension ClassListSelectionVC: ClassCellDelegate {
     func classSwitchPressed(units: Class) {
+        let realmClass = RealmClass()
+        realmClass.courseNum = units.courseNum
+        realmClass.title = units.title
+        realmClass.isAccounting = units.isAccounting
+        realmClass.isBusiness = units.isBusiness
+        realmClass.isEthics = units.isEthics
+        realmClass.numUnits = units.numUnits
+        
         if ClassesTaking.shared.classesTaken.contains(units) {
             ClassesTaking.shared.classesTaken.remove(units)
-            
-            } else {
+            try! realm.write {
+                let realmToDelete = realm.objects(RealmClass.self).filter("courseNum = '\(units.courseNum)'")
+                realm.delete(realmToDelete)
+            }
+        } else {
             ClassesTaking.shared.classesTaken.insert(units)
-            let realmClass = RealmClass()
-            
-            realmClass.courseNum = units.courseNum
-            realmClass.title = units.title
-            realmClass.isAccounting = units.isAccounting
-            realmClass.isBusiness = units.isBusiness
-            realmClass.isEthics = units.isEthics
-            
             try! realm.write {
                 realm.add(realmClass)
             }

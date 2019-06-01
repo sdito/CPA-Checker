@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 protocol ClassCellDelegate {
     func classSwitchPressed(units: Class)
@@ -46,6 +48,7 @@ class ClassCell: UITableViewCell {
         // to avoid dequeueReusableCell problem
         if ClassesTaking.shared.classesTaken.contains(units) {
             classSwitch.isOn = true
+        
         } else {
             classSwitch.isOn = false
         }

@@ -7,10 +7,13 @@
 //
 
 import Foundation
-
+import RealmSwift
 
 class ClassesTaking {
     static let shared = ClassesTaking()
     var classesTaken = Set<Class>()
+    
+    var thisRealm = try! Realm()
+    
     private init() {}
 }
