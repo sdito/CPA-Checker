@@ -44,14 +44,12 @@ extension ClassListSelectionVC: ClassCellDelegate {
         realmClass.isEthics = units.isEthics
         realmClass.numUnits = units.numUnits
         
-        if ClassesTaking.shared.classesTaken.contains(units) {
-            ClassesTaking.shared.classesTaken.remove(units)
+        if realm.objects(RealmClass.self).filter("courseNum = '\(units.courseNum)'").count >= 1 {
             try! realm.write {
                 let realmToDelete = realm.objects(RealmClass.self).filter("courseNum = '\(units.courseNum)'")
                 realm.delete(realmToDelete)
             }
         } else {
-            ClassesTaking.shared.classesTaken.insert(units)
             try! realm.write {
                 realm.add(realmClass)
             }
@@ -62,18 +60,13 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allClasses.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let units = allClasses[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "classCell") as! ClassCell
         cell.setClassData(units: units)
-        
         cell.delegate = self
-        
         return cell
-
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let units = allClasses[indexPath.row]
         performSegue(withIdentifier: "classDetailSegue", sender: units)

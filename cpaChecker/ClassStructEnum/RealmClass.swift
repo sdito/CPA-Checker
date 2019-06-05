@@ -18,10 +18,7 @@ class RealmClass: Object {
     @objc dynamic var isEthics: Bool = false
     @objc dynamic var numUnits: Int = 0
     
-//    override static func primaryKey() -> String? {
-//        return "courseNum"
-//
-//    }
+
 }
 
 

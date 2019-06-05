@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class UnitEntryVC: UIViewController, UITextFieldDelegate {
+    
+    var realm = try! Realm()
     
     @IBOutlet weak var fall1: UITextField!
     @IBOutlet weak var winter1: UITextField!
@@ -29,6 +32,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var ccEthics: UITextField!
 
     @IBOutlet weak var hideLabel: UILabel!
+
     
     
     var activeTextField: UITextField?
@@ -36,6 +40,9 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        realm = try! Realm()
+        
         fall1.delegate = self
         fall2.delegate = self
         fall3.delegate = self
@@ -53,6 +60,28 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         ccAccounting.delegate = self
         ccBusiness.delegate = self
         ccEthics.delegate = self
+        
+        
+        // could most likely go bad
+        fall1.text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 1'").first?.units.description
+        fall2.text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 2'").first?.units.description
+        fall3.text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 3'").first?.units.description
+        fall4.text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 4'").first?.units.description
+        winter1.text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 1'").first?.units.description
+        winter2.text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 2'").first?.units.description
+        winter3.text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 3'").first?.units.description
+        winter4.text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 4'").first?.units.description
+        spring1.text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 1'").first?.units.description
+        spring2.text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 2'").first?.units.description
+        spring3.text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 3'").first?.units.description
+        spring4.text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 4'").first?.units.description
+        apOther.text = realm.objects(RealmUnits.self).filter("identifier = 'AP and Other'").first?.units.description
+        ccUnits.text = realm.objects(RealmUnits.self).filter("identifier = 'Community College'").first?.units.description
+//        ccAccounting.text
+//        ccEthics.text
+//        ccBusiness.text
+        
+        
         
         let toolbar = UIToolbar()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneClicked))
@@ -81,6 +110,78 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
+    
+    
+    // since in a tab bar and no segue, is this a bad way to update the realm about the units? or should I update them another way
+    override func viewWillDisappear(_ animated: Bool) {
+        // works, but is it the right way to just create an instance on each view controller of the realm? or should I put it in a shared class and access it that way?
+        print(Realm.Configuration.defaultConfiguration.fileURL)
+        // clean up textfields before doing this, dont allow anything but numbers
+        let f1 = RealmUnits()
+        f1.identifier = "Fall 1"
+        f1.units = Int(fall1.text ?? "") ?? 0
+        let f2 = RealmUnits()
+        f2.identifier = "Fall 2"
+        f2.units = Int(fall2.text ?? "") ?? 0
+        let f3 = RealmUnits()
+        f3.identifier = "Fall 3"
+        f3.units = Int(fall3.text ?? "") ?? 0
+        let f4 = RealmUnits()
+        f4.identifier = "Fall 4"
+        f4.units = Int(fall4.text ?? "") ?? 0
+        
+        let w1 = RealmUnits()
+        w1.identifier = "Winter 1"
+        w1.units = Int(winter1.text ?? "") ?? 0
+        let w2 = RealmUnits()
+        w2.identifier = "Winter 2"
+        w2.units = Int(winter2.text ?? "") ?? 0
+        let w3 = RealmUnits()
+        w3.identifier = "Winter 3"
+        w3.units = Int(winter3.text ?? "") ?? 0
+        let w4 = RealmUnits()
+        w4.identifier = "Winter 4"
+        w4.units = Int(winter4.text ?? "") ?? 0
+        
+        let s1 = RealmUnits()
+        s1.identifier = "Spring 1"
+        s1.units = Int(spring1.text ?? "") ?? 0
+        let s2 = RealmUnits()
+        s2.identifier = "Spring 2"
+        s2.units = Int(spring2.text ?? "") ?? 0
+        let s3 = RealmUnits()
+        s3.identifier = "Spring 3"
+        s3.units = Int(spring3.text ?? "") ?? 0
+        let s4 = RealmUnits()
+        s4.identifier = "Spring 4"
+        s4.units = Int(spring4.text ?? "") ?? 0
+        
+        let apO = RealmUnits()
+        apO.identifier = "AP and Other"
+        apO.units = Int(apOther.text ?? "") ?? 0
+        let cc = RealmUnits()
+        cc.identifier = "Community College"
+        cc.units = Int(ccUnits.text ?? "") ?? 0
+        
+        let ccA = RealmUnits()
+        ccA.identifier = "ACC - CC"
+        ccA.units = Int(ccAccounting.text ?? "") ?? 0
+        let ccB = RealmUnits()
+        ccB.identifier = "BUS - CC"
+        ccB.units = Int(ccBusiness.text ?? "") ?? 0
+        let ccE = RealmUnits()
+        ccE.identifier = "ETH - CC"
+        ccE.units = Int(ccEthics.text ?? "") ?? 0
+        
+        let realmObjects: [RealmUnits] = [f1, f2, f3, f4, w1, w2, w3, w4, s1, s2, s3, s4, apO, cc, ccA, ccB, ccE]
+        //add textfields to an array instead
+        try! realm.write {
+            let allUnitsToDelete = realm.objects(RealmUnits.self)
+            realm.delete(allUnitsToDelete)
+            realm.add(realmObjects)
+        }
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -178,7 +279,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
             ccEthics.becomeFirstResponder()
         } else if textField == ccEthics {
-            
+            textField.resignFirstResponder()
             fall1.becomeFirstResponder()
         }
         return true
@@ -207,7 +308,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         return true
     }
     func handleExtraEthicsOverCC() {
-        // create, currently if ccEthics is the one that makes total greater than ccUnits, keybaord show doesnt work correctly
+        // create, currently if ccEthics is the one that makes total greater than ccUnits (and error alert pop up), keybaord show doesnt work correctly and textfield is hidden
     }
     
 }

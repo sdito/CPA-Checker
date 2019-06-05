@@ -13,7 +13,7 @@ class Class {
     
     var courseNum: String
     var title: String
-    var courseDescription: String
+    var courseDescription: String?
     var isAccounting: Bool
     var isBusiness: Bool
     var isEthics: Bool
@@ -25,7 +25,7 @@ class Class {
     var offeredSummer: Bool?
 
     
-    init(courseNum: String, title: String, description: String, isAccounting: Bool, isBusiness: Bool, isEthics: Bool, numUnits: Int, offeredFall: Bool?, offeredWinter: Bool?, offeredSpring: Bool?, offeredSummer: Bool?) {
+    init(courseNum: String, title: String, description: String?, isAccounting: Bool, isBusiness: Bool, isEthics: Bool, numUnits: Int, offeredFall: Bool?, offeredWinter: Bool?, offeredSpring: Bool?, offeredSummer: Bool?) {
         self.courseNum = courseNum
         self.title = title
         self.courseDescription = description

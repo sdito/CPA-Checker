@@ -32,7 +32,6 @@ class ClassDetailVC: UIViewController {
         
     }
     
-    
     func createUI() {
         courseNumLabel.text = units?.courseNum
         courseTitleLabel.text = units?.title

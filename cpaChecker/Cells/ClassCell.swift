@@ -16,6 +16,7 @@ protocol ClassCellDelegate {
 
 class ClassCell: UITableViewCell {
     
+    var realm = try! Realm()
     
     @IBOutlet weak var classNumberLabel: UILabel!
     @IBOutlet weak var isAccountingLabel: UILabel!
@@ -45,13 +46,12 @@ class ClassCell: UITableViewCell {
             isEthicsLabel.text = " "
         }
         
-        // to avoid dequeueReusableCell problem
-        if ClassesTaking.shared.classesTaken.contains(units) {
+        // avoid dequeReusableCell problem
+        if realm.objects(RealmClass.self).filter("courseNum = '\(units.courseNum)'").count >= 1 {
             classSwitch.isOn = true
-        
         } else {
             classSwitch.isOn = false
-        }
+        }        
     }
 
     @IBAction func classSwitchAction(_ sender: Any) {

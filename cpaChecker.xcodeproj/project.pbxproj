@@ -23,7 +23,10 @@
 		E2198A5B22A0B0F100B9D42F /* UnitEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2198A5A22A0B0F100B9D42F /* UnitEntryVC.swift */; };
 		E2198A5D22A1B36000B9D42F /* StatusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2198A5C22A1B36000B9D42F /* StatusVC.swift */; };
 		E2198A5F22A1BBAB00B9D42F /* RealmClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2198A5E22A1BBAB00B9D42F /* RealmClass.swift */; };
-		E237A26A229E40AE00FA20D3 /* ClassesTaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E237A269229E40AE00FA20D3 /* ClassesTaking.swift */; };
+		E22B3D9C22A251B3009DEF96 /* RealmUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */; };
+		E22B3E1722A49629009DEF96 /* calculateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E1622A49629009DEF96 /* calculateStatus.swift */; };
+		E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E1922A496A7009DEF96 /* Result.swift */; };
+		E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E5722A63C87009DEF96 /* StatusCell.swift */; };
 		F6299FE7FDE2D45B7DEA3917 /* Pods_cpaCheckerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE547A30552B2156072C892 /* Pods_cpaCheckerTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,7 +76,10 @@
 		E2198A5A22A0B0F100B9D42F /* UnitEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitEntryVC.swift; sourceTree = "<group>"; };
 		E2198A5C22A1B36000B9D42F /* StatusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusVC.swift; sourceTree = "<group>"; };
 		E2198A5E22A1BBAB00B9D42F /* RealmClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClass.swift; sourceTree = "<group>"; };
-		E237A269229E40AE00FA20D3 /* ClassesTaking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesTaking.swift; sourceTree = "<group>"; };
+		E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUnits.swift; sourceTree = "<group>"; };
+		E22B3E1622A49629009DEF96 /* calculateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculateStatus.swift; sourceTree = "<group>"; };
+		E22B3E1922A496A7009DEF96 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		E22B3E5722A63C87009DEF96 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		ED1B3068C4EEF3A0F52F508A /* Pods-cpaChecker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cpaChecker.release.xcconfig"; path = "Target Support Files/Pods-cpaChecker/Pods-cpaChecker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,7 +162,9 @@
 				E2018CD1229DBFE700973C97 /* AppDelegate.swift */,
 				E2018D01229DC18C00973C97 /* View Controllers */,
 				E2018CD7229DBFE700973C97 /* Main.storyboard */,
+				E22B3E5922A63C91009DEF96 /* Cells */,
 				E2018D04229DC1B100973C97 /* ClassStructEnum */,
+				E22B3E1822A49632009DEF96 /* Functions */,
 				E2018CDA229DBFEA00973C97 /* Assets.xcassets */,
 				E2018CDC229DBFEA00973C97 /* LaunchScreen.storyboard */,
 				E2018CDF229DBFEA00973C97 /* Info.plist */,
@@ -186,7 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				E2018CD3229DBFE700973C97 /* InstructionsVC.swift */,
-				E2018D07229E247900973C97 /* ClassListControl */,
+				E2018CD5229DBFE700973C97 /* ClassListSelectionVC.swift */,
 				E2018D08229E2D5200973C97 /* ClassDetailVC.swift */,
 				E2198A5A22A0B0F100B9D42F /* UnitEntryVC.swift */,
 				E2198A5C22A1B36000B9D42F /* StatusVC.swift */,
@@ -198,19 +206,28 @@
 			isa = PBXGroup;
 			children = (
 				E2018D02229DC1A800973C97 /* Class.swift */,
+				E22B3E1922A496A7009DEF96 /* Result.swift */,
 				E2198A5E22A1BBAB00B9D42F /* RealmClass.swift */,
-				E237A269229E40AE00FA20D3 /* ClassesTaking.swift */,
+				E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */,
 			);
 			path = ClassStructEnum;
 			sourceTree = "<group>";
 		};
-		E2018D07229E247900973C97 /* ClassListControl */ = {
+		E22B3E1822A49632009DEF96 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
-				E2018CD5229DBFE700973C97 /* ClassListSelectionVC.swift */,
+				E22B3E1622A49629009DEF96 /* calculateStatus.swift */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
+		E22B3E5922A63C91009DEF96 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E22B3E5722A63C87009DEF96 /* StatusCell.swift */,
 				E2018D05229E247200973C97 /* ClassCell.swift */,
 			);
-			path = ClassListControl;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,11 +454,14 @@
 				E2018D03229DC1A800973C97 /* Class.swift in Sources */,
 				E2018CD6229DBFE700973C97 /* ClassListSelectionVC.swift in Sources */,
 				E2198A5D22A1B36000B9D42F /* StatusVC.swift in Sources */,
+				E22B3E1722A49629009DEF96 /* calculateStatus.swift in Sources */,
 				E2018D09229E2D5200973C97 /* ClassDetailVC.swift in Sources */,
 				E2018CD2229DBFE700973C97 /* AppDelegate.swift in Sources */,
+				E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */,
+				E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */,
 				E2018CD4229DBFE700973C97 /* InstructionsVC.swift in Sources */,
-				E237A26A229E40AE00FA20D3 /* ClassesTaking.swift in Sources */,
 				E2198A5B22A0B0F100B9D42F /* UnitEntryVC.swift in Sources */,
+				E22B3D9C22A251B3009DEF96 /* RealmUnits.swift in Sources */,
 				E2198A5F22A1BBAB00B9D42F /* RealmClass.swift in Sources */,
 				E2018D06229E247200973C97 /* ClassCell.swift in Sources */,
 			);

@@ -38,7 +38,5 @@ class InstructionsVC: UIViewController {
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: false, completion: nil)
     }
-
-    
 }
 
