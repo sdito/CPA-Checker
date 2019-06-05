@@ -42,12 +42,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         realm = try! Realm()
-        if realm.objects(RealmUnits.self).filter("identifier = 'Community College'").first?.units ?? 0 >= 1 {
-            ccAccounting.isHidden = false
-            ccBusiness.isHidden = false
-            ccEthics.isHidden = false
-            hideLabel.isHidden = false
-        }
+        
         fall1.delegate = self
         fall2.delegate = self
         fall3.delegate = self
@@ -120,7 +115,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     // since in a tab bar and no segue, is this a bad way to update the realm about the units? or should I update them another way
     override func viewWillDisappear(_ animated: Bool) {
         // works, but is it the right way to just create an instance on each view controller of the realm? or should I put it in a shared class and access it that way?
-        print(Realm.Configuration.defaultConfiguration.fileURL as Any)
+        print(Realm.Configuration.defaultConfiguration.fileURL)
         // clean up textfields before doing this, dont allow anything but numbers
         let f1 = RealmUnits()
         f1.identifier = "Fall 1"

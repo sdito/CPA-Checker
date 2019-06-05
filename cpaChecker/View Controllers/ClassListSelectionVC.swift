@@ -22,7 +22,7 @@ class ClassListSelectionVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         realm = try! Realm()
-        print(Realm.Configuration.defaultConfiguration.fileURL as Any)
+        print(Realm.Configuration.defaultConfiguration.fileURL)
         
     }
     
