@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 
+
 class UnitEntryVC: UIViewController, UITextFieldDelegate {
     
     var realm = try! Realm()
@@ -115,7 +116,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     // since in a tab bar and no segue, is this a bad way to update the realm about the units? or should I update them another way
     override func viewWillDisappear(_ animated: Bool) {
         // works, but is it the right way to just create an instance on each view controller of the realm? or should I put it in a shared class and access it that way?
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+        //print(Realm.Configuration.defaultConfiguration.fileURL)
         // clean up textfields before doing this, dont allow anything but numbers
         let f1 = RealmUnits()
         f1.identifier = "Fall 1"
@@ -202,15 +203,14 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         }
         //kbHeight = keyboardRect.height
         //var tally: CGFloat = 0
-        
-        if (activeTextField?.frame.origin.y)! > keyboardRect.height {
+        if (activeTextField?.frame.origin.y ?? 0) > keyboardRect.height {
             UIView.animate(withDuration: 0.5, animations: {
                 self.view.frame.origin.y = -((self.activeTextField?.frame.origin.y)! - keyboardRect.height)
 
             })
             
             //tally += -((activeTextField?.frame.origin.y)! - keyboardRect.height)
-        } else if (activeTextField?.frame.origin.y)! < keyboardRect.height {
+        } else if (activeTextField?.frame.origin.y) ?? 0 < keyboardRect.height {
             UIView.animate(withDuration: 0.5, animations: {
                 self.view.frame.origin.y = 0
             })
@@ -310,7 +310,6 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     func handleExtraEthicsOverCC() {
         // create, currently if ccEthics is the one that makes total greater than ccUnits (and error alert pop up), keybaord show doesnt work correctly and textfield is hidden
     }
-    
 }
 
 

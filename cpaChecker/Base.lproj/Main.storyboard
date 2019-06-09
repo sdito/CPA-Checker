@@ -217,35 +217,45 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7J-za-kZw">
                                 <rect key="frame" x="0.0" y="88" width="414" height="40"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GfW-vy-2J9">
-                                        <rect key="frame" x="123" y="12" width="188.5" height="16.5"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxB-7H-thR">
+                                        <rect key="frame" x="355" y="9" width="22" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="addClassPopUp:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="s9a-R0-Hot"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="B9K-ei-c0X">
+                                        <rect key="frame" x="96" y="5" width="216" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accounting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3v9-kJ-A69">
-                                                <rect key="frame" x="0.0" y="0.0" width="61.5" height="16.5"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJj-B3-UMb">
-                                                <rect key="frame" x="63.5" y="0.0" width="61.5" height="16.5"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ethics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfq-zw-hbw">
-                                                <rect key="frame" x="127" y="0.0" width="61.5" height="16.5"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-dK-syD">
+                                                <rect key="frame" x="0.0" y="0.0" width="72" height="32"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                <state key="normal" title="Accounting"/>
+                                                <connections>
+                                                    <action selector="accountingSorted:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="AEG-1G-kkS"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zb-06-Whc">
+                                                <rect key="frame" x="72" y="0.0" width="72" height="32"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                <state key="normal" title="Business"/>
+                                                <connections>
+                                                    <action selector="businessSorted:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="4AE-h7-Wmu"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWi-dR-RFL">
+                                                <rect key="frame" x="144" y="0.0" width="72" height="32"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                <state key="normal" title="Ethics"/>
+                                                <connections>
+                                                    <action selector="ethicsSorted:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="kCY-GZ-KEM"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="GfW-vy-2J9" secondAttribute="trailing" constant="102.5" id="6CG-sK-J2d"/>
-                                    <constraint firstItem="GfW-vy-2J9" firstAttribute="centerY" secondItem="e7J-za-kZw" secondAttribute="centerY" id="DOp-O8-cbr"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -263,13 +273,117 @@
                     </view>
                     <navigationItem key="navigationItem" id="BSA-LY-dwh"/>
                     <connections>
+                        <outlet property="accountingSortedOutlet" destination="wd9-dK-syD" id="8Zj-vm-1fK"/>
+                        <outlet property="businessSortedOutlet" destination="2Zb-06-Whc" id="diq-Pb-Vnx"/>
+                        <outlet property="ethicsSortedOutlet" destination="nWi-dR-RFL" id="ASf-oK-9ro"/>
                         <outlet property="tableView" destination="1RQ-ts-XmX" id="Tw3-zT-p5h"/>
                         <segue destination="5bR-Uk-2WD" kind="show" identifier="classDetailSegue" id="IgB-Ex-Cxg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2321.739130434783" y="-356.25"/>
+            <point key="canvasLocation" x="2275.36231884058" y="-356.25"/>
+        </scene>
+        <!--Pop UpVC-->
+        <scene sceneID="ysK-9Y-obM">
+            <objects>
+                <viewController storyboardIdentifier="popOverID" id="V4I-lj-EiC" customClass="PopUpVC" customModule="cpaChecker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nLz-Mi-n2l">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YpM-zW-gZE">
+                                <rect key="frame" x="25" y="25" width="250" height="350"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Information For New Class" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9O-EI-f6f">
+                                        <rect key="frame" x="9" y="5" width="232" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Course Name (i.e. BUS 214)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dZ0-CP-saf">
+                                        <rect key="frame" x="11" y="45" width="228" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of Units" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vKo-OQ-bbl">
+                                        <rect key="frame" x="11" y="87" width="228" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                    </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="WUg-3S-fmi">
+                                        <rect key="frame" x="25" y="186" width="204" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Business"/>
+                                            <segment title="Not Business"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNn-7a-BJ2">
+                                        <rect key="frame" x="39" y="286" width="62" height="47"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="done:" destination="V4I-lj-EiC" eventType="touchUpInside" id="b70-lK-2ar"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gp-pD-NDb">
+                                        <rect key="frame" x="162" y="286" width="42" height="47"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
+                                        <state key="normal" title="Exit"/>
+                                        <connections>
+                                            <action selector="exit:" destination="V4I-lj-EiC" eventType="touchUpInside" id="sCr-mA-7jr"/>
+                                        </connections>
+                                    </button>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="NEI-T3-OmZ">
+                                        <rect key="frame" x="26" y="222" width="203" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Ethics"/>
+                                            <segment title="Not Ethics"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qwb-UF-rLa">
+                                        <rect key="frame" x="25" y="150" width="204" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Accounting"/>
+                                            <segment title="Not Accounting"/>
+                                        </segments>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="6LS-Iv-YpW"/>
+                                    <constraint firstAttribute="width" constant="250" id="udi-hm-cd5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="YpM-zW-gZE" firstAttribute="centerY" secondItem="nLz-Mi-n2l" secondAttribute="centerY" id="GkW-LT-Pt7"/>
+                            <constraint firstItem="YpM-zW-gZE" firstAttribute="centerX" secondItem="nLz-Mi-n2l" secondAttribute="centerX" id="b73-d2-byV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pYu-uj-AHp"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="400"/>
+                    <connections>
+                        <outlet property="accountingSC" destination="Qwb-UF-rLa" id="A81-pV-Tj3"/>
+                        <outlet property="businessSC" destination="WUg-3S-fmi" id="UlM-Tg-DJf"/>
+                        <outlet property="classNameTextEntry" destination="dZ0-CP-saf" id="aCL-Dg-7uC"/>
+                        <outlet property="ethicsSC" destination="NEI-T3-OmZ" id="9wp-Ob-drz"/>
+                        <outlet property="numUnitsTextEntry" destination="vKo-OQ-bbl" id="NNE-0p-nEw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="21e-9i-PWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3116" y="-684"/>
         </scene>
         <!--Class DetailVC-->
         <scene sceneID="Jtb-UU-hLJ">
@@ -434,7 +548,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PlQ-jt-QQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3207.2463768115945" y="-354.24107142857139"/>
+            <point key="canvasLocation" x="3199" y="-151"/>
         </scene>
         <!--Units-->
         <scene sceneID="VK9-Xl-Ulu">
@@ -544,45 +658,140 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Accounting" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="clp-JQ-wvP">
-                                <rect key="frame" x="35" y="667" width="108" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Accounting" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="clp-JQ-wvP">
+                                <rect key="frame" x="20" y="667.5" width="108" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                             </textField>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U3I-76-HoB">
-                                <rect key="frame" x="147" y="667" width="111" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U3I-76-HoB">
+                                <rect key="frame" x="132" y="667.5" width="86" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                             </textField>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ethics" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SiX-Dj-9JI">
-                                <rect key="frame" x="261" y="667" width="116" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ethics" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SiX-Dj-9JI">
+                                <rect key="frame" x="222" y="667.5" width="66" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                             </textField>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Type For Community College Units" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gs-O9-Qe9">
-                                <rect key="frame" x="52" y="639" width="316" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Type For Community College Units" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gs-O9-Qe9">
+                                <rect key="frame" x="49" y="639" width="316" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-MediumOblique" family="Avenir" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mOd-Fm-2zF">
+                                <rect key="frame" x="10" y="124" width="72.5" height="485"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fall 1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMS-zH-rdi">
+                                        <rect key="frame" x="0.0" y="0.0" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.11696260854258568" green="0.25282682254524425" blue="0.055231020426995715" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Winter 1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9T-zQ-Rov">
+                                        <rect key="frame" x="0.0" y="35.5" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spring 1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5U-kZ-eSG">
+                                        <rect key="frame" x="0.0" y="71" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fall 2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6d6-vU-Xh2">
+                                        <rect key="frame" x="0.0" y="106.5" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Winter 2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yac-xE-94p">
+                                        <rect key="frame" x="0.0" y="142" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spring 2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rG3-Ie-x9l">
+                                        <rect key="frame" x="0.0" y="177.5" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fall 3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1E-e0-03e">
+                                        <rect key="frame" x="0.0" y="213" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Winter 3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJf-nU-Je6">
+                                        <rect key="frame" x="0.0" y="248.5" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spring 3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDZ-Gw-TQf">
+                                        <rect key="frame" x="0.0" y="284" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fall 4" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBL-xb-wUl">
+                                        <rect key="frame" x="0.0" y="319.5" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Winter 4" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ho7-Ji-jdp">
+                                        <rect key="frame" x="0.0" y="355" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spring 4" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9I-1K-N5I">
+                                        <rect key="frame" x="0.0" y="390.5" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AP/Other" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuU-KV-sY1">
+                                        <rect key="frame" x="0.0" y="426" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fge-Y2-sSX">
+                                        <rect key="frame" x="0.0" y="461.5" width="72.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.1169626085" green="0.25282682249999999" blue="0.05523102043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="U3I-76-HoB" firstAttribute="top" secondItem="3Gs-O9-Qe9" secondAttribute="bottom" constant="5" id="6GZ-VO-C9u"/>
+                            <constraint firstItem="mOd-Fm-2zF" firstAttribute="leading" secondItem="W0E-77-Xzh" secondAttribute="leading" constant="10" id="Cdy-ds-A3u"/>
                             <constraint firstItem="7xA-z0-eM9" firstAttribute="centerX" secondItem="msV-Zj-IQc" secondAttribute="centerX" id="FK4-9W-iae"/>
                             <constraint firstItem="W0E-77-Xzh" firstAttribute="trailing" secondItem="ep4-Om-RAn" secondAttribute="trailing" constant="10" id="HRJ-WD-twZ"/>
+                            <constraint firstItem="SiX-Dj-9JI" firstAttribute="top" secondItem="3Gs-O9-Qe9" secondAttribute="bottom" constant="5" id="M99-3Q-kNR"/>
                             <constraint firstItem="Dtt-to-3NJ" firstAttribute="leading" secondItem="W0E-77-Xzh" secondAttribute="leading" constant="10" id="OLM-eT-env"/>
                             <constraint firstItem="Dtt-to-3NJ" firstAttribute="top" secondItem="ep4-Om-RAn" secondAttribute="bottom" constant="5" id="STH-8z-CEi"/>
+                            <constraint firstItem="clp-JQ-wvP" firstAttribute="top" secondItem="3Gs-O9-Qe9" secondAttribute="bottom" constant="5" id="SdF-Vh-bMl"/>
+                            <constraint firstItem="clp-JQ-wvP" firstAttribute="leading" secondItem="W0E-77-Xzh" secondAttribute="leading" constant="20" id="Tl1-zg-q1c"/>
+                            <constraint firstItem="mOd-Fm-2zF" firstAttribute="top" secondItem="7xA-z0-eM9" secondAttribute="top" id="UVP-nT-rq5"/>
                             <constraint firstItem="W0E-77-Xzh" firstAttribute="trailing" secondItem="Dtt-to-3NJ" secondAttribute="trailing" constant="10" id="byA-st-0EN"/>
+                            <constraint firstItem="3Gs-O9-Qe9" firstAttribute="top" secondItem="7xA-z0-eM9" secondAttribute="bottom" constant="30" id="dj4-iy-mfh"/>
                             <constraint firstItem="7xA-z0-eM9" firstAttribute="top" secondItem="Dtt-to-3NJ" secondAttribute="bottom" constant="10" id="e1n-2u-olT"/>
                             <constraint firstItem="ep4-Om-RAn" firstAttribute="leading" secondItem="W0E-77-Xzh" secondAttribute="leading" constant="10" id="hVE-9b-IeM"/>
+                            <constraint firstItem="3Gs-O9-Qe9" firstAttribute="centerX" secondItem="msV-Zj-IQc" secondAttribute="centerX" id="kPe-xp-JvN"/>
+                            <constraint firstItem="U3I-76-HoB" firstAttribute="leading" secondItem="clp-JQ-wvP" secondAttribute="trailing" constant="4" id="mIv-VT-MyP"/>
                             <constraint firstItem="ep4-Om-RAn" firstAttribute="top" secondItem="W0E-77-Xzh" secondAttribute="top" constant="10" id="uSc-hC-IeB"/>
+                            <constraint firstItem="SiX-Dj-9JI" firstAttribute="leading" secondItem="U3I-76-HoB" secondAttribute="trailing" constant="4" id="wNf-lU-YQS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="W0E-77-Xzh"/>
                     </view>

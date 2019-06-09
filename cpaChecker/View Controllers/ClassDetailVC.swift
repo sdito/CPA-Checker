@@ -29,7 +29,6 @@ class ClassDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createUI()
-        
     }
     
     func createUI() {

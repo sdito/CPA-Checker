@@ -42,6 +42,7 @@ class StatusVC: UIViewController {
         ethicsUnitsNumber.text = result?.ethicsUnits.description
         totalUnitsNumber.text = result?.totalUnits.description
         classesForTable = result!.accountingClasses
+        tableView.reloadData()
     }
     
     
@@ -180,6 +181,8 @@ class StatusVC: UIViewController {
         var tempAccountingClasses = Array(realm.objects(RealmClass.self).filter("isAccounting = true"))
         var tempEthicsClasses = Array(realm.objects(RealmClass.self).filter("isEthics = true and isAccounting = false"))
         var tempBusinessClasses = Array(realm.objects(RealmClass.self).filter("isBusiness = true and isAccounting = false and isEthics = false"))
+
+        
         for item in tempAccountingClasses {
             if item.courseNum == "BUS 424" {
                 tempEthicsClasses.insert(item, at: 0)
@@ -236,7 +239,6 @@ class StatusVC: UIViewController {
         (businessClasses, businessClassesLeft) = stringToClass(strings: tempBusinessClasses, type: "bus")
         (ethicsClasses, ethicsClassesLeft) = stringToClass(strings: tempEthicsClasses, type: "eth")
         
-        
         let unitsRealm = Array(realm.objects(RealmUnits.self))
         for item in unitsRealm {
             if item.identifier == "ACC - CC" {
@@ -285,7 +287,7 @@ class StatusVC: UIViewController {
         
         
         // maybe not the best way to use 'type' in this scenario to sort them
-        allClasses.forEach { units in
+        SharedAllClasses.shared.sharedAllClasses.forEach { units in
             let className = units.courseNum
             if setStrings.contains(className) {
                 classes.append(units)
@@ -309,7 +311,7 @@ extension StatusVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let object = classesForTable[indexPath.row] // had a 'fatal error, index out of range' here
+        let object = classesForTable[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell") as! StatusCell
         cell.statusCellUI(object: object)
         return cell
