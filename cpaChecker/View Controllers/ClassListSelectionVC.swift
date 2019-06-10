@@ -22,7 +22,7 @@ class ClassListSelectionVC: UIViewController {
     var sortEthics = false
     var realm = try! Realm()
     //var setTo_allCourseNums: Set<String>?
-    
+    var blurBackground: Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -31,7 +31,26 @@ class ClassListSelectionVC: UIViewController {
         print(Realm.Configuration.defaultConfiguration.fileURL)
     }
     // need to fix the deleted class getting added again from here
-    override func viewDidAppear(_ animated: Bool) {
+//    override func viewDidAppear(_ animated: Bool) {
+//        updateTableInfoAndResetData()
+//        for item in realm.objects(RealmNewClass.self) {
+//            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil)
+//            var allCourseNums: [String] = []
+//            for name in SharedAllClasses.shared.sharedAllClasses {
+//                allCourseNums.append(name.courseNum)
+//            }
+//            if allCourseNums.contains(newClass.courseNum) {
+//                print("Dont add")
+//            } else {
+//                //combinedClasses.append(newClass)
+//                SharedAllClasses.shared.sharedAllClasses.append(newClass)
+//                updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
+//            }
+//        }
+//        tableView.reloadData()
+//    }
+    func updateTableInfoAndResetData() {
+        print("THis is called")
         for item in realm.objects(RealmNewClass.self) {
             let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil)
             var allCourseNums: [String] = []
@@ -39,17 +58,16 @@ class ClassListSelectionVC: UIViewController {
                 allCourseNums.append(name.courseNum)
             }
             if allCourseNums.contains(newClass.courseNum) {
-                print("Dont add")
+                //do nothing
             } else {
                 //combinedClasses.append(newClass)
                 SharedAllClasses.shared.sharedAllClasses.append(newClass)
                 updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
             }
-            print(allCourseNums)
         }
         tableView.reloadData()
+        //tableView.scrollToRow(at: IndexPath, at: scrollPositiom, animated: bool)
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "classDetailSegue" {
             let destVC = segue.destination as! ClassDetailVC
@@ -89,11 +107,27 @@ class ClassListSelectionVC: UIViewController {
     }
     
     @IBAction func addClassPopUp(_ sender: Any) {
+        overlayBlurredBackgroundView()
         let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popOverID") as! PopUpVC
+        popOverVC.delegate = self
         self.addChild(popOverVC)
         popOverVC.view.frame = self.view.frame
         self.view.addSubview(popOverVC.view)
         popOverVC.didMove(toParent: self)
+    }
+    
+    func overlayBlurredBackgroundView() {
+        let blurredBackgroundView = UIVisualEffectView()
+        blurredBackgroundView.frame = view.frame
+        blurredBackgroundView.effect = UIBlurEffect(style: .dark)
+        view.addSubview(blurredBackgroundView)
+    }
+    func removeBlurredBackgroundView() {
+        for subview in view.subviews {
+            if subview.isKind(of: UIVisualEffectView.self) {
+                subview.removeFromSuperview()
+            }
+        }
     }
     
     // to filter classes in main table view based on what buttons are selected
@@ -142,6 +176,16 @@ extension ClassListSelectionVC: ClassCellDelegate {
         }
     }
 }
+extension ClassListSelectionVC: PopUpDelegate {
+    func removeBlurViews() {
+        removeBlurredBackgroundView()
+    }
+    
+    func resetTableData() {
+        updateTableInfoAndResetData()
+    }
+}
+// need to get this to work to get pop up view to work correctly UI wise
 
 extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -180,7 +224,8 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
             let count = realm.objects(RealmNewClass.self).filter("courseNum = '\(courseNum.courseNum.uppercased())'").count
             if count >= 1 {
                 try! realm.write {
-                    realm.delete(realm.objects(RealmNewClass.self).filter("courseNum = '\(courseNum.courseNum.uppercased())'").first!)
+                    realm.delete(realm.objects(RealmNewClass.self).filter("courseNum = '\(courseNum.courseNum.uppercased())'"))
+//                    realm.delete(realm.objects(RealmNewClass.self).filter("courseNum = '\(courseNum.courseNum.uppercased())'").first!)
                 }
             }
             //used to delete class object from RealmClass if class is currently selected
