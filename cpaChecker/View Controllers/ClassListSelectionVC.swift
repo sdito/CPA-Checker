@@ -49,8 +49,8 @@ class ClassListSelectionVC: UIViewController {
 //        }
 //        tableView.reloadData()
 //    }
+    // assimilates the classes from realm into sharedAllClasses and eventually sortedClasses through updateClassesForTableView, only does not allow duplicate classes to be shown on the table view,
     func updateTableInfoAndResetData() {
-        print("THis is called")
         for item in realm.objects(RealmNewClass.self) {
             let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil)
             var allCourseNums: [String] = []
