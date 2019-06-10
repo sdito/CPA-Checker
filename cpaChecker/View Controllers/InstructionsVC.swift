@@ -31,6 +31,7 @@ class InstructionsVC: UIViewController {
         busRelatedSubsLabel.text = busRelatedSubsMessage
         accountingStudyLabel.text = accountingStudyMessage
         ethicsStudyLabel.text = ethicsStudyMessage
+
     }
 
     @IBAction func cpaWebsite(_ sender: Any) {
