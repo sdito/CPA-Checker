@@ -222,20 +222,20 @@ class StatusVC: UIViewController {
         
         // NEED TO TEST
         // Fix issue for if there are less than 4 extra accounting units and not enough business units; the extra units from accounting should be pushed into business
-        let extraAccountingClasses = currExtraAccounting / 4 //technically could be less than 4 if from user input class
-        if (extraAccountingClasses >= 1) && (neededBusinessClasses > 0) {
-            var amtSwitch = min(extraAccountingClasses, neededBusinessClasses)
-            
-            for item in tempAccountingClasses {
-                if (item.isBusiness == true) && (amtSwitch > 0) {
-                    let forDelete = item.courseNum
-                    tempBusinessClasses.append(item)
-                    tempAccountingClasses.removeAll{$0.courseNum == forDelete}
-                    amtSwitch -= 1
-                    neededBusinessClasses -= 1
-                }
-            }
-        }
+//        let extraAccountingClasses = currExtraAccounting / 4  class
+//        if (extraAccountingClasses >= 1) && (neededBusinessClasses > 0) {
+//            var amtSwitch = min(extraAccountingClasses, neededBusinessClasses)
+//            
+//            for item in tempAccountingClasses {
+//                if (item.isBusiness == true) && (amtSwitch > 0) {
+//                    let forDelete = item.courseNum
+//                    tempBusinessClasses.append(item)
+//                    tempAccountingClasses.removeAll{$0.courseNum == forDelete}
+//                    amtSwitch -= 1
+//                    neededBusinessClasses -= 1
+//                }
+//            }
+//        }
 
         (accountingClasses, accountingClassesLeft) = stringToClass(strings: tempAccountingClasses, type: "acc")
         (businessClasses, businessClassesLeft) = stringToClass(strings: tempBusinessClasses, type: "bus")
