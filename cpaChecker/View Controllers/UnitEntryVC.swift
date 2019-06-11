@@ -64,23 +64,8 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         
         
         // could most likely go bad
-        fall1.text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 1'").first?.units.description
-        fall2.text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 2'").first?.units.description
-        fall3.text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 3'").first?.units.description
-        fall4.text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 4'").first?.units.description
-        winter1.text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 1'").first?.units.description
-        winter2.text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 2'").first?.units.description
-        winter3.text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 3'").first?.units.description
-        winter4.text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 4'").first?.units.description
-        spring1.text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 1'").first?.units.description
-        spring2.text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 2'").first?.units.description
-        spring3.text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 3'").first?.units.description
-        spring4.text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 4'").first?.units.description
-        apOther.text = realm.objects(RealmUnits.self).filter("identifier = 'AP and Other'").first?.units.description
-        ccUnits.text = realm.objects(RealmUnits.self).filter("identifier = 'Community College'").first?.units.description
-//        ccAccounting.text
-//        ccEthics.text
-//        ccBusiness.text
+        textFieldAmount()
+
         
         
         
@@ -188,6 +173,23 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
+    // doesnt work
+    @IBAction func resetAlertPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Reset Units?", message: "This will reset only the data on this page.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: resetUnitsData))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.activeTextField?.text = ""
+        present(alert, animated: true, completion: nil)
+    }
+    // doesnt work
+    func resetUnitsData(alert: UIAlertAction!) {
+        try! realm.write {
+            let realmUnitsData = realm.objects(RealmUnits.self)
+            realm.delete(realmUnitsData)
+        }
+        textFieldAmount()
+    }
+    
     @objc func doneClicked() {
         view.endEditing(true)
         UIView.animate(withDuration: 0.5) {
@@ -309,6 +311,42 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     }
     func handleExtraEthicsOverCC() {
         // create, currently if ccEthics is the one that makes total greater than ccUnits (and error alert pop up), keybaord show doesnt work correctly and textfield is hidden
+    }
+    func textFieldAmount() {
+        let f1text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 1'").first?.units.description
+        fall1.text = (f1text == "0") ? "" : f1text
+        let f2text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 2'").first?.units.description
+        fall2.text = (f2text == "0") ? "" : f2text
+        let f3text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 3'").first?.units.description
+        fall3.text = (f3text == "0") ? "" : f3text
+        let f4text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 4'").first?.units.description
+        fall4.text = (f4text == "0") ? "" : f4text
+        let w1text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 1'").first?.units.description
+        winter1.text = (w1text == "0") ? "" : w1text
+        let w2text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 2'").first?.units.description
+        winter2.text = (w2text == "0") ? "" : w2text
+        let w3text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 3'").first?.units.description
+        winter3.text = (w3text == "0") ? "" : w3text
+        let w4text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 4'").first?.units.description
+        winter4.text = (w4text == "0") ? "" : w4text
+        let s1text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 1'").first?.units.description
+        spring1.text = (s1text == "0") ? "" : s1text
+        let s2text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 2'").first?.units.description
+        spring2.text = (s2text == "0") ? "" : s2text
+        let s3text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 3'").first?.units.description
+        spring3.text = (s3text == "0") ? "" : s3text
+        let s4text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 4'").first?.units.description
+        spring4.text = (s4text == "0") ? "" : s4text
+        let apOtext = realm.objects(RealmUnits.self).filter("identifier = 'AP and Other'").first?.units.description
+        apOther.text = (apOtext == "0") ? "" : apOtext
+        let ccUtext = realm.objects(RealmUnits.self).filter("identifier = 'Community College'").first?.units.description
+        ccUnits.text = (ccUtext == "0") ? "" : ccUtext
+        let ccAtext = realm.objects(RealmUnits.self).filter("identifier = 'ACC - CC'").first?.units.description
+        ccAccounting.text = (ccAtext == "0") ? "" : ccAtext
+        let ccEtext = realm.objects(RealmUnits.self).filter("identifier = 'BUS - CC'").first?.units.description
+        ccEthics.text = (ccEtext == "0") ? "" : ccEtext
+        let ccBtext = realm.objects(RealmUnits.self).filter("identifier = 'ETH - CC'").first?.units.description
+        ccBusiness.text = (ccBtext == "0") ? "" : ccBtext
     }
 }
 

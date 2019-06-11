@@ -15,6 +15,7 @@ class InstructionsVC: UIViewController {
     @IBOutlet weak var accountingStudyLabel: UILabel!
     @IBOutlet weak var ethicsStudyLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var websiteButtonOutlet: UIButton!
     
     
     @IBOutlet weak var viewArea: UIView!
@@ -31,7 +32,9 @@ class InstructionsVC: UIViewController {
         busRelatedSubsLabel.text = busRelatedSubsMessage
         accountingStudyLabel.text = accountingStudyMessage
         ethicsStudyLabel.text = ethicsStudyMessage
-
+        websiteButtonOutlet.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
+        websiteButtonOutlet.layer.cornerRadius = 15
+        websiteButtonOutlet.clipsToBounds = true
     }
 
     @IBAction func cpaWebsite(_ sender: Any) {

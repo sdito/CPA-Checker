@@ -262,6 +262,13 @@ class StatusVC: UIViewController {
             ethicsUnits = ethicsUnits + item.numUnits
         }
         
+        // if there are extra accounting units and not enough business units, this will add the extra accounting units into business units
+        if (accountingUnits > accountingNeeded) && (businessUnits < businessNeeded) {
+            let amountToTransfer = min(accountingUnits - accountingNeeded, businessNeeded - businessUnits)
+            accountingUnits = accountingUnits - amountToTransfer
+            businessUnits = businessUnits + amountToTransfer
+        }
+        
         return Result(totalUnits: totalUnits, accountingUnits: accountingUnits, businessUnits: businessUnits, ethicsUnits: ethicsUnits, accountingClasses: accountingClasses, businessClasses: businessClasses, ethicsClasses: ethicsClasses, accountingClassesLeft: accountingClassesLeft, businessClassesLeft: businessClassesLeft, ethicsClassesLeft: ethicsClassesLeft)
     }
     

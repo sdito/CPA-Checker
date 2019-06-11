@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 
 struct Colors {
-    static let green = #colorLiteral(red: 0.02846551707, green: 0.2094195272, blue: 0, alpha: 1)
-    static let lightGrey = #colorLiteral(red: 0.2094103682, green: 0.2064254537, blue: 0.2124554728, alpha: 1)
-    static let darkGrey = #colorLiteral(red: 0.2094103682, green: 0.2064254537, blue: 0.2124554728, alpha: 1)
-    static let gold = #colorLiteral(red: 0.4693369495, green: 0.4122034027, blue: 0, alpha: 1)
-    
+    static let white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    static let lightLightGray = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha: 1.0)
+    static let lightGray = UIColor(red: 175.0/255.0, green: 175.0/255.0, blue: 175.0/255.0, alpha: 1.0)
+    static let lightestGray = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)
+    static let calPolyGreen = UIColor(red: 28.0/255.0, green: 70.0/255.0, blue: 51.0/255.0, alpha: 1.0)
+    static let calPolyGold = UIColor(red: 164.0/255.0, green: 152.0/255.0, blue: 89.0/255.0, alpha: 1.0)
 }

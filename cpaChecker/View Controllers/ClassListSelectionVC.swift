@@ -17,6 +17,7 @@ class ClassListSelectionVC: UIViewController {
     @IBOutlet weak var accountingSortedOutlet: UIButton!
     @IBOutlet weak var businessSortedOutlet: UIButton!
     @IBOutlet weak var ethicsSortedOutlet: UIButton!
+    @IBOutlet weak var headerViewGradient: UIView!
     var sortAccounting = false
     var sortBusiness = false
     var sortEthics = false
@@ -28,7 +29,8 @@ class ClassListSelectionVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         realm = try! Realm()
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? "Realm location print didnt work")
+        headerViewGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
     }
     // need to fix the deleted class getting added again from here
 //    override func viewDidAppear(_ animated: Bool) {
@@ -77,8 +79,7 @@ class ClassListSelectionVC: UIViewController {
     
     @IBAction func accountingSorted(_ sender: Any) {
         sortAccounting = !sortAccounting
-        if sortAccounting == true {
-            accountingSortedOutlet.backgroundColor = .yellow
+        if sortAccounting == true {accountingSortedOutlet.backgroundColor = .yellow
         } else {
             accountingSortedOutlet.backgroundColor = .clear
         }

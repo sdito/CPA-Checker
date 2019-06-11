@@ -13,6 +13,7 @@ class ClassDetailVC: UIViewController {
     
     var units: Class?
 
+    @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var courseNumLabel: UILabel!
     @IBOutlet weak var courseTitleLabel: UILabel!
     @IBOutlet weak var courseDescriptionLabel: UILabel!
@@ -29,6 +30,7 @@ class ClassDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createUI()
+        gradientView.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
     }
     
     func createUI() {
