@@ -20,6 +20,7 @@ class StatusVC: UIViewController {
     @IBOutlet weak var ethicsUnitsNumber: UILabel!
     @IBOutlet weak var totalUnitsNumber: UILabel!
     @IBOutlet weak var combinationLabel: UILabel!
+    @IBOutlet weak var forGradient: UIView!
     
     var accounting = true
     var business = false
@@ -33,6 +34,7 @@ class StatusVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.isHidden = true
+        forGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
     }
 
     override func viewDidAppear(_ animated: Bool) {

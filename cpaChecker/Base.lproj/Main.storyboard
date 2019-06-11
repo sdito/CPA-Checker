@@ -128,7 +128,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Instructions" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Instructions" image="planner" id="acW-dT-cKf"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="1400"/>
                     <connections>
@@ -145,7 +145,7 @@
             </objects>
             <point key="canvasLocation" x="1410.144927536232" y="-1213.3928571428571"/>
         </scene>
-        <!--Class List SelectionVC-->
+        <!--Select Classes Taken-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="ClassListSelectionVC" customModule="cpaChecker" customModuleProvider="target" sceneMemberID="viewController">
@@ -277,7 +277,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BSA-LY-dwh"/>
+                    <navigationItem key="navigationItem" title="Select Classes Taken" id="sgt-Bi-tLI"/>
                     <connections>
                         <outlet property="accountingSortedOutlet" destination="wd9-dK-syD" id="8Zj-vm-1fK"/>
                         <outlet property="businessSortedOutlet" destination="2Zb-06-Whc" id="diq-Pb-Vnx"/>
@@ -832,7 +832,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="W0E-77-Xzh"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Units" id="cFr-YQ-zau"/>
+                    <tabBarItem key="tabBarItem" title="Units" image="pencil" id="cFr-YQ-zau"/>
                     <connections>
                         <outlet property="apOther" destination="4M2-BT-zMl" id="FhV-wy-4fd"/>
                         <outlet property="ccAccounting" destination="clp-JQ-wvP" id="M5E-10-WT2"/>
@@ -1091,12 +1091,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oFJ-qn-A9a"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Status" id="c3N-Xq-vJs"/>
+                    <tabBarItem key="tabBarItem" title="Status" image="star" id="c3N-Xq-vJs"/>
                     <connections>
                         <outlet property="accountingUnitsNumber" destination="5Jc-Hc-dcb" id="0Fr-OQ-fQH"/>
                         <outlet property="businessUnitsNumber" destination="sYT-7i-a6v" id="rC2-Xt-e1l"/>
                         <outlet property="combinationLabel" destination="COh-nX-DDg" id="cXK-1r-Uzd"/>
                         <outlet property="ethicsUnitsNumber" destination="5tG-D8-ivB" id="MuJ-oj-knj"/>
+                        <outlet property="forGradient" destination="nOp-0j-ba8" id="Qan-PR-ia2"/>
                         <outlet property="tableView" destination="0BD-Ee-ay3" id="OoY-eg-Odk"/>
                         <outlet property="totalUnitsNumber" destination="4Vd-6y-VWk" id="atX-3W-H0E"/>
                     </connections>
@@ -1129,7 +1130,7 @@
         <scene sceneID="XHp-sk-UuM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IEh-ed-hRT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Classes" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Classes" image="menu" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ho9-vS-Fq1">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1146,7 +1147,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="menu" width="30" height="30"/>
+        <image name="pencil" width="30" height="30"/>
+        <image name="planner" width="30" height="30"/>
+        <image name="star" width="30" height="30"/>
     </resources>
 </document>
