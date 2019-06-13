@@ -328,7 +328,7 @@
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
                                                 <state key="normal" title="Done"/>
                                                 <connections>
-                                                    <action selector="done:" destination="V4I-lj-EiC" eventType="touchUpInside" id="b70-lK-2ar"/>
+                                                    <action selector="donePressed:" destination="V4I-lj-EiC" eventType="touchUpInside" id="0D0-CE-Reb"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gp-pD-NDb">
@@ -336,7 +336,7 @@
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
                                                 <state key="normal" title="Exit"/>
                                                 <connections>
-                                                    <action selector="exit:" destination="V4I-lj-EiC" eventType="touchUpInside" id="sCr-mA-7jr"/>
+                                                    <action selector="exitPressed:" destination="V4I-lj-EiC" eventType="touchUpInside" id="DWB-iZ-Cmk"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -397,12 +397,11 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="300" height="400"/>
                     <connections>
-                        <outlet property="accountingSC" destination="Qwb-UF-rLa" id="A81-pV-Tj3"/>
-                        <outlet property="businessSC" destination="WUg-3S-fmi" id="UlM-Tg-DJf"/>
-                        <outlet property="classNameTextEntry" destination="dZ0-CP-saf" id="aCL-Dg-7uC"/>
-                        <outlet property="doneOutlet" destination="JNn-7a-BJ2" id="lQv-dz-HTD"/>
-                        <outlet property="ethicsSC" destination="NEI-T3-OmZ" id="9wp-Ob-drz"/>
-                        <outlet property="numUnitsTextEntry" destination="vKo-OQ-bbl" id="NNE-0p-nEw"/>
+                        <outlet property="accounting" destination="Qwb-UF-rLa" id="NMi-3G-ghO"/>
+                        <outlet property="business" destination="WUg-3S-fmi" id="MtT-PK-IuW"/>
+                        <outlet property="courseNameTextEntry" destination="dZ0-CP-saf" id="Xlb-i8-bkW"/>
+                        <outlet property="ethics" destination="NEI-T3-OmZ" id="SIT-eF-EVO"/>
+                        <outlet property="numberUnitsTextEntry" destination="vKo-OQ-bbl" id="RJh-IR-JzU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21e-9i-PWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
