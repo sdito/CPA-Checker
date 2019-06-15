@@ -66,9 +66,6 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         // could most likely go bad
         textFieldAmount()
 
-        
-        
-        
         let toolbar = UIToolbar()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneClicked))
         toolbar.setItems([doneButton], animated: false)
@@ -173,7 +170,8 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-    // doesnt work
+    
+    //alert for function resetUnitsData()
     @IBAction func resetAlertPressed(_ sender: Any) {
         let alert = UIAlertController(title: "Reset Units?", message: "This will reset only the data on this page.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: resetUnitsData))
@@ -181,7 +179,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         self.activeTextField?.text = ""
         present(alert, animated: true, completion: nil)
     }
-    // doesnt work
+    // set all the textfields back to empty
     func resetUnitsData(alert: UIAlertAction!) {
         try! realm.write {
             let realmUnitsData = realm.objects(RealmUnits.self)
@@ -198,6 +196,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         
     }
     
+    // to push current textfield above the keyboard if below, need to fix issue with black screen at bottom after dismissed
     @objc func keyboardWillChange(notification: Notification) {
         
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect) else {
@@ -225,7 +224,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         return true
     }
 
-    
+    //probably could have done this a shorter way
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == fall1 {
             textField.resignFirstResponder()

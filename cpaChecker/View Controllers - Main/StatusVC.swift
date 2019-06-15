@@ -165,7 +165,7 @@ class StatusVC: UIViewController {
         combinationLabel.text = message.description
     }
 
-    // maye should instead get an array of type Class from allClasses() which match realm, and go from there
+    // code could definitely be cleaner; takes classes from realm and converts that into result to be displayed
     func calculateStatus() -> Result {
         let accountingNeeded = 45
         let businessNeeded = 57

@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 
-// WHEN CLASS IS DELETED AND TRIED TO BE ADDED AGAIN IT CURRENTLY DOES NOT WORK, PROBABLY SOMETHING FROM ALLCOURSENUMS
 
 class ClassListSelectionVC: UIViewController {
     var sortedClasses: [Class] = SharedAllClasses.shared.sharedAllClasses
@@ -70,13 +69,14 @@ class ClassListSelectionVC: UIViewController {
         tableView.reloadData()
         //tableView.scrollToRow(at: IndexPath, at: scrollPositiom, animated: bool)
     }
+    //pop up to add classes
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "classDetailSegue" {
             let destVC = segue.destination as! ClassDetailVC
             destVC.units = sender as? Class
         }
     }
-    
+    //only show classes that have accounting and potentially others
     @IBAction func accountingSorted(_ sender: Any) {
         sortAccounting = !sortAccounting
         if sortAccounting == true {accountingSortedOutlet.backgroundColor = .yellow
@@ -86,6 +86,7 @@ class ClassListSelectionVC: UIViewController {
         updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
     }
+    //only show classes that have business and potentially others
     @IBAction func businessSorted(_ sender: Any) {
         sortBusiness = !sortBusiness
         if sortBusiness == true {
@@ -96,6 +97,7 @@ class ClassListSelectionVC: UIViewController {
         updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
     }
+    //only show classes that have ethics and potentially others
     @IBAction func ethicsSorted(_ sender: Any) {
         sortEthics = !sortEthics
         if sortEthics == true {
@@ -177,6 +179,8 @@ extension ClassListSelectionVC: ClassCellDelegate {
         }
     }
 }
+
+//fix ui after pop up is dismissed
 extension ClassListSelectionVC: PopUpDelegate {
     func removeBlurViews() {
         removeBlurredBackgroundView()

@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+// not used/functional at all yet
 class SchoolSelectVC: UIViewController {
 
     @IBOutlet weak var collegeNameLabel: UILabel!

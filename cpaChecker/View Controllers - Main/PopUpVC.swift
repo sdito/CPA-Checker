@@ -15,6 +15,7 @@ protocol PopUpDelegate {
     func resetTableData()
 }
 
+// used to allow user to add another class to main list
 class PopUpVC: UIViewController {
     var delegate: PopUpDelegate!
     
@@ -32,7 +33,8 @@ class PopUpVC: UIViewController {
         numberUnitsTextEntry.delegate = self
         
     }
-
+    
+    //create the class
     @IBAction func donePressed(_ sender: Any) {
         print(Realm.Configuration.defaultConfiguration.fileURL as Any)
         let realmClass = RealmNewClass()

@@ -33,6 +33,7 @@ class ClassDetailVC: UIViewController {
         gradientView.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
     }
     
+    //allows user to see detailed view of selected class
     func createUI() {
         courseNumLabel.text = units?.courseNum
         courseTitleLabel.text = units?.title
