@@ -31,6 +31,10 @@
 		E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E1922A496A7009DEF96 /* Result.swift */; };
 		E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E5722A63C87009DEF96 /* StatusCell.swift */; };
 		E29CDEB522AF0EF500CD8DCE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29CDEB422AF0EF500CD8DCE /* Colors.swift */; };
+		E2AEB38622B4A3F60017D0F3 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AEB38522B4A3F60017D0F3 /* StatusView.swift */; };
+		E2AEB38922B4A5120017D0F3 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AEB38822B4A5120017D0F3 /* StatusView.xib */; };
+		E2D746A522B5497E006AC0A4 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D746A422B5497E006AC0A4 /* WelcomeVC.swift */; };
+		E2D746A722B54995006AC0A4 /* SchoolSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D746A622B54995006AC0A4 /* SchoolSelectVC.swift */; };
 		F6299FE7FDE2D45B7DEA3917 /* Pods_cpaCheckerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE547A30552B2156072C892 /* Pods_cpaCheckerTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +92,10 @@
 		E22B3E1922A496A7009DEF96 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E22B3E5722A63C87009DEF96 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		E29CDEB422AF0EF500CD8DCE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		E2AEB38522B4A3F60017D0F3 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		E2AEB38822B4A5120017D0F3 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
+		E2D746A422B5497E006AC0A4 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
+		E2D746A622B54995006AC0A4 /* SchoolSelectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSelectVC.swift; sourceTree = "<group>"; };
 		ED1B3068C4EEF3A0F52F508A /* Pods-cpaChecker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cpaChecker.release.xcconfig"; path = "Target Support Files/Pods-cpaChecker/Pods-cpaChecker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,12 +176,13 @@
 			isa = PBXGroup;
 			children = (
 				E2018CD1229DBFE700973C97 /* AppDelegate.swift */,
-				E2018D01229DC18C00973C97 /* View Controllers */,
+				E2018D01229DC18C00973C97 /* View Controllers - Main */,
 				E2018CD7229DBFE700973C97 /* Main.storyboard */,
-				E22B3E5922A63C91009DEF96 /* Cells */,
-				E2018D04229DC1B100973C97 /* ClassStructEnum */,
-				E29CDEB322AF0E1C00CD8DCE /* Gradient */,
 				E2018CDC229DBFEA00973C97 /* LaunchScreen.storyboard */,
+				E22B3E5922A63C91009DEF96 /* Cells */,
+				E2018D04229DC1B100973C97 /* Classes */,
+				E29CDEB322AF0E1C00CD8DCE /* Gradient */,
+				E2AEB38722B4A4ED0017D0F3 /* StatusView */,
 				E2018CDA229DBFEA00973C97 /* Assets.xcassets */,
 				E2018CDF229DBFEA00973C97 /* Info.plist */,
 			);
@@ -198,7 +207,7 @@
 			path = cpaCheckerUITests;
 			sourceTree = "<group>";
 		};
-		E2018D01229DC18C00973C97 /* View Controllers */ = {
+		E2018D01229DC18C00973C97 /* View Controllers - Main */ = {
 			isa = PBXGroup;
 			children = (
 				E2018CD3229DBFE700973C97 /* InstructionsVC.swift */,
@@ -207,11 +216,13 @@
 				E2198A5A22A0B0F100B9D42F /* UnitEntryVC.swift */,
 				E20D1D0D22B1C69300B1AE68 /* PopUpVC.swift */,
 				E2198A5C22A1B36000B9D42F /* StatusVC.swift */,
+				E2D746A422B5497E006AC0A4 /* WelcomeVC.swift */,
+				E2D746A622B54995006AC0A4 /* SchoolSelectVC.swift */,
 			);
-			path = "View Controllers";
+			path = "View Controllers - Main";
 			sourceTree = "<group>";
 		};
-		E2018D04229DC1B100973C97 /* ClassStructEnum */ = {
+		E2018D04229DC1B100973C97 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				E2018D02229DC1A800973C97 /* Class.swift */,
@@ -221,7 +232,7 @@
 				E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */,
 				E207C87122AB6E3300BFDA24 /* RealmNewClass.swift */,
 			);
-			path = ClassStructEnum;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		E22B3E5922A63C91009DEF96 /* Cells */ = {
@@ -240,6 +251,15 @@
 				E20D1D0B22B1C5C200B1AE68 /* UIView-Extension.swift */,
 			);
 			path = Gradient;
+			sourceTree = "<group>";
+		};
+		E2AEB38722B4A4ED0017D0F3 /* StatusView */ = {
+			isa = PBXGroup;
+			children = (
+				E2AEB38522B4A3F60017D0F3 /* StatusView.swift */,
+				E2AEB38822B4A5120017D0F3 /* StatusView.xib */,
+			);
+			path = StatusView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +372,7 @@
 			files = (
 				E2018CDE229DBFEA00973C97 /* LaunchScreen.storyboard in Resources */,
 				E2018CDB229DBFEA00973C97 /* Assets.xcassets in Resources */,
+				E2AEB38922B4A5120017D0F3 /* StatusView.xib in Resources */,
 				E2018CD9229DBFE700973C97 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,10 +484,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2D746A722B54995006AC0A4 /* SchoolSelectVC.swift in Sources */,
 				E2018D03229DC1A800973C97 /* Class.swift in Sources */,
 				E20D1D0E22B1C69300B1AE68 /* PopUpVC.swift in Sources */,
+				E2AEB38622B4A3F60017D0F3 /* StatusView.swift in Sources */,
 				E2018CD6229DBFE700973C97 /* ClassListSelectionVC.swift in Sources */,
 				E2198A5D22A1B36000B9D42F /* StatusVC.swift in Sources */,
+				E2D746A522B5497E006AC0A4 /* WelcomeVC.swift in Sources */,
 				E29CDEB522AF0EF500CD8DCE /* Colors.swift in Sources */,
 				E20D1D0C22B1C5C200B1AE68 /* UIView-Extension.swift in Sources */,
 				E207C87222AB6E3300BFDA24 /* RealmNewClass.swift in Sources */,

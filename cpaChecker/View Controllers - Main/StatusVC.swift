@@ -22,12 +22,15 @@ class StatusVC: UIViewController {
     @IBOutlet weak var combinationLabel: UILabel!
     @IBOutlet weak var forGradient: UIView!
     
+    @IBOutlet weak var originalView: UIView!
+    @IBOutlet weak var stackView: UIStackView!
+    
     var accounting = true
     var business = false
     var ethics = false
     var taking = true
     var available = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         realm = try! Realm()
@@ -35,6 +38,7 @@ class StatusVC: UIViewController {
         tableView.delegate = self
         tableView.isHidden = true
         forGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -191,18 +195,18 @@ class StatusVC: UIViewController {
                 tempAccountingClasses.removeAll{$0.courseNum == "BUS 424"}
             }
         }
-        let currAccounting = howManyUnits(objects: tempAccountingClasses)
+        //let currAccounting = howManyUnits(objects: tempAccountingClasses)
         let currBusiness = howManyUnits(objects: tempBusinessClasses)
         let currEthics = howManyUnits(objects: tempEthicsClasses)
         
         
         // possible extra accounting (BUS 425) could be added to ethics, need to add case for that
-        let currExtraAccounting = currAccounting - accountingNeeded
+        //let currExtraAccounting = currAccounting - accountingNeeded
         //let currExtraBusiness = currBusiness - businessNeeded // shouldnt need to use
         let currExtraEthics = currEthics - ethicsNeeded
         
         let extraEthicsClasses = currExtraEthics / 4
-        var neededBusinessClasses = (businessNeeded - currBusiness) / 4
+        let neededBusinessClasses = (businessNeeded - currBusiness) / 4
         
         if (extraEthicsClasses >= 1) && (neededBusinessClasses > 0) {
             let extraClasses = extraEthicsClasses
@@ -310,6 +314,23 @@ class StatusVC: UIViewController {
         }
         return (classes, notTakingClasses)
     }
+    
+    /* To generate messages for paged scroll view, example messages first
+        1. Good job! All the conditions are met.
+        2. Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.
+        3. Can't double count (BUS 212, BUS 214, AGB 214).
+        4. Can't double count BUS 215 and AGB 323
+        5. Need more ethics units. Could take an ethics class for C elective if not taken yet.
+        6. Need more total units. Look for some interesting free elective classes to take.
+        7. Need more accounting units (not exactly 5), look into more accounting electives or community college classes.
+        8. Need more business units. Look through your other classes that could count and add them to the class list.
+        9. Hopefully the application has been helpful!
+        10. Sum of community college subjects (cc accounting, cc business, cc ethics) is greater than total commmunity college units. Community college classes, like other classes, can only count for one subject maximum.
+     
+     use code/storyboard fro handtracker app, add another view for each message that applies, be able to scroll through the views with a page counter at the top, arrow on the first view to signify that they can be scrolled, something on the lsat view to show that it is at the end
+     
+     potentially use another type to help be able to sort and keep organized
+    */
 }
 
 

@@ -28,11 +28,13 @@ class PopUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         realm = try! Realm()
+        courseNameTextEntry.delegate = self
+        numberUnitsTextEntry.delegate = self
         
     }
 
     @IBAction func donePressed(_ sender: Any) {
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+        print(Realm.Configuration.defaultConfiguration.fileURL as Any)
         let realmClass = RealmNewClass()
         var isAccounting: Bool
         var isBusiness: Bool
@@ -69,5 +71,17 @@ class PopUpVC: UIViewController {
         delegate.removeBlurViews()
         view.removeFromSuperview()
     }
-    
+}
+
+extension PopUpVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == courseNameTextEntry {
+            textField.resignFirstResponder()
+            numberUnitsTextEntry.becomeFirstResponder()
+        } else if textField == numberUnitsTextEntry {
+            textField.resignFirstResponder()
+            courseNameTextEntry.becomeFirstResponder()
+        }
+        return true
+    }
 }
