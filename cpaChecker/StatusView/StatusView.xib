@@ -16,37 +16,23 @@
             <rect key="frame" x="0.0" y="0.0" width="391" height="165"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGX-ag-u1Y">
-                    <rect key="frame" x="0.0" y="0.0" width="391" height="165"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voi-cs-kEx">
-                            <rect key="frame" x="10" y="72" width="371" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="voi-cs-kEx" firstAttribute="top" secondItem="cGX-ag-u1Y" secondAttribute="top" constant="72" id="5d0-2v-lqb"/>
-                        <constraint firstItem="voi-cs-kEx" firstAttribute="leading" secondItem="cGX-ag-u1Y" secondAttribute="leading" constant="10" id="Ph9-bp-Ply"/>
-                        <constraint firstItem="voi-cs-kEx" firstAttribute="centerY" secondItem="cGX-ag-u1Y" secondAttribute="centerY" id="Sd1-XV-1M6"/>
-                        <constraint firstAttribute="trailing" secondItem="voi-cs-kEx" secondAttribute="trailing" constant="10" id="bgI-qS-ruq"/>
-                    </constraints>
-                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label to show message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ki-qz-6zN">
+                    <rect key="frame" x="20" y="71" width="351" height="23.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="cGX-ag-u1Y" secondAttribute="bottom" id="5bi-ef-hap"/>
-                <constraint firstItem="cGX-ag-u1Y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="G8h-qC-Bdw"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cGX-ag-u1Y" secondAttribute="trailing" id="rr3-lL-anK"/>
-                <constraint firstItem="cGX-ag-u1Y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yqn-5c-ttI"/>
+                <constraint firstItem="7Ki-qz-6zN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="F7C-n1-s8J"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7Ki-qz-6zN" secondAttribute="trailing" constant="20" id="Qoz-d5-Dht"/>
+                <constraint firstItem="7Ki-qz-6zN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="g3l-VA-Kbb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="label" destination="voi-cs-kEx" id="oT5-Fl-CUb"/>
-                <outlet property="view" destination="cGX-ag-u1Y" id="QMj-ED-GT5"/>
+                <outlet property="label" destination="7Ki-qz-6zN" id="OyE-9x-NSM"/>
             </connections>
             <point key="canvasLocation" x="121.0144927536232" y="375.33482142857139"/>
         </view>

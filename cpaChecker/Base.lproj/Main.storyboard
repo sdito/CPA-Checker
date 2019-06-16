@@ -1082,7 +1082,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VqF-Tn-whi">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VqF-Tn-whi">
                                 <rect key="frame" x="0.0" y="259" width="414" height="136.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="G3S-E1-eVv">
@@ -1090,7 +1090,20 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mug-xT-2Mm">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="136.5"/>
-                                                <color key="backgroundColor" red="0.57380741830000004" green="0.56553578380000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hopefully the app has been helpful!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJP-GD-0gg">
+                                                        <rect key="frame" x="20" y="56.5" width="374" height="23.5"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.14795549250000001" green="0.24273397020000001" blue="0.1212923962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="MJP-GD-0gg" firstAttribute="centerY" secondItem="mug-xT-2Mm" secondAttribute="centerY" id="Fvo-gD-sYO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MJP-GD-0gg" secondAttribute="trailing" constant="20" id="Gec-Sa-tDH"/>
+                                                    <constraint firstItem="MJP-GD-0gg" firstAttribute="leading" secondItem="mug-xT-2Mm" secondAttribute="leading" constant="20" id="mJV-yc-fXi"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                     </stackView>
@@ -1226,15 +1239,19 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOn-ij-Ipe">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select University Name (update to when selected)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goZ-uU-Z6x">
-                                                <rect key="frame" x="10" y="16" width="394" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select University Name (update to when selected)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goZ-uU-Z6x">
+                                                <rect key="frame" x="10" y="16.5" width="394" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="goZ-uU-Z6x" secondAttribute="trailing" constant="10" id="bKu-vy-Tuh"/>
+                                            <constraint firstItem="goZ-uU-Z6x" firstAttribute="centerY" secondItem="oOn-ij-Ipe" secondAttribute="centerY" id="tJW-gM-llF"/>
+                                            <constraint firstItem="goZ-uU-Z6x" firstAttribute="leading" secondItem="oOn-ij-Ipe" secondAttribute="leading" constant="10" id="vek-U5-0Ko"/>
+                                        </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qA-g5-NYI">
                                         <rect key="frame" x="0.0" y="56" width="414" height="56"/>

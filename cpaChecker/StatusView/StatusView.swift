@@ -11,15 +11,8 @@ import UIKit
 class StatusView: UIView {
 
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var view: UIView!
-    var message = ""
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setUI(message: String) {
+        self.label.text = message
     }
 }

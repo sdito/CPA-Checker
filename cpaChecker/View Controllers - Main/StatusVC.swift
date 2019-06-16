@@ -40,7 +40,7 @@ class StatusVC: UIViewController {
         forGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
         
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         result = calculateStatus()
         accountingUnitsNumber.text = result?.accountingUnits.description
@@ -49,8 +49,36 @@ class StatusVC: UIViewController {
         totalUnitsNumber.text = result?.totalUnits.description
         classesForTable = result!.accountingClasses
         tableView.reloadData()
+        
+        
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        // first need to delete all the other views in the stack view before adding more
+        let numViews = stackView.subviews.count
+        print(numViews)
+        if numViews == 1 {
+            print("Do nothing")
+        } else {
+            for view in stackView.subviews {
+                if view == originalView {
+                    //nothing
+                } else {
+                    stackView.removeArrangedSubview(view)
+                }
+//            for _ in 1...(numViews - 1) {
+//                let view = stackView.subviews[0]
+//                stackView.removeArrangedSubview(view)
+            }
+        }
+        let messageResult = calculateStatus()
+        let accurrateMessages = decideWhatMessagesAndHandleDeletion(result: messageResult)
+        
+        for item in accurrateMessages {
+            let view = Bundle.main.loadNibNamed("StatusView", owner: nil, options: nil)?.first as? StatusView
+            view?.setUI(message: item)
+            stackView.insertArrangedSubview(view!, at: 0)
+        }
+    }
     
     
     @IBAction func accountingPressed(_ sender: Any) {
@@ -315,22 +343,50 @@ class StatusVC: UIViewController {
         return (classes, notTakingClasses)
     }
     
-    /* To generate messages for paged scroll view, example messages first
+    // could show total count of negative messages to easily see status
+    func decideWhatMessagesAndHandleDeletion(result: Result) -> [String] {
+        // need to make this work eventually for a semester school too
+        var messages: [String] = []
+        
+        let accountingNeeded = 45
+        let businessNeeded = 57
+        let ethicsNeeded = 15
+        let totalNeeded = 225
+        let accountingDifference = result.accountingUnits - accountingNeeded
+        let businessDifference = result.businessUnits - businessNeeded
+        let ethicsDifference = result.ethicsUnits - ethicsNeeded
+        let totalDifference = result.totalUnits - totalNeeded
+        
+        if accountingDifference == -5 {
+            messages.append("Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.")
+        } else if accountingDifference < 0 {
+            messages.append("Need more accounting units, look into more accounting electives or community college classes.")
+        }
+        if businessDifference < 0 {
+            messages.append("Need more business units. Look through your other classes that could count and add them to the class list.")
+        }
+        if ethicsDifference < 0 {
+            messages.append("Need more ethics units. Check for any free elective classes that could meet the ethics requirement.")
+        }
+        if totalDifference < 0 {
+            messages.append("Need more total units. Look for some interesting free elective classes to take.")
+        }
+        
+        if messages.isEmpty == true {
+            messages.append("Good job! All the conditions are met.")
+        }
+        
+        return messages
+    }
+    /*
         1. Good job! All the conditions are met.
-        2. Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.
-        3. Can't double count (BUS 212, BUS 214, AGB 214).
-        4. Can't double count BUS 215 and AGB 323
-        5. Need more ethics units. Could take an ethics class for C elective if not taken yet.
-        6. Need more total units. Look for some interesting free elective classes to take.
-        7. Need more accounting units (not exactly 5), look into more accounting electives or community college classes.
-        8. Need more business units. Look through your other classes that could count and add them to the class list.
-        9. Hopefully the application has been helpful!
-        10. Sum of community college subjects (cc accounting, cc business, cc ethics) is greater than total commmunity college units. Community college classes, like other classes, can only count for one subject maximum.
-     
-     use code/storyboard fro handtracker app, add another view for each message that applies, be able to scroll through the views with a page counter at the top, arrow on the first view to signify that they can be scrolled, something on the lsat view to show that it is at the end
-     
-     potentially use another type to help be able to sort and keep organized
-    */
+        Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.
+        Need more ethics units. Could take an ethics class for C elective if not taken yet.
+        Need more total units. Look for some interesting free elective classes to take.
+        Need more accounting units (not exactly 5), look into more accounting electives or community college classes.
+        Need more business units. Look through your other classes that could count and add them to the class list.
+
+ */
 }
 
 
