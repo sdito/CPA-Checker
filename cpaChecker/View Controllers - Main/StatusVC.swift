@@ -24,6 +24,8 @@ class StatusVC: UIViewController {
     
     @IBOutlet weak var originalView: UIView!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var pageStackView: UIStackView!
+    
     
     var accounting = true
     var business = false
@@ -42,6 +44,9 @@ class StatusVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        let view = UIView()
+        view.backgroundColor = .blue
+
         result = calculateStatus()
         accountingUnitsNumber.text = result?.accountingUnits.description
         businessUnitsNumber.text = result?.businessUnits.description
@@ -49,35 +54,41 @@ class StatusVC: UIViewController {
         totalUnitsNumber.text = result?.totalUnits.description
         classesForTable = result!.accountingClasses
         tableView.reloadData()
-        
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        // first need to delete all the other views in the stack view before adding more
         let numViews = stackView.subviews.count
-        print(numViews)
         if numViews == 1 {
-            print("Do nothing")
+            //print("Do nothing")
         } else {
             for view in stackView.subviews {
                 if view == originalView {
                     //nothing
                 } else {
                     stackView.removeArrangedSubview(view)
+                    view.removeFromSuperview()
+                    //remove pageStackViews
+                    if let anotherView = pageStackView.arrangedSubviews.first {
+                        pageStackView.removeArrangedSubview(anotherView)
+                    }
                 }
-//            for _ in 1...(numViews - 1) {
-//                let view = stackView.subviews[0]
-//                stackView.removeArrangedSubview(view)
+                //            for _ in 1...(numViews - 1) {
+                //                let view = stackView.subviews[0]
+                //                stackView.removeArrangedSubview(view)
             }
         }
-        let messageResult = calculateStatus()
-        let accurrateMessages = decideWhatMessagesAndHandleDeletion(result: messageResult)
+        let accurrateMessages = decideWhatMessagesAndHandleDeletion(result: result!)
         
         for item in accurrateMessages {
             let view = Bundle.main.loadNibNamed("StatusView", owner: nil, options: nil)?.first as? StatusView
             view?.setUI(message: item)
             stackView.insertArrangedSubview(view!, at: 0)
+            let pageView = UIView()
+            pageView.backgroundColor = .black
+            pageStackView.insertArrangedSubview(pageView, at: 0)
         }
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        // first need to delete all the other views in the stack view before adding more
+
     }
     
     

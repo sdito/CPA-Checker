@@ -1117,6 +1117,19 @@
                                     <constraint firstAttribute="bottom" secondItem="G3S-E1-eVv" secondAttribute="bottom" id="yNu-st-IKj"/>
                                 </constraints>
                             </scrollView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="T8c-RW-9M2">
+                                <rect key="frame" x="203.5" y="400.5" width="7" height="7"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzr-H9-qoj">
+                                        <rect key="frame" x="0.0" y="0.0" width="7" height="7"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="7" id="7Sz-eQ-EsZ"/>
+                                            <constraint firstAttribute="width" constant="7" id="Ycs-ZH-LvW"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1128,12 +1141,14 @@
                             <constraint firstItem="69b-40-JXQ" firstAttribute="centerX" secondItem="zM3-Ti-hfX" secondAttribute="centerX" id="L3E-Hk-esP"/>
                             <constraint firstItem="inb-uj-OW7" firstAttribute="top" secondItem="oFJ-qn-A9a" secondAttribute="top" constant="5" id="Sq5-s9-MJG"/>
                             <constraint firstItem="0BD-Ee-ay3" firstAttribute="top" secondItem="nOp-0j-ba8" secondAttribute="bottom" id="Wrg-mi-c1k"/>
+                            <constraint firstItem="T8c-RW-9M2" firstAttribute="centerX" secondItem="zM3-Ti-hfX" secondAttribute="centerX" id="aur-t5-Nlc"/>
                             <constraint firstItem="oFJ-qn-A9a" firstAttribute="trailing" secondItem="VqF-Tn-whi" secondAttribute="trailing" id="ghJ-NP-Wqy"/>
                             <constraint firstItem="0BD-Ee-ay3" firstAttribute="leading" secondItem="oFJ-qn-A9a" secondAttribute="leading" id="h1m-B9-rwi"/>
                             <constraint firstItem="0BD-Ee-ay3" firstAttribute="trailing" secondItem="oFJ-qn-A9a" secondAttribute="trailing" id="kKZ-tG-oFG"/>
                             <constraint firstItem="VqF-Tn-whi" firstAttribute="leading" secondItem="oFJ-qn-A9a" secondAttribute="leading" id="kj1-vS-nu2"/>
                             <constraint firstItem="nOp-0j-ba8" firstAttribute="centerY" secondItem="zM3-Ti-hfX" secondAttribute="centerY" id="qXp-Ec-KxU"/>
                             <constraint firstItem="nOp-0j-ba8" firstAttribute="top" secondItem="VqF-Tn-whi" secondAttribute="bottom" constant="30" id="rph-E4-zxc"/>
+                            <constraint firstItem="T8c-RW-9M2" firstAttribute="top" secondItem="VqF-Tn-whi" secondAttribute="bottom" constant="5" id="sk3-ZU-Bod"/>
                             <constraint firstItem="VqF-Tn-whi" firstAttribute="top" secondItem="69b-40-JXQ" secondAttribute="bottom" constant="30" id="tdx-XH-dbv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oFJ-qn-A9a"/>
@@ -1146,6 +1161,7 @@
                         <outlet property="ethicsUnitsNumber" destination="5tG-D8-ivB" id="MuJ-oj-knj"/>
                         <outlet property="forGradient" destination="nOp-0j-ba8" id="Qan-PR-ia2"/>
                         <outlet property="originalView" destination="mug-xT-2Mm" id="Nzc-k8-87r"/>
+                        <outlet property="pageStackView" destination="T8c-RW-9M2" id="x5w-8p-Zso"/>
                         <outlet property="stackView" destination="G3S-E1-eVv" id="lB6-kw-HPx"/>
                         <outlet property="tableView" destination="0BD-Ee-ay3" id="OoY-eg-Odk"/>
                         <outlet property="totalUnitsNumber" destination="4Vd-6y-VWk" id="atX-3W-H0E"/>
