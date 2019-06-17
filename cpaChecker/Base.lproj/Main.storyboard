@@ -1082,7 +1082,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VqF-Tn-whi">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqF-Tn-whi">
                                 <rect key="frame" x="0.0" y="259" width="414" height="136.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="G3S-E1-eVv">
@@ -1163,8 +1163,10 @@
                         <outlet property="originalView" destination="mug-xT-2Mm" id="Nzc-k8-87r"/>
                         <outlet property="pageStackView" destination="T8c-RW-9M2" id="x5w-8p-Zso"/>
                         <outlet property="stackView" destination="G3S-E1-eVv" id="lB6-kw-HPx"/>
+                        <outlet property="statusScrollView" destination="VqF-Tn-whi" id="PbE-ey-zne"/>
                         <outlet property="tableView" destination="0BD-Ee-ay3" id="OoY-eg-Odk"/>
                         <outlet property="totalUnitsNumber" destination="4Vd-6y-VWk" id="atX-3W-H0E"/>
+                        <outlet property="wholeView" destination="zM3-Ti-hfX" id="PMh-l1-ulO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dw3-Wp-vC6" userLabel="First Responder" sceneMemberID="firstResponder"/>

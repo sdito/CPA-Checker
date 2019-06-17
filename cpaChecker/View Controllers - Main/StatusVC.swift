@@ -9,11 +9,16 @@
 import UIKit
 import RealmSwift
 
+// need to make the correct pageStackView appear a different color in correspondence with the correct view
+
 class StatusVC: UIViewController {
     
     var realm = try! Realm()
     var result: Result?
     var classesForTable: [Class] = []
+    
+    @IBOutlet var wholeView: UIView!
+    @IBOutlet weak var statusScrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var accountingUnitsNumber: UILabel!
     @IBOutlet weak var businessUnitsNumber: UILabel!
@@ -40,6 +45,7 @@ class StatusVC: UIViewController {
         tableView.delegate = self
         tableView.isHidden = true
         forGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
+        statusScrollView.delegate = self
         
     }
     
@@ -84,13 +90,8 @@ class StatusVC: UIViewController {
             pageView.backgroundColor = .black
             pageStackView.insertArrangedSubview(pageView, at: 0)
         }
-        
     }
-    override func viewWillAppear(_ animated: Bool) {
-        // first need to delete all the other views in the stack view before adding more
 
-    }
-    
     
     @IBAction func accountingPressed(_ sender: Any) {
         accounting = true
@@ -398,6 +399,16 @@ class StatusVC: UIViewController {
         Need more business units. Look through your other classes that could count and add them to the class list.
 
  */
+    func isVisible(view: UIView) -> Bool {
+        let screenRect = wholeView.bounds
+        let center = view.center
+        print(screenRect, center)
+        if screenRect.contains(center) {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 
@@ -414,3 +425,21 @@ extension StatusVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
+
+
+extension StatusVC: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == statusScrollView {
+            for view in stackView.subviews {
+                print("a view")
+                if isVisible(view: view) == true {
+                    view.backgroundColor = .red
+                } else {
+                    view.backgroundColor = .black
+                }
+            }
+        }
+    }
+}
+
+
