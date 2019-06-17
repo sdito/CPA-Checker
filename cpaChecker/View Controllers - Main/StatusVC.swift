@@ -400,10 +400,10 @@ class StatusVC: UIViewController {
 
  */
     func isVisible(view: UIView) -> Bool {
-        let screenRect = wholeView.bounds
+        //let screenRect = wholeView.bounds
+        let scrollRect = statusScrollView.bounds
         let center = view.center
-        print(screenRect, center)
-        if screenRect.contains(center) {
+        if scrollRect.contains(center) {
             return true
         } else {
             return false
@@ -431,7 +431,6 @@ extension StatusVC: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == statusScrollView {
             for view in stackView.subviews {
-                print("a view")
                 if isVisible(view: view) == true {
                     view.backgroundColor = .red
                 } else {
