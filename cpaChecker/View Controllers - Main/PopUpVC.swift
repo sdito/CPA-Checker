@@ -56,7 +56,7 @@ class PopUpVC: UIViewController {
         } else {
             isEthics = false
         }
-        realmClass.courseNum = (courseNameTextEntry.text ?? "")
+        realmClass.courseNum = (courseNameTextEntry.text?.uppercased() ?? "")
         realmClass.numUnits = (Int(numberUnitsTextEntry.text ?? "") ?? 0)
         realmClass.isAccounting = isAccounting
         realmClass.isBusiness = isBusiness

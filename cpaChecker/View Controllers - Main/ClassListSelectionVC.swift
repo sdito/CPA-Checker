@@ -22,6 +22,7 @@ class ClassListSelectionVC: UIViewController {
     var sortEthics = false
     var realm = try! Realm()
     //var setTo_allCourseNums: Set<String>?
+    
     var blurBackground: Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -225,8 +226,11 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let courseNum = sortedClasses[indexPath.row]
+            
+            // doesnt work now
             //deletes class from RealmNewClass
             let count = realm.objects(RealmNewClass.self).filter("courseNum = '\(courseNum.courseNum.uppercased())'").count
+            print(count)
             if count >= 1 {
                 try! realm.write {
                     realm.delete(realm.objects(RealmNewClass.self).filter("courseNum = '\(courseNum.courseNum.uppercased())'"))

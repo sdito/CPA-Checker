@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 
-// need to make the correct pageStackView appear a different color in correspondence with the correct view
 
 class StatusVC: UIViewController {
     
@@ -50,9 +49,7 @@ class StatusVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let view = UIView()
-        view.backgroundColor = .blue
-
+        //addNewClassIfStraightToStatus()
         result = calculateStatus()
         accountingUnitsNumber.text = result?.accountingUnits.description
         businessUnitsNumber.text = result?.businessUnits.description
@@ -73,6 +70,7 @@ class StatusVC: UIViewController {
                     //remove pageStackViews
                     if let anotherView = pageStackView.arrangedSubviews.first {
                         pageStackView.removeArrangedSubview(anotherView)
+                        anotherView.removeFromSuperview()
                     }
                 }
                 //            for _ in 1...(numViews - 1) {
@@ -90,7 +88,7 @@ class StatusVC: UIViewController {
             pageView.backgroundColor = .black
             pageStackView.insertArrangedSubview(pageView, at: 0)
         }
-
+        haveCorrectPageViewAppears()
     }
 
     
@@ -228,8 +226,8 @@ class StatusVC: UIViewController {
         var tempAccountingClasses = Array(realm.objects(RealmClass.self).filter("isAccounting = true"))
         var tempEthicsClasses = Array(realm.objects(RealmClass.self).filter("isEthics = true and isAccounting = false"))
         var tempBusinessClasses = Array(realm.objects(RealmClass.self).filter("isBusiness = true and isAccounting = false and isEthics = false"))
-
         
+        // add a bool value to support this for when multiple universities are in the application
         for item in tempAccountingClasses {
             if item.courseNum == "BUS 424" {
                 tempEthicsClasses.insert(item, at: 0)
@@ -341,6 +339,13 @@ class StatusVC: UIViewController {
         
         
         // maybe not the best way to use 'type' in this scenario to sort them
+        // add the RealmNewClass into this
+//        for item in realm.objects(RealmNewClass.self) {
+//            let itemClass = Class(courseNum: item.courseNum, title: "User added class.", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil)
+//            SharedAllClasses.shared.sharedAllClasses.append(itemClass)
+//            
+//        }
+        
         SharedAllClasses.shared.sharedAllClasses.forEach { units in
             let className = units.courseNum
             if setStrings.contains(className) {
@@ -404,12 +409,14 @@ class StatusVC: UIViewController {
         //let screenRect = wholeView.bounds
         let scrollRect = statusScrollView.bounds
         let center = view.center
+        print("Scroll: \(scrollRect), view center: \(center)")
         if scrollRect.contains(center) {
             return true
         } else {
             return false
         }
     }
+    
 }
 
 
@@ -433,13 +440,41 @@ extension StatusVC: UIScrollViewDelegate {
         var counter = 0
         if scrollView == statusScrollView {
             for view in stackView.subviews {
-                print(counter)
                 if isVisible(view: view) == true {
                     pageStackView.subviews[counter].backgroundColor = .gray
                 } else {
                     pageStackView.subviews[counter].backgroundColor = .black
                 }
                 counter += 1
+            }
+        }
+    }
+    func haveCorrectPageViewAppears() {
+        // this isnt correctly being called when viewDidAppear is called, need to fix
+        var counter = 0
+        for view in stackView.subviews {
+            print(counter)
+            if isVisible(view: view) == true {
+                pageStackView.subviews[counter].backgroundColor = .gray
+            } else {
+                pageStackView.subviews[counter].backgroundColor = .black
+            }
+            counter += 1
+        }
+    }
+    
+    func addNewClassIfStraightToStatus() {
+        for item in realm.objects(RealmNewClass.self) {
+            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil)
+            var allCourseNums: [String] = []
+            for name in SharedAllClasses.shared.sharedAllClasses {
+                allCourseNums.append(name.courseNum)
+            }
+            if allCourseNums.contains(newClass.courseNum) {
+                //do nothing
+            } else {
+                //combinedClasses.append(newClass)
+                SharedAllClasses.shared.sharedAllClasses.append(newClass)
             }
         }
     }
