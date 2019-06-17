@@ -90,6 +90,7 @@ class StatusVC: UIViewController {
             pageView.backgroundColor = .black
             pageStackView.insertArrangedSubview(pageView, at: 0)
         }
+
     }
 
     
@@ -429,13 +430,16 @@ extension StatusVC: UITableViewDelegate, UITableViewDataSource {
 
 extension StatusVC: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        var counter = 0
         if scrollView == statusScrollView {
             for view in stackView.subviews {
+                print(counter)
                 if isVisible(view: view) == true {
-                    view.backgroundColor = .red
+                    pageStackView.subviews[counter].backgroundColor = .gray
                 } else {
-                    view.backgroundColor = .black
+                    pageStackView.subviews[counter].backgroundColor = .black
                 }
+                counter += 1
             }
         }
     }
