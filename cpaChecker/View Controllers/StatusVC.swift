@@ -45,7 +45,6 @@ class StatusVC: UIViewController {
         tableView.isHidden = true
         forGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
         statusScrollView.delegate = self
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -100,6 +99,11 @@ class StatusVC: UIViewController {
                 item.backgroundColor = .black
             }
         }
+        
+        // makes Accounting - Taking be the first table shown every time the table first appears
+        accountingPressed(accounting = true)
+        showTaking(taking = true)
+ 
     }
 
     
@@ -348,24 +352,23 @@ class StatusVC: UIViewController {
         // original 'strings' ([RealmClass]) in set [String] format for classes being taken from realm
         let setStrings = Set(stringClasses)
         
+
+        // need to get rid of duplicates i.e. a class is in not taking classes if it counts for multiple sections, so need to test to make sure the class is not in this set before adding it to the not taking list
+        var allNumsTaking: Set<String> = []
+        for item in realm.objects(RealmClass.self) {
+            allNumsTaking.insert(item.courseNum)
+        }
         
-        // maybe not the best way to use 'type' in this scenario to sort them
-        // add the RealmNewClass into this
-//        for item in realm.objects(RealmNewClass.self) {
-//            let itemClass = Class(courseNum: item.courseNum, title: "User added class.", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil)
-//            SharedAllClasses.shared.sharedAllClasses.append(itemClass)
-//            
-//        }
         
         SharedAllClasses.shared.sharedAllClasses.forEach { units in
             let className = units.courseNum
             if setStrings.contains(className) {
                 classes.append(units)
-            } else if (units.isAccounting == true) && (type == "acc") {
+            } else if (units.isAccounting == true) && (type == "acc") && (allNumsTaking.contains(units.courseNum) == false) {
                 notTakingClasses.append(units)
-            } else if (units.isBusiness == true) && (type == "bus") {
+            } else if (units.isBusiness == true) && (type == "bus") && (allNumsTaking.contains(units.courseNum) == false) {
                 notTakingClasses.append(units)
-            } else if (units.isEthics == true) && (type == "eth") {
+            } else if (units.isEthics == true) && (type == "eth") && (allNumsTaking.contains(units.courseNum) == false) {
                 notTakingClasses.append(units)
             }
         }
@@ -486,7 +489,6 @@ extension StatusVC: UIScrollViewDelegate {
         // this isnt correctly being called when viewDidAppear is called, need to fix
         var counter = 0
         for view in stackView.subviews {
-            print(counter)
             if isVisible(view: view) == true {
                 pageStackView.subviews[counter].backgroundColor = .gray
             } else {

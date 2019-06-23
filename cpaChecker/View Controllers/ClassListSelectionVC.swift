@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 
-
 class ClassListSelectionVC: UIViewController {
     var sortedClasses: [Class] = SharedAllClasses.shared.sharedAllClasses
     @IBOutlet weak var tableView: UITableView!

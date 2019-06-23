@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 
-
 protocol PopUpDelegate {
     func removeBlurViews()
     func resetTableData()
