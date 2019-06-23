@@ -386,19 +386,49 @@ class StatusVC: UIViewController {
         let ethicsDifference = result.ethicsUnits - ethicsNeeded
         let totalDifference = result.totalUnits - totalNeeded
         
+        var accS: String {
+            if abs(accountingDifference) == 1 {
+                return ""
+            } else {
+                return "s"
+            }
+        }
+        var busS: String {
+            if abs(businessDifference) == 1 {
+                return ""
+            } else {
+                return "s"
+            }
+        }
+        var ethS: String {
+            if abs(ethicsDifference) == 1 {
+                return ""
+            } else {
+                return "s"
+            }
+        }
+        var totS: String {
+            if abs(totalDifference) == 1 {
+                return ""
+            } else {
+                return "s"
+            }
+        }
+        
+        
         if accountingDifference == -5 {
             messages.append("Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.")
         } else if accountingDifference < 0 {
-            messages.append("Need more accounting units, look into more accounting electives or community college classes.")
+            messages.append("Need \(abs(accountingDifference)) more accounting unit\(accS), look into more accounting electives or community college classes.")
         }
         if businessDifference < 0 {
-            messages.append("Need more business units. Look through your other classes that could count and add them to the class list.")
+            messages.append("Need \(abs(businessDifference)) more business unit\(busS). Look through your other classes that could count and add them to the class list.")
         }
         if ethicsDifference < 0 {
-            messages.append("Need more ethics units. Check for any free elective classes that could meet the ethics requirement.")
+            messages.append("Need \(abs(ethicsDifference)) more ethics unit\(ethS). Check for any free elective classes that could meet the ethics requirement.")
         }
         if totalDifference < 0 {
-            messages.append("Need more total units. Look for some interesting free elective classes to take.")
+            messages.append("Need \(abs(totalDifference)) more total unit\(totS). Look for some interesting free elective classes to take.")
         }
         
         if messages.isEmpty == true {
@@ -407,20 +437,12 @@ class StatusVC: UIViewController {
         
         return messages
     }
-    /*
-        1. Good job! All the conditions are met.
-        Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.
-        Need more ethics units. Could take an ethics class for C elective if not taken yet.
-        Need more total units. Look for some interesting free elective classes to take.
-        Need more accounting units (not exactly 5), look into more accounting electives or community college classes.
-        Need more business units. Look through your other classes that could count and add them to the class list.
 
- */
+    
     func isVisible(view: UIView) -> Bool {
         //let screenRect = wholeView.bounds
         let scrollRect = statusScrollView.bounds
         let center = view.center
-        print("Scroll: \(scrollRect), view center: \(center)")
         if scrollRect.contains(center) {
             return true
         } else {

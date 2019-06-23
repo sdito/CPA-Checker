@@ -120,6 +120,22 @@ class ClassListSelectionVC: UIViewController {
         popOverVC.didMove(toParent: self)
     }
     
+    @IBAction func reset(_ sender: Any) {
+        let alert = UIAlertController(title: "Reset Classes Taken?", message: "This will reset only the data on this page.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: deleteClasses))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+
+        
+    }
+    func deleteClasses(alert: UIAlertAction!) {
+        try! realm.write {
+            let all = realm.objects(RealmClass.self)
+            realm.delete(all)
+            tableView.reloadData()
+        }
+    }
+    
     func overlayBlurredBackgroundView() {
         let blurredBackgroundView = UIVisualEffectView()
         blurredBackgroundView.frame = view.frame
