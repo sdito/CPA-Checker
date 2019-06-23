@@ -89,6 +89,17 @@ class StatusVC: UIViewController {
             pageStackView.insertArrangedSubview(pageView, at: 0)
         }
         haveCorrectPageViewAppears()
+        
+        
+        // to set the message scroll view to the left most page and setting the correct page tracker to the gray color for every time the view appears
+        statusScrollView.setContentOffset(CGPoint(x: 1, y: 1), animated: false)
+        for item in pageStackView.arrangedSubviews {
+            if item == pageStackView.arrangedSubviews.first! {
+                item.backgroundColor = .gray
+            } else {
+                item.backgroundColor = .black
+            }
+        }
     }
 
     
