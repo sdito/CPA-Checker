@@ -176,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				E2018CD1229DBFE700973C97 /* AppDelegate.swift */,
-				E2018D01229DC18C00973C97 /* View Controllers - Main */,
+				E2018D01229DC18C00973C97 /* View Controllers */,
 				E2018CD7229DBFE700973C97 /* Main.storyboard */,
 				E2018CDC229DBFEA00973C97 /* LaunchScreen.storyboard */,
 				E22B3E5922A63C91009DEF96 /* Cells */,
@@ -207,7 +207,7 @@
 			path = cpaCheckerUITests;
 			sourceTree = "<group>";
 		};
-		E2018D01229DC18C00973C97 /* View Controllers - Main */ = {
+		E2018D01229DC18C00973C97 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				E2018CD3229DBFE700973C97 /* InstructionsVC.swift */,
@@ -219,7 +219,7 @@
 				E2D746A422B5497E006AC0A4 /* WelcomeVC.swift */,
 				E2D746A622B54995006AC0A4 /* SchoolSelectVC.swift */,
 			);
-			path = "View Controllers - Main";
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		E2018D04229DC1B100973C97 /* Classes */ = {

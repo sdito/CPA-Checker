@@ -6,8 +6,7 @@ target 'cpaChecker' do
   use_frameworks!
 
 
-pod 'Realm', git: 'https://github.com/realm/realm-cocoa.git', branch: 'tg/xcode-11-b1', submodules: true
-pod 'RealmSwift', git: 'https://github.com/realm/realm-cocoa.git', branch: 'tg/xcode-11-b1', submodules: true
+pod 'RealmSwift'
 
 
   # Pods for cpaChecker
