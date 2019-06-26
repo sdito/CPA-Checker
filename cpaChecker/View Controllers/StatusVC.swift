@@ -86,7 +86,13 @@ class StatusVC: UIViewController {
             let pageView = UIView()
             pageView.backgroundColor = .black
             pageStackView.insertArrangedSubview(pageView, at: 0)
+            
+            //to add an arrow (or technically remove the arrow) to only have arrow on first view, confusing since in reverse order
+            if item != accurrateMessages.last {
+                view?.arrow.isHidden = true
+            } 
         }
+        
         haveCorrectPageViewAppears()
         
         

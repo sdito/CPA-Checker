@@ -11,6 +11,7 @@ import UIKit
 class StatusView: UIView {
 
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var arrow: UIImageView!
     
     func setUI(message: String) {
         self.label.text = message

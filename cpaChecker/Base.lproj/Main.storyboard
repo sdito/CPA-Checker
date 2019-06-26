@@ -164,7 +164,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="376" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7x-n8-blc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="E7x-n8-blc">
                                                     <rect key="frame" x="25" y="38" width="43.5" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -178,22 +178,22 @@
                                                     </connections>
                                                 </switch>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="JNM-ve-FO3">
-                                                    <rect key="frame" x="127" y="38" width="153" height="23.5"/>
+                                                    <rect key="frame" x="127" y="15" width="153" height="70"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zw-d3-UpU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="11" height="23.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="11" height="70"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8RN-oC-7Ca">
-                                                            <rect key="frame" x="71" y="0.0" width="11" height="23.5"/>
+                                                            <rect key="frame" x="71" y="0.0" width="11" height="70"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-Uz-bWb">
-                                                            <rect key="frame" x="142" y="0.0" width="11" height="23.5"/>
+                                                            <rect key="frame" x="142" y="0.0" width="11" height="70"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -202,12 +202,13 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="JNM-ve-FO3" firstAttribute="centerY" secondItem="6oa-8d-cDo" secondAttribute="centerY" id="K5O-yk-MOz"/>
                                                 <constraint firstItem="SBw-9A-tXL" firstAttribute="centerY" secondItem="6oa-8d-cDo" secondAttribute="centerY" id="MH6-X3-7Zv"/>
                                                 <constraint firstItem="SBw-9A-tXL" firstAttribute="leading" secondItem="JNM-ve-FO3" secondAttribute="trailing" constant="37" id="P9b-JA-23P"/>
                                                 <constraint firstItem="E7x-n8-blc" firstAttribute="centerY" secondItem="6oa-8d-cDo" secondAttribute="centerY" id="Ye4-jx-Gx1"/>
                                                 <constraint firstAttribute="trailing" secondItem="SBw-9A-tXL" secondAttribute="trailing" constant="10" id="aJo-gE-Xuj"/>
                                                 <constraint firstItem="JNM-ve-FO3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="E7x-n8-blc" secondAttribute="trailing" constant="5" id="cfQ-3L-tW7"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="JNM-ve-FO3" secondAttribute="bottom" constant="4" id="lE5-1I-1fc"/>
+                                                <constraint firstItem="JNM-ve-FO3" firstAttribute="top" secondItem="6oa-8d-cDo" secondAttribute="topMargin" constant="4" id="pYp-Mi-eRp"/>
                                                 <constraint firstItem="E7x-n8-blc" firstAttribute="leading" secondItem="6oa-8d-cDo" secondAttribute="leadingMargin" constant="5" id="sps-CZ-6Oi"/>
                                             </constraints>
                                         </tableViewCellContentView>
