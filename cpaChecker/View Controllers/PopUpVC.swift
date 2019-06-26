@@ -30,7 +30,7 @@ class PopUpVC: UIViewController {
         realm = try! Realm()
         courseNameTextEntry.delegate = self
         numberUnitsTextEntry.delegate = self
-        
+        courseNameTextEntry.becomeFirstResponder()
     }
     
     //create the class

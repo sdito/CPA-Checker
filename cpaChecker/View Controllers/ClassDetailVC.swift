@@ -39,43 +39,43 @@ class ClassDetailVC: UIViewController {
         courseTitleLabel.text = units?.title
         courseDescriptionLabel.text = units?.courseDescription
         if units?.isAccounting == true {
-            isAccounting.textColor = .green
+            isAccounting.textColor = Colors.calPolyGreen
         } else {
             isAccounting.textColor = .red
         }
         if units?.isBusiness == true {
-            isBusiness.textColor = .green
+            isBusiness.textColor = Colors.calPolyGreen
         } else {
             isBusiness.textColor = .red
         }
         if units?.isEthics == true {
-            isEthics.textColor = .green
+            isEthics.textColor = Colors.calPolyGreen
         } else {
             isEthics.textColor = .red
         }
         if units?.offeredFall == true {
-            isFall.textColor = .green
+            isFall.textColor = Colors.calPolyGreen
         } else if units?.offeredFall == false{
             isFall.textColor = .red
         } else {
             isFall.text = ""
         }
         if units?.offeredWinter == true {
-            isWinter.textColor = .green
+            isWinter.textColor = Colors.calPolyGreen
         } else if units?.offeredWinter == false{
             isWinter.textColor = .red
         } else {
             isWinter.text = ""
         }
         if units?.offeredSpring == true {
-            isSpring.textColor = .green
+            isSpring.textColor = Colors.calPolyGreen
         } else if units?.offeredSpring == false{
             isSpring.textColor = .red
         } else {
             isSpring.text = ""
         }
         if units?.offeredSummer == true {
-            isSummer.textColor = .green
+            isSummer.textColor = Colors.calPolyGreen
         } else if units?.offeredSummer == false {
             isSummer.textColor = .red
         } else {

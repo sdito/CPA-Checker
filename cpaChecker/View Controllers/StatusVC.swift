@@ -54,7 +54,7 @@ class StatusVC: UIViewController {
         businessUnitsNumber.text = result?.businessUnits.description
         ethicsUnitsNumber.text = result?.ethicsUnits.description
         totalUnitsNumber.text = result?.totalUnits.description
-        classesForTable = result!.accountingClasses
+        //classesForTable = result!.accountingClasses
         tableView.reloadData()
         let numViews = stackView.subviews.count
         if numViews == 1 {
@@ -100,12 +100,11 @@ class StatusVC: UIViewController {
             }
         }
         
-        // makes Accounting - Taking be the first table shown every time the table first appears
-        accountingPressed(accounting = true)
-        showTaking(taking = true)
- 
-    }
 
+        whatClassesForTable()
+        tableView.reloadData()
+    }
+    
     
     @IBAction func accountingPressed(_ sender: Any) {
         accounting = true
@@ -113,13 +112,14 @@ class StatusVC: UIViewController {
         ethics = false
         whatClassesForTable()
         if classesForTable.isEmpty == true {
-            tableView.isHidden = true
+            //tableView.isHidden = true
         } else {
             tableView.isHidden = false
             self.tableView.reloadData()
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             setCombinationLabel()
         }
+        
     }
     @IBAction func businessPressed(_ sender: Any) {
         accounting = false
@@ -127,14 +127,14 @@ class StatusVC: UIViewController {
         ethics = false
         whatClassesForTable()
         if classesForTable.isEmpty == true {
-            tableView.isHidden = true
+            //tableView.isHidden = true
         } else {
             tableView.isHidden = false
             self.tableView.reloadData()
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-            setCombinationLabel()
+            
         }
-        
+        setCombinationLabel()
     }
     @IBAction func ethicsPressed(_ sender: Any) {
         accounting = false
@@ -142,14 +142,14 @@ class StatusVC: UIViewController {
         ethics = true
         whatClassesForTable()
         if classesForTable.isEmpty == true {
-            tableView.isHidden = true
+            //tableView.isHidden = true
         } else {
             tableView.isHidden = false
             self.tableView.reloadData()
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-            setCombinationLabel()
+            
         }
-        
+        setCombinationLabel()
     }
     @IBAction func totalPressed(_ sender: Any) {
         // still need to implement
@@ -165,9 +165,9 @@ class StatusVC: UIViewController {
             tableView.isHidden = false
             self.tableView.reloadData()
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-            setCombinationLabel()
+            
         }
-        
+        setCombinationLabel()
     }
     @IBAction func showAvailable(_ sender: Any) {
         taking = false
