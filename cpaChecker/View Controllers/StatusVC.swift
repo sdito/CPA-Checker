@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 
-
 class StatusVC: UIViewController {
     
     var realm = try! Realm()
@@ -90,7 +89,7 @@ class StatusVC: UIViewController {
             //to add an arrow (or technically remove the arrow) to only have arrow on first view, confusing since in reverse order
             if item != accurrateMessages.last {
                 view?.arrow.isHidden = true
-            } 
+            }
         }
         
         haveCorrectPageViewAppears()
@@ -503,7 +502,7 @@ extension StatusVC: UIScrollViewDelegate {
             counter += 1
         }
     }
-    
+    //not being used anywhere currently
     func addNewClassIfStraightToStatus() {
         for item in realm.objects(RealmNewClass.self) {
             let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil)
@@ -516,6 +515,16 @@ extension StatusVC: UIScrollViewDelegate {
             } else {
                 //combinedClasses.append(newClass)
                 SharedAllClasses.shared.sharedAllClasses.append(newClass)
+            }
+        }
+    }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        //to hide and subsequently remove the arrow on the first subview when the user first scrolls after VC appears
+        if scrollView == statusScrollView {
+          stackView.arrangedSubviews.first?.subviews.forEach {subview in
+            if type(of: subview) == UIImageView.self {
+                UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {subview.alpha = 0}, completion: {done in subview.removeFromSuperview()})
+                }
             }
         }
     }
