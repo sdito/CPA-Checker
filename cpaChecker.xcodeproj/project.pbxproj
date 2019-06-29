@@ -30,7 +30,7 @@
 		E22B3D9C22A251B3009DEF96 /* RealmUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */; };
 		E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E1922A496A7009DEF96 /* Result.swift */; };
 		E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E5722A63C87009DEF96 /* StatusCell.swift */; };
-		E2508B1C22C71F0E0092C978 /* cpa.db in Resources */ = {isa = PBXBuildFile; fileRef = E2508B1B22C71F0E0092C978 /* cpa.db */; };
+		E2508B1E22C80BC20092C978 /* cpa.db in Resources */ = {isa = PBXBuildFile; fileRef = E2508B1D22C80BC20092C978 /* cpa.db */; };
 		E29CDEB522AF0EF500CD8DCE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29CDEB422AF0EF500CD8DCE /* Colors.swift */; };
 		E2AEB38622B4A3F60017D0F3 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AEB38522B4A3F60017D0F3 /* StatusView.swift */; };
 		E2AEB38922B4A5120017D0F3 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AEB38822B4A5120017D0F3 /* StatusView.xib */; };
@@ -92,7 +92,7 @@
 		E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUnits.swift; sourceTree = "<group>"; };
 		E22B3E1922A496A7009DEF96 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E22B3E5722A63C87009DEF96 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
-		E2508B1B22C71F0E0092C978 /* cpa.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = cpa.db; path = ../../cpa.db; sourceTree = "<group>"; };
+		E2508B1D22C80BC20092C978 /* cpa.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = cpa.db; sourceTree = "<group>"; };
 		E29CDEB422AF0EF500CD8DCE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E2AEB38522B4A3F60017D0F3 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		E2AEB38822B4A5120017D0F3 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 				E2018CD1229DBFE700973C97 /* AppDelegate.swift */,
 				E2018D01229DC18C00973C97 /* View Controllers */,
 				E2018CD7229DBFE700973C97 /* Main.storyboard */,
-				E2508B1B22C71F0E0092C978 /* cpa.db */,
+				E2508B1D22C80BC20092C978 /* cpa.db */,
 				E2018CDC229DBFEA00973C97 /* LaunchScreen.storyboard */,
 				E22B3E5922A63C91009DEF96 /* Cells */,
 				E2018D04229DC1B100973C97 /* Classes */,
@@ -373,7 +373,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2508B1C22C71F0E0092C978 /* cpa.db in Resources */,
+				E2508B1E22C80BC20092C978 /* cpa.db in Resources */,
 				E2018CDE229DBFEA00973C97 /* LaunchScreen.storyboard in Resources */,
 				E2018CDB229DBFEA00973C97 /* Assets.xcassets in Resources */,
 				E2AEB38922B4A5120017D0F3 /* StatusView.xib in Resources */,
