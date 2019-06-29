@@ -176,7 +176,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: "Reset Units?", message: "This will reset only the data on this page.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: resetUnitsData))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.activeTextFi eld?.text = ""
+        self.activeTextField?.text = ""
         present(alert, animated: true, completion: nil)
     }
     // set all the textfields back to empty

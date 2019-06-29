@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class ClassListSelectionVC: UIViewController {
-    var sortedClasses: [Class] = SharedAllClasses.shared.sharedAllClasses
+    var sortedClasses: [Class] = []
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var accountingSortedOutlet: UIButton!
     @IBOutlet weak var businessSortedOutlet: UIButton!
@@ -30,6 +30,7 @@ class ClassListSelectionVC: UIViewController {
         realm = try! Realm()
         print(Realm.Configuration.defaultConfiguration.fileURL ?? "Realm location print didnt work")
         headerViewGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
+        sortedClasses = SharedAllClasses.shared.sharedAllClasses
     }
     // need to fix the deleted class getting added again from here
     override func viewDidAppear(_ animated: Bool) {

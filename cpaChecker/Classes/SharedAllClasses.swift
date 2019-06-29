@@ -9,7 +9,7 @@
 import Foundation
 
 class SharedAllClasses {
-    var sharedAllClasses: [Class] = createClasses()
+    var sharedAllClasses: [Class] = []
     static let shared = SharedAllClasses()
     private init() {}
 }

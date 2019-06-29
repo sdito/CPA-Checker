@@ -49,7 +49,7 @@ extension Class: Hashable {
     }
 }
 
-
+/*
 func createClasses() -> [Class] {
     
     let agb214 = Class.init(courseNum: "ABG 214", title: "Agribusiness Financial Accounting", description: "Principles of financial accounting for the agriculture and food industry. Introduction of basic concepts and standards underlying financial accounting systems. Emphasizes the construction of the financial accounting statements and the impact of business transactions on information presented to interested stakeholders. Not open to students with credit in BUS 214. Course may be offered in classroom-based or hybrid format. 3 lectures, 1 activity.", isAccounting: true, isBusiness: true, isEthics: false, numUnits: 4, offeredFall: true, offeredWinter: true, offeredSpring: true, offeredSummer: false)
@@ -169,3 +169,4 @@ func createClasses() -> [Class] {
     
     return classes
 }
+*/
