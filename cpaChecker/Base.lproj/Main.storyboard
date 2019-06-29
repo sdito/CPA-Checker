@@ -1221,8 +1221,8 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WW3-Ng-zee">
-                                <rect key="frame" x="168" y="676" width="78" height="53"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
+                                <rect key="frame" x="155" y="662" width="104" height="67"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="40"/>
                                 <state key="normal" title="Begin"/>
                                 <connections>
                                     <segue destination="FjB-3T-3DK" kind="show" id="g1r-zO-KSN"/>
@@ -1235,8 +1235,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCH-Nk-69k">
-                                <rect key="frame" x="20" y="208" width="374" height="70"/>
-                                <string key="text">The goal of this app is to help you check your status regarding the CPA educational requirements. Press the begin button to start.</string>
+                                <rect key="frame" x="20" y="208" width="374" height="93"/>
+                                <string key="text">The goal of this app is to help you check your status regarding the CPA educational requirements. Press the begin button to select the university you attend.</string>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1260,7 +1260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2n-CU-Dpn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2274" y="465"/>
+            <point key="canvasLocation" x="-2159" y="473"/>
         </scene>
         <!--School SelectVC-->
         <scene sceneID="2AT-NQ-3ej">
