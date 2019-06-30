@@ -505,7 +505,7 @@ extension StatusVC: UIScrollViewDelegate {
     //not being used anywhere currently
     func addNewClassIfStraightToStatus() {
         for item in realm.objects(RealmNewClass.self) {
-            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil)
+            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil, mustBeEthics: nil, collegeID: nil)
             var allCourseNums: [String] = []
             for name in SharedAllClasses.shared.sharedAllClasses {
                 allCourseNums.append(name.courseNum)

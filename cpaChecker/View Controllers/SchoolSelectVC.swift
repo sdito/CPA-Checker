@@ -16,6 +16,8 @@ class SchoolSelectVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    var schoolSelectionNumber: Int?
+    
     let path = Bundle.main.path(forResource: "cpa", ofType: "db")!
     
     
@@ -38,10 +40,9 @@ class SchoolSelectVC: UIViewController {
         let db = try? Connection(path, readonly: true)
         for c in try! db!.prepare("""
             SELECT * FROM classes co
-            WHERE collegeID = 1
+            WHERE collegeID = 2
             """)
                 {
-                    print(c[0])
                     let add = Class.init(
                         courseNum: c[0] as! String,
                         title: c[1] as! String,
@@ -53,7 +54,9 @@ class SchoolSelectVC: UIViewController {
                         offeredFall: nil,
                         offeredWinter: nil,
                         offeredSpring: nil,
-                        offeredSummer: nil)
+                        offeredSummer: nil,
+                        mustBeEthics: intToBool(int: Int(c[11] as! Int64)) ?? false,
+                        collegeID: Int(c[12] as! Int64))
                     ac.append(add)
                     
                         print(add.courseNum, add.title, add.isAccounting, add.isBusiness, add.isEthics)

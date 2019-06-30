@@ -24,8 +24,10 @@ class Class {
     var offeredSpring: Bool?
     var offeredSummer: Bool?
 
+    var mustBeEthics: Bool?
+    var collegeID: Int?
     
-    init(courseNum: String, title: String, description: String?, isAccounting: Bool, isBusiness: Bool, isEthics: Bool, numUnits: Int, offeredFall: Bool?, offeredWinter: Bool?, offeredSpring: Bool?, offeredSummer: Bool?) {
+    init(courseNum: String, title: String, description: String?, isAccounting: Bool, isBusiness: Bool, isEthics: Bool, numUnits: Int, offeredFall: Bool?, offeredWinter: Bool?, offeredSpring: Bool?, offeredSummer: Bool?, mustBeEthics: Bool?, collegeID: Int?) {
         self.courseNum = courseNum
         self.title = title
         self.courseDescription = description
@@ -37,6 +39,8 @@ class Class {
         self.offeredWinter = offeredWinter
         self.offeredSpring = offeredSpring
         self.offeredSummer = offeredSummer
+        self.mustBeEthics = mustBeEthics
+        self.collegeID = collegeID
     }
     
 }
