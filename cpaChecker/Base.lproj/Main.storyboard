@@ -1274,10 +1274,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="112"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOn-ij-Ipe">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select University Name (update to when selected)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goZ-uU-Z6x">
-                                                <rect key="frame" x="10" y="16.5" width="394" height="23.5"/>
+                                                <rect key="frame" x="10" y="26.5" width="394" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1290,23 +1290,14 @@
                                             <constraint firstItem="goZ-uU-Z6x" firstAttribute="leading" secondItem="oOn-ij-Ipe" secondAttribute="leading" constant="10" id="vek-U5-0Ko"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qA-g5-NYI">
-                                        <rect key="frame" x="0.0" y="56" width="414" height="56"/>
-                                        <subviews>
-                                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="B8a-PH-2xE">
-                                                <rect key="frame" x="0.0" y="0.0" width="325" height="56"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </searchBar>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCc-fT-Caq">
-                                                <rect key="frame" x="325" y="0.0" width="89" height="56"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                                <state key="normal" title="  Continue  "/>
-                                                <connections>
-                                                    <segue destination="49e-Tb-3d3" kind="show" id="Rel-Sm-6P7"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCc-fT-Caq">
+                                        <rect key="frame" x="0.0" y="76" width="414" height="36"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="  Continue  "/>
+                                        <connections>
+                                            <segue destination="49e-Tb-3d3" kind="show" id="Rel-Sm-6P7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="112" id="HKo-Em-a4U"/>
@@ -1338,7 +1329,6 @@
                     </view>
                     <connections>
                         <outlet property="collegeNameLabel" destination="goZ-uU-Z6x" id="smt-tO-SHg"/>
-                        <outlet property="searchBar" destination="B8a-PH-2xE" id="ZRZ-Rx-lJg"/>
                         <outlet property="searchDisplayController" destination="ztU-hG-U5e" id="5Gy-ba-G6X"/>
                         <outlet property="tableView" destination="YVS-2T-ugJ" id="WAl-ix-gLF"/>
                     </connections>

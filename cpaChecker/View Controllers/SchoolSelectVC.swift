@@ -13,10 +13,10 @@ import SQLite
 class SchoolSelectVC: UIViewController {
 
     @IBOutlet weak var collegeNameLabel: UILabel!
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    var whatSchoolSelected: String?
     
-    var schoolSelectionNumber: Int?
+    var schoolIdentifier: [String:Int] = [:]
     
     let path = Bundle.main.path(forResource: "cpa", ofType: "db")!
     
@@ -31,16 +31,25 @@ class SchoolSelectVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        searchBar.delegate = self
         filteredCollegeList = tempCollegeList
+        let db = try? Connection(path, readonly: true)
+        for s in try! db!.prepare(
+            """
+            SELECT name, collegeID FROM colleges
+            """
+            ) {
+                schoolIdentifier[s[0] as! String] = Int(s[1] as! Int64)
+                print(schoolIdentifier)
+        }
         
     }
     override func viewWillDisappear(_ animated: Bool) {
         var ac: [Class] = []
+        var index = schoolIdentifier[whatSchoolSelected!]
         let db = try? Connection(path, readonly: true)
         for c in try! db!.prepare("""
             SELECT * FROM classes co
-            WHERE collegeID = 2
+            WHERE collegeID = \(index ?? 0)
             """)
                 {
                     let add = Class.init(
@@ -68,31 +77,22 @@ class SchoolSelectVC: UIViewController {
 
 extension SchoolSelectVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredCollegeList.count
+        return schoolIdentifier.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "collegeCell")
-        let school = filteredCollegeList[indexPath.row]
+        //let school = filteredCollegeList[indexPath.row]
+        let school = Array(schoolIdentifier.keys)[indexPath.row]
         cell?.textLabel?.text = school
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        collegeNameLabel.text = filteredCollegeList[indexPath.row]
+        collegeNameLabel.text = Array(schoolIdentifier.keys)[indexPath.row]
+        whatSchoolSelected = Array(schoolIdentifier.keys)[indexPath.row]
     }
 }
 
-extension SchoolSelectVC: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredCollegeList.removeAll()
-        for item in tempCollegeList {
-            if item.contains(searchText) {
-                filteredCollegeList.append(item)
-                tableView.reloadData()
-            }
-        }
-    }
-}
 
 func intToBool(int: Int?) -> Bool? {
     if int ==  1 {
