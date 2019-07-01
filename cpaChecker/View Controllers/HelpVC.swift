@@ -19,12 +19,12 @@ class HelpVC: UIViewController {
     @IBOutlet weak var termsStackView: UIStackView!
     @IBOutlet weak var aboutStackView: UIStackView!
     
-    
+    var realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        realm = try! Realm()
     }
 
     @IBAction func cancelPressed(_ sender: Any) {
@@ -33,6 +33,14 @@ class HelpVC: UIViewController {
     
     @objc func schoolButtonAction(sender: UIButton) {
         print("worked")
+        // do not have to delete all the classes from database technically, would only show in status when that specific university is selected
+        
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "schoolSelectionVC") as! SchoolSelectVC
+        self.present(vc, animated: false, completion: nil)
     }
     
     @IBAction func selectNewSchool(_ sender: Any) {
