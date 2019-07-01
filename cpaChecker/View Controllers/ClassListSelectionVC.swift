@@ -24,6 +24,7 @@ class ClassListSelectionVC: UIViewController {
     
     var blurBackground: Bool?
     override func viewDidLoad() {
+        print(UserDefaults.standard.string(forKey: "college"))
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
@@ -246,7 +247,7 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
             // doesnt work now
             //deletes class from RealmNewClass
             let count = realm.objects(RealmNewClass.self).filter("courseNum = '\(courseNum.courseNum.uppercased())'").count
-            print(count)
+            
             if count >= 1 {
                 try! realm.write {
                     realm.delete(realm.objects(RealmNewClass.self).filter("courseNum = '\(courseNum.courseNum.uppercased())'"))

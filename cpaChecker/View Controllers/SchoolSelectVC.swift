@@ -20,18 +20,19 @@ class SchoolSelectVC: UIViewController {
     
     let path = Bundle.main.path(forResource: "cpa", ofType: "db")!
     
-    
+    /*
     var tempCollegeList = ["California Polytechnic State University, San Luis Obispo", "University of California - Santa Barbara", "University of California - Los Angeles", "University of Southern California", "Stanford", "Harvard", "San Diego State University", "Santa Clara University", "University of California - San Diego", "California Polytechnic State University, Pomona"]
     var string = "string"
     var filteredCollegeList: [String] = []
-    
+    */
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        filteredCollegeList = tempCollegeList
+        //filteredCollegeList = tempCollegeList
         let db = try? Connection(path, readonly: true)
         for s in try! db!.prepare(
             """
@@ -39,13 +40,13 @@ class SchoolSelectVC: UIViewController {
             """
             ) {
                 schoolIdentifier[s[0] as! String] = Int(s[1] as! Int64)
-                print(schoolIdentifier)
+                
         }
         
     }
     override func viewWillDisappear(_ animated: Bool) {
         var ac: [Class] = []
-        var index = schoolIdentifier[whatSchoolSelected!]
+        let index = schoolIdentifier[whatSchoolSelected!]
         let db = try? Connection(path, readonly: true)
         for c in try! db!.prepare("""
             SELECT * FROM classes co
@@ -68,7 +69,7 @@ class SchoolSelectVC: UIViewController {
                         collegeID: Int(c[12] as! Int64))
                     ac.append(add)
                     
-                        print(add.courseNum, add.title, add.isAccounting, add.isBusiness, add.isEthics)
+                        
             }
         SharedAllClasses.shared.sharedAllClasses = ac
     }
@@ -90,6 +91,7 @@ extension SchoolSelectVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         collegeNameLabel.text = Array(schoolIdentifier.keys)[indexPath.row]
         whatSchoolSelected = Array(schoolIdentifier.keys)[indexPath.row]
+        UserDefaults.standard.set(Array(schoolIdentifier.keys)[indexPath.row], forKey: "college")
     }
 }
 

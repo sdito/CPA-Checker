@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SQLite
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        print(UserDefaults.standard.string(forKey: "college") as Any)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        
+        if UserDefaults.standard.string(forKey: "college") != nil {
+            let vc: UITabBarController = storyboard.instantiateViewController(withIdentifier: "tab") as! UITabBarController
+            let path = Bundle.main.path(forResource: "cpa", ofType: "db")!
+            var schoolIdentifier: [String:Int] = [:]
+            let db = try? Connection(path, readonly: true)
+            for s in try! db!.prepare(
+                """
+            SELECT name, collegeID FROM colleges
+            """
+                ) {
+                    schoolIdentifier[s[0] as! String] = Int(s[1] as! Int64)
+                    
+            }
+            let whatSchoolSelected = UserDefaults.standard.string(forKey: "college")
+            var ac: [Class] = []
+            let index = schoolIdentifier[whatSchoolSelected!]
+            for c in try! db!.prepare("""
+                SELECT * FROM classes co
+                WHERE collegeID = \(index ?? 0)
+                """)
+            {
+                let add = Class.init(
+                    courseNum: c[0] as! String,
+                    title: c[1] as! String,
+                    description: c[2] as? String,
+                    isAccounting: intToBool(int: Int(c[3] as! Int64)) ?? false,
+                    isBusiness: intToBool(int: Int(c[4] as! Int64)) ?? false,
+                    isEthics: intToBool(int: Int(c[5] as! Int64)) ?? false,
+                    numUnits: Int(c[6] as! Int64),
+                    offeredFall: nil,
+                    offeredWinter: nil,
+                    offeredSpring: nil,
+                    offeredSummer: nil,
+                    mustBeEthics: intToBool(int: Int(c[11] as! Int64)) ?? false,
+                    collegeID: Int(c[12] as! Int64))
+                ac.append(add)
+                
+                
+            }
+            SharedAllClasses.shared.sharedAllClasses = ac
+            
+            
+            
+            self.window?.rootViewController = vc
+            self.window?.makeKeyAndVisible()
+        } else {
+            let otherVC: WelcomeVC = storyboard.instantiateViewController(withIdentifier: "welcome") as! WelcomeVC
+            self.window?.rootViewController = otherVC
+            self.window?.makeKeyAndVisible()
+        }
         return true
     }
 
