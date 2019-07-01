@@ -126,9 +126,10 @@ class ClassListSelectionVC: UIViewController {
         alert.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: deleteClasses))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
-
-        
     }
+    
+    
+    
     func deleteClasses(alert: UIAlertAction!) {
         try! realm.write {
             let all = realm.objects(RealmClass.self)
@@ -136,6 +137,8 @@ class ClassListSelectionVC: UIViewController {
             tableView.reloadData()
         }
     }
+    
+    
     
     func overlayBlurredBackgroundView() {
         let blurredBackgroundView = UIVisualEffectView()

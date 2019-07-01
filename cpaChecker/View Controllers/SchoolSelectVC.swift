@@ -42,8 +42,15 @@ class SchoolSelectVC: UIViewController {
                 schoolIdentifier[s[0] as! String] = Int(s[1] as! Int64)
                 
         }
-        
     }
+    @IBAction func continuePressed(_ sender: Any) {
+        if whatSchoolSelected == nil {
+            
+        } else {
+            performSegue(withIdentifier: "continuePressed", sender: nil)
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         var ac: [Class] = []
         let index = schoolIdentifier[whatSchoolSelected!]

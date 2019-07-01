@@ -31,6 +31,7 @@
 		E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E1922A496A7009DEF96 /* Result.swift */; };
 		E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E5722A63C87009DEF96 /* StatusCell.swift */; };
 		E2508B2222C824D40092C978 /* cpa.db in Resources */ = {isa = PBXBuildFile; fileRef = E2508B2122C824D40092C978 /* cpa.db */; };
+		E2508B2622CA94720092C978 /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2508B2522CA94720092C978 /* HelpVC.swift */; };
 		E29CDEB522AF0EF500CD8DCE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29CDEB422AF0EF500CD8DCE /* Colors.swift */; };
 		E2AEB38622B4A3F60017D0F3 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AEB38522B4A3F60017D0F3 /* StatusView.swift */; };
 		E2AEB38922B4A5120017D0F3 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AEB38822B4A5120017D0F3 /* StatusView.xib */; };
@@ -93,6 +94,7 @@
 		E22B3E1922A496A7009DEF96 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E22B3E5722A63C87009DEF96 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		E2508B2122C824D40092C978 /* cpa.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = cpa.db; sourceTree = SOURCE_ROOT; };
+		E2508B2522CA94720092C978 /* HelpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpVC.swift; sourceTree = "<group>"; };
 		E29CDEB422AF0EF500CD8DCE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E2AEB38522B4A3F60017D0F3 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		E2AEB38822B4A5120017D0F3 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				E2198A5C22A1B36000B9D42F /* StatusVC.swift */,
 				E2D746A422B5497E006AC0A4 /* WelcomeVC.swift */,
 				E2D746A622B54995006AC0A4 /* SchoolSelectVC.swift */,
+				E2508B2522CA94720092C978 /* HelpVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */,
 				E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */,
 				E2018CD4229DBFE700973C97 /* InstructionsVC.swift in Sources */,
+				E2508B2622CA94720092C978 /* HelpVC.swift in Sources */,
 				E2198A5B22A0B0F100B9D42F /* UnitEntryVC.swift in Sources */,
 				E22B3D9C22A251B3009DEF96 /* RealmUnits.swift in Sources */,
 				E2198A5F22A1BBAB00B9D42F /* RealmClass.swift in Sources */,

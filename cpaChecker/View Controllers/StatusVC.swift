@@ -109,6 +109,10 @@ class StatusVC: UIViewController {
         whatClassesForTable()
         tableView.reloadData()
     }
+    @IBAction func helpPressed(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "helpVC") as! HelpVC
+        self.present(vc, animated: false, completion: nil)
+    }
     
     
     @IBAction func accountingPressed(_ sender: Any) {
