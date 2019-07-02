@@ -24,7 +24,6 @@ class ClassListSelectionVC: UIViewController {
     
     var blurBackground: Bool?
     override func viewDidLoad() {
-        print(UserDefaults.standard.string(forKey: "college"))
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self

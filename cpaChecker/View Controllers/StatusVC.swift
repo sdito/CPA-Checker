@@ -230,6 +230,7 @@ class StatusVC: UIViewController {
 
     // code could definitely be cleaner; takes classes from realm and converts that into result to be displayed
     func calculateStatus() -> Result {
+        let mustBeEthicsClasses = whatClassesMustBeEthics()
         let accountingNeeded = 45
         let businessNeeded = 57
         let ethicsNeeded = 15
@@ -253,9 +254,16 @@ class StatusVC: UIViewController {
         
         // add a bool value to support this for when multiple universities are in the application
         for item in tempAccountingClasses {
+            // commented out initially would only work for Cal Poly, other works for all by testing in sharedAllClasses has a course number that matches with the RealmClass
+            /*
             if item.courseNum == "BUS 424" {
                 tempEthicsClasses.insert(item, at: 0)
                 tempAccountingClasses.removeAll{$0.courseNum == "BUS 424"}
+            }
+            */
+            if mustBeEthicsClasses.contains(item.courseNum) {
+                tempEthicsClasses.insert(item, at: 0)
+                tempAccountingClasses.removeAll{$0.courseNum == "\(item.courseNum)"}
             }
         }
         //let currAccounting = howManyUnits(objects: tempAccountingClasses)
@@ -347,6 +355,17 @@ class StatusVC: UIViewController {
             returnNum += item.numUnits
         }
         return returnNum
+    }
+    
+    func whatClassesMustBeEthics() -> Set<String> {
+        var answer: Set<String> = []
+        for item in SharedAllClasses.shared.sharedAllClasses {
+            if item.mustBeEthics == true {
+                print("\(item.courseNum) must be ethics")
+                answer.insert(item.courseNum)
+            }
+        }
+        return answer
     }
     
     // this adds a class that is already taken to the wrong section

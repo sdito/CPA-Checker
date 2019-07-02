@@ -60,13 +60,34 @@ class PopUpVC: UIViewController {
         realmClass.isAccounting = isAccounting
         realmClass.isBusiness = isBusiness
         realmClass.isEthics = isEthics
-        try! realm.write {
-            realm.add(realmClass)
+        // for continue on alert
+        func endNewClass(alert: UIAlertAction!) {
+            try! realm.write {
+                realm.add(realmClass)
+            }
+            
+            delegate.removeBlurViews()
+            delegate.resetTableData()
+            view.removeFromSuperview()
+        }
+        // have an alert if the class data for added class is not complete
+        if (realmClass.courseNum == "") || (realmClass.isAccounting == false && realmClass.isBusiness == false && realmClass.isEthics == false ) || realmClass.numUnits == 0 {
+            let alert = UIAlertController(title: "Incomplete class data.", message: "Are you sure you still want to proceed?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Continue", style: .destructive, handler: endNewClass))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+            
+        } else {
+            try! realm.write {
+                realm.add(realmClass)
+            }
+            
+            delegate.removeBlurViews()
+            delegate.resetTableData()
+            view.removeFromSuperview()
         }
         
-        delegate.removeBlurViews()
-        delegate.resetTableData()
-        view.removeFromSuperview()
+        
     }
     @IBAction func exitPressed(_ sender: Any) {
         delegate.removeBlurViews()

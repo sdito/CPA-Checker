@@ -12,6 +12,8 @@ import SQLite
 
 class SchoolSelectVC: UIViewController {
 
+    @IBOutlet weak var continueLabel: UIButton!
+    
     @IBOutlet weak var collegeNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var whatSchoolSelected: String?
@@ -28,8 +30,9 @@ class SchoolSelectVC: UIViewController {
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        tableView.backgroundColor = .lightGray
+        continueLabel.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
         tableView.delegate = self
         tableView.dataSource = self
         //filteredCollegeList = tempCollegeList
@@ -93,6 +96,8 @@ extension SchoolSelectVC: UITableViewDataSource, UITableViewDelegate {
         //let school = filteredCollegeList[indexPath.row]
         let school = Array(schoolIdentifier.keys)[indexPath.row]
         cell?.textLabel?.text = school
+        cell?.textLabel?.font = UIFont(name: "avenir", size: 17)
+        cell?.textLabel?.numberOfLines = 0
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

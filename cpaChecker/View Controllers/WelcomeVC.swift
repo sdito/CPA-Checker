@@ -10,9 +10,11 @@ import UIKit
 
 class WelcomeVC: UIViewController {
 
+    @IBOutlet var mainView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
     }
 
 

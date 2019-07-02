@@ -19,6 +19,11 @@ class HelpVC: UIViewController {
     @IBOutlet weak var termsStackView: UIStackView!
     @IBOutlet weak var aboutStackView: UIStackView!
     
+    @IBOutlet weak var universityArrow: UILabel!
+    @IBOutlet weak var termsArrow: UILabel!
+    @IBOutlet weak var aboutArrow: UILabel!
+    
+    
     var realm = try! Realm()
     
     override func viewDidLoad() {
@@ -32,13 +37,10 @@ class HelpVC: UIViewController {
     }
     
     @objc func schoolButtonAction(sender: UIButton) {
-        print("worked")
         // do not have to delete all the classes from database technically, would only show in status when that specific university is selected
-        
         try! realm.write {
             realm.deleteAll()
         }
-        
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "schoolSelectionVC") as! SchoolSelectVC
         self.present(vc, animated: false, completion: nil)
     }
@@ -53,7 +55,9 @@ class HelpVC: UIViewController {
         button.addTarget(self, action: #selector(schoolButtonAction), for: .touchUpInside)
         
         let firstView = universityStackView.subviews.first
-        label.text = "Add school change text here"
+        label.text = "Select the below button to select a new University to calculate CPA status for. Selecting a new university will erase all of the data you currently have. This action can't be undone.\n\nAre you sure you want to select a new University?"
+        label.numberOfLines = 0
+        label.font = UIFont(name: "avenir", size: 17)
         if newSchool == false {
             universityStackView.insertArrangedSubview(label, at: 1)
             universityStackView.insertArrangedSubview(button, at: 2)
@@ -65,30 +69,51 @@ class HelpVC: UIViewController {
                 }
             }
         }
+        // rotate the arrow in a label 180 degrees
+        if newSchool == false {
+            universityArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
+        } else {
+            universityArrow.transform = CGAffineTransform(rotationAngle: 0)
+        }
+        
         newSchool = !newSchool
     }
     @IBAction func termsPressed(_ sender: Any) {
         let label = UILabel()
-        label.text = "Add text about the Terms here"
+        label.text = "No guarantee in the accuracy of the app. Recalculate with an outside source to ensure accuracy.\n\nContact resources from your university to ensure accuracy."
+        label.numberOfLines = 0
+        label.font = UIFont(name: "avenir", size: 17)
         if terms == false {
             termsStackView.insertArrangedSubview(label, at: 1)
         } else {
             let view = termsStackView.subviews.last!
             view.removeFromSuperview()
         }
+        // rotate the arrow in a label 180 degrees
+        if terms == false {
+            termsArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
+        } else {
+            termsArrow.transform = CGAffineTransform(rotationAngle: 0)
+        }
         terms = !terms
     }
     @IBAction func aboutPressed(_ sender: Any) {
         let label = UILabel()
-        label.text = "Add text about the About here"
+        label.text = "To filter classes, select 'Accounting' 'Business' and/or 'Ethics' on the Classes tab\n\nTo add a new class to the Classes tab, select the plus button on the top. Added classes can be deleted by swiping the class on the table."
+        label.numberOfLines = 0
+        label.font = UIFont(name: "avenir", size: 17)
         if about == false {
             aboutStackView.insertArrangedSubview(label, at: 1)
         } else {
             let view = aboutStackView.subviews.last!
             view.removeFromSuperview()
         }
+        // rotate the arrow in a label 180 degrees
+        if about == false {
+            aboutArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
+        } else {
+            aboutArrow.transform = CGAffineTransform(rotationAngle: 0)
+        }
         about = !about
     }
-    
-    
 }
