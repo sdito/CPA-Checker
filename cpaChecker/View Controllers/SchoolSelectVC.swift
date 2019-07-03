@@ -16,7 +16,7 @@ class SchoolSelectVC: UIViewController {
     
     @IBOutlet weak var collegeNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    var whatSchoolSelected: String?
+    var whatSchoolSelected: Set<String> = []
     
     var schoolIdentifier: [String:Int] = [:]
     
@@ -47,7 +47,7 @@ class SchoolSelectVC: UIViewController {
         }
     }
     @IBAction func continuePressed(_ sender: Any) {
-        if whatSchoolSelected == nil {
+        if whatSchoolSelected.isEmpty == true {
             
         } else {
             performSegue(withIdentifier: "continuePressed", sender: nil)
@@ -55,12 +55,20 @@ class SchoolSelectVC: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        var index: [Int] = []
+        var sqlSelect: String = ""
         var ac: [Class] = []
-        let index = schoolIdentifier[whatSchoolSelected!]
+        whatSchoolSelected.forEach({ (item) in
+            index.append(schoolIdentifier[item]!)
+            sqlSelect.append(",\(String(describing: schoolIdentifier[item]!))")
+        })
+        sqlSelect.remove(at: sqlSelect.startIndex)
+        UserDefaults.standard.set(sqlSelect, forKey: "college")
+        print(sqlSelect)
         let db = try? Connection(path, readonly: true)
         for c in try! db!.prepare("""
             SELECT * FROM classes co
-            WHERE collegeID = \(index ?? 0)
+            WHERE collegeID in (\(sqlSelect))
             """)
                 {
                     let add = Class.init(
@@ -101,10 +109,33 @@ extension SchoolSelectVC: UITableViewDataSource, UITableViewDelegate {
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        collegeNameLabel.text = Array(schoolIdentifier.keys)[indexPath.row]
-        whatSchoolSelected = Array(schoolIdentifier.keys)[indexPath.row]
-        UserDefaults.standard.set(Array(schoolIdentifier.keys)[indexPath.row], forKey: "college")
-        print(Array(schoolIdentifier.keys)[indexPath.row])
+        //collegeNameLabel.text = Array(schoolIdentifier.keys)[indexPath.row]
+        let value = Array(schoolIdentifier.keys)[indexPath.row]
+        print(value)
+        
+        whatSchoolSelected.insert(value)
+        /*
+        if whatSchoolSelected.contains(value) {
+            print("remove")
+            whatSchoolSelected.remove(value)
+        } else {
+            whatSchoolSelected.insert(value)
+            print("Add")
+        }
+        */
+        collegeNameLabel.text = setToString(set: whatSchoolSelected)
+        print(whatSchoolSelected)
+        //UserDefaults.standard.set(whatSchoolSelected, forKey: "colleges")
+        
+        //UserDefaults.standard.set(Array(schoolIdentifier.keys)[indexPath.row], forKey: "college")
+        //print(Array(schoolIdentifier.keys)[indexPath.row])
+        //print(UserDefaults.value(forKey: "colleges"))
+    }
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let value = Array(schoolIdentifier.keys)[indexPath.row]
+        print(value)
+        whatSchoolSelected.remove(value)
+        collegeNameLabel.text = setToString(set: whatSchoolSelected)
     }
 }
 
@@ -118,5 +149,15 @@ func intToBool(int: Int?) -> Bool? {
         return nil
     }
 }
-
+func setToString(set: Set<String>) -> String {
+    var text = ""
+    for item in set {
+        if text == "" {
+            text += item
+        } else {
+            text += " + \(item)"
+        }
+    }
+    return text
+}
 

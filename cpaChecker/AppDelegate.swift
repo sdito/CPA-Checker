@@ -35,12 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     schoolIdentifier[s[0] as! String] = Int(s[1] as! Int64)
                     
             }
-            let whatSchoolSelected = UserDefaults.standard.string(forKey: "college")
+            let indii = UserDefaults.standard.string(forKey: "college")
             var ac: [Class] = []
-            let index = schoolIdentifier[whatSchoolSelected!]
             for c in try! db!.prepare("""
                 SELECT * FROM classes co
-                WHERE collegeID = \(index ?? 0)
+                WHERE collegeID in (\(indii ?? "0"))
                 """)
             {
                 let add = Class.init(
