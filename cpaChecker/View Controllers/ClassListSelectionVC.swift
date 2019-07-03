@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SQLite
 
 class ClassListSelectionVC: UIViewController {
     var sortedClasses: [Class] = []
@@ -213,9 +214,11 @@ extension ClassListSelectionVC: PopUpDelegate {
 // need to get this to work to get pop up view to work correctly UI wise
 
 extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sortedClasses.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let units = sortedClasses[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "classCell") as! ClassCell
@@ -272,4 +275,40 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
             self.tableView.endUpdates()
         }
     }
+}
+
+
+// function to convert the text from user defaults such as "(1,2,4)" into an array of strings that represent the college's names
+func stringToIntArray(str: String) -> [String] {
+    var schoolIdentifier: [Int:String] = [:]
+    let path = Bundle.main.path(forResource: "cpa", ofType: "db")!
+    let db = try? Connection(path, readonly: true)
+    for s in try! db!.prepare(
+        """
+            SELECT name, collegeID FROM colleges
+            """
+        ) {
+            //schoolIdentifier[s[0] as! String] = Int(s[1] as! Int64)
+            schoolIdentifier[Int(s[1] as! Int64)] = s[0] as? String
+            
+    }
+    var array: [Int] = []
+    var num = ""
+    for c in str {
+        if c == "," || c == str.last {
+            if let n = Int(num) {
+                array.append(n)
+            }
+            num = ""
+        } else if "0"..."9" ~= c {
+            num.append(c)
+        }
+    }
+    var names: [String] = []
+    for item in array {
+        if let school = schoolIdentifier[item] {
+          names.append(school)
+        }
+    }
+    return names
 }
