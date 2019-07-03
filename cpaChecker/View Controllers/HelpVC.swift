@@ -58,6 +58,7 @@ class HelpVC: UIViewController {
         label.text = "Select the below button to select a new University to calculate CPA status for. Selecting a new university will erase all of the data you currently have. This action can't be undone.\n\nAre you sure you want to select a new University?"
         label.numberOfLines = 0
         label.font = UIFont(name: "avenir", size: 17)
+        label.textAlignment = .center
         if newSchool == false {
             universityStackView.insertArrangedSubview(label, at: 1)
             universityStackView.insertArrangedSubview(button, at: 2)
@@ -83,6 +84,7 @@ class HelpVC: UIViewController {
         label.text = "No guarantee in the accuracy of the app. Recalculate with an outside source to ensure accuracy.\n\nContact resources from your university to ensure accuracy."
         label.numberOfLines = 0
         label.font = UIFont(name: "avenir", size: 17)
+        label.textAlignment = .center
         if terms == false {
             termsStackView.insertArrangedSubview(label, at: 1)
         } else {
@@ -102,6 +104,7 @@ class HelpVC: UIViewController {
         label.text = "To filter classes, select 'Accounting' 'Business' and/or 'Ethics' on the Classes tab\n\nTo add a new class to the Classes tab, select the plus button on the top. Added classes can be deleted by swiping the class on the table."
         label.numberOfLines = 0
         label.font = UIFont(name: "avenir", size: 17)
+        label.textAlignment = .center
         if about == false {
             aboutStackView.insertArrangedSubview(label, at: 1)
         } else {

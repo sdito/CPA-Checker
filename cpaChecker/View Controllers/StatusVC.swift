@@ -126,9 +126,8 @@ class StatusVC: UIViewController {
             tableView.isHidden = false
             self.tableView.reloadData()
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-            setCombinationLabel()
         }
-        
+        setCombinationLabel()
     }
     @IBAction func businessPressed(_ sender: Any) {
         accounting = false

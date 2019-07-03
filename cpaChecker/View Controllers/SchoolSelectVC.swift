@@ -104,6 +104,7 @@ extension SchoolSelectVC: UITableViewDataSource, UITableViewDelegate {
         collegeNameLabel.text = Array(schoolIdentifier.keys)[indexPath.row]
         whatSchoolSelected = Array(schoolIdentifier.keys)[indexPath.row]
         UserDefaults.standard.set(Array(schoolIdentifier.keys)[indexPath.row], forKey: "college")
+        print(Array(schoolIdentifier.keys)[indexPath.row])
     }
 }
 
