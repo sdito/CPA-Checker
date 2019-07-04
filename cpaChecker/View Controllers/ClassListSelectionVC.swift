@@ -12,6 +12,10 @@ import SQLite
 
 class ClassListSelectionVC: UIViewController {
     var sortedClasses: [Class] = []
+    
+    var arrayArrayClasses: [[Class]] = []
+    var sectionNames: [String] = []
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var accountingSortedOutlet: UIButton!
     @IBOutlet weak var businessSortedOutlet: UIButton!
@@ -21,6 +25,10 @@ class ClassListSelectionVC: UIViewController {
     var sortBusiness = false
     var sortEthics = false
     var realm = try! Realm()
+    
+    
+    var orderedCollegeDict: [Int:[Int:String]] = [:]
+    var collegeDict: [Int:String] = [:]
     //var setTo_allCourseNums: Set<String>?
     
     var blurBackground: Bool?
@@ -35,6 +43,20 @@ class ClassListSelectionVC: UIViewController {
     }
     // need to fix the deleted class getting added again from here
     override func viewDidAppear(_ animated: Bool) {
+        collegeDict.removeAll()
+        let p = Bundle.main.path(forResource: "cpa", ofType: "db")!
+        let db = try? Connection(p, readonly: true)
+        for s in try! db!.prepare(
+            """
+            SELECT name, collegeID FROM colleges
+            order by name
+            """
+            ) {
+                collegeDict[Int(s[1] as! Int64)] = s[0] as? String
+                
+        }
+        print(collegeDict)
+        (sectionNames, arrayArrayClasses) = takeInClassesForTableViewSections(classes: sortedClasses, colleges: collegeDict)
         updateTableInfoAndResetData()
 //        for item in realm.objects(RealmNewClass.self) {
 //            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil)
@@ -55,7 +77,7 @@ class ClassListSelectionVC: UIViewController {
     // assimilates the classes from realm into sharedAllClasses and eventually sortedClasses through updateClassesForTableView, only does not allow duplicate classes to be shown on the table view,
     func updateTableInfoAndResetData() {
         for item in realm.objects(RealmNewClass.self) {
-            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil, mustBeEthics: nil, collegeID: nil)
+            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil, mustBeEthics: nil, collegeID: 0)
             var allCourseNums: [String] = []
             for name in SharedAllClasses.shared.sharedAllClasses {
                 allCourseNums.append(name.courseNum)
@@ -175,6 +197,7 @@ class ClassListSelectionVC: UIViewController {
         } else {
             sortedClasses = SharedAllClasses.shared.sharedAllClasses
         }
+        (sectionNames, arrayArrayClasses) = takeInClassesForTableViewSections(classes: sortedClasses, colleges: collegeDict)
     }
 }
 
@@ -215,12 +238,22 @@ extension ClassListSelectionVC: PopUpDelegate {
 
 extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionNames.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionNames[section]
+    }
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sortedClasses.count
+        return arrayArrayClasses[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let units = sortedClasses[indexPath.row]
+        let units = arrayArrayClasses[indexPath.section][indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "classCell") as! ClassCell
         cell.setClassData(units: units)
         cell.delegate = self
@@ -228,17 +261,12 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let units = sortedClasses[indexPath.row]
+        let units = arrayArrayClasses[indexPath.section][indexPath.row]
         performSegue(withIdentifier: "classDetailSegue", sender: units)
     }
     // dont want to delete classes that are programmed in
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        if indexPath.row < createClasses().count {
-//            return false
-//        } else {
-//            return true
-//        }
-        if sortedClasses[indexPath.row].courseDescription == nil {
+        if arrayArrayClasses[indexPath.section][indexPath.row].collegeID == 0 {
             return true
         } else {
             return false
@@ -247,7 +275,7 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
     // delete the object from the realm and also tableView if the class was user created
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let courseNum = sortedClasses[indexPath.row]
+            let courseNum = arrayArrayClasses[indexPath.section][indexPath.row]
             
             // doesnt work now
             //deletes class from RealmNewClass
@@ -268,8 +296,9 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             //have to delete the class from both, probably could reconcile into one delete by combining them somewhere
-            sortedClasses.remove(at: indexPath.row)
+            arrayArrayClasses[indexPath.section].remove(at: indexPath.row)
             SharedAllClasses.shared.sharedAllClasses = SharedAllClasses.shared.sharedAllClasses.filter{$0.courseNum != courseNum.courseNum}
+            //(sectionNames, arrayArrayClasses) = takeInClassesForTableViewSections(classes: sortedClasses, colleges: collegeDict)
             self.tableView.beginUpdates()
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.endUpdates()
@@ -286,6 +315,7 @@ func stringToIntArray(str: String) -> [String] {
     for s in try! db!.prepare(
         """
             SELECT name, collegeID FROM colleges
+            order by name
             """
         ) {
             //schoolIdentifier[s[0] as! String] = Int(s[1] as! Int64)
@@ -311,4 +341,36 @@ func stringToIntArray(str: String) -> [String] {
         }
     }
     return names
+}
+
+
+// to section out the classes for table view, splitting them up by college
+func takeInClassesForTableViewSections(classes: [Class], colleges: [Int:String]) -> ([String], [[Class]]) {
+    var useDict = colleges
+    useDict[0] = "User Added Classes"
+    var sectionClasses: [[Class]] = []
+    var classTitles: [String] = []
+    
+    for i in useDict {
+        var counter = 0
+        classTitles.append(useDict[i.key]!)
+        var array: [Class] = []
+        for item in classes {
+            if item.collegeID == i.key {
+                array.append(item)
+                counter += 1
+            }
+        }
+        if counter == 0 && i.value != "User Added Classes" {
+            classTitles.removeLast()
+            array = []
+            counter = 0
+        } else {
+            sectionClasses.append(array)
+            array = []
+            counter = 0
+        }
+    }
+    
+    return (classTitles, sectionClasses)
 }

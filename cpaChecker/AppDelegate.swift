@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for s in try! db!.prepare(
                 """
             SELECT name, collegeID FROM colleges
+            order by name
             """
                 ) {
                     schoolIdentifier[s[0] as! String] = Int(s[1] as! Int64)
