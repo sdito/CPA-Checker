@@ -55,7 +55,6 @@ class ClassListSelectionVC: UIViewController {
                 collegeDict[Int(s[1] as! Int64)] = s[0] as? String
                 
         }
-        print(collegeDict)
         (sectionNames, arrayArrayClasses) = takeInClassesForTableViewSections(classes: sortedClasses, colleges: collegeDict)
         updateTableInfoAndResetData()
 //        for item in realm.objects(RealmNewClass.self) {
@@ -296,8 +295,12 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             //have to delete the class from both, probably could reconcile into one delete by combining them somewhere
+            
             arrayArrayClasses[indexPath.section].remove(at: indexPath.row)
+            
+            // NOT sure if i still need to update sharedAllClasses with the deleted classes deleted, test
             SharedAllClasses.shared.sharedAllClasses = SharedAllClasses.shared.sharedAllClasses.filter{$0.courseNum != courseNum.courseNum}
+            sortedClasses = sortedClasses.filter {$0.courseNum != courseNum.courseNum}
             //(sectionNames, arrayArrayClasses) = takeInClassesForTableViewSections(classes: sortedClasses, colleges: collegeDict)
             self.tableView.beginUpdates()
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -346,22 +349,30 @@ func stringToIntArray(str: String) -> [String] {
 
 // to section out the classes for table view, splitting them up by college
 func takeInClassesForTableViewSections(classes: [Class], colleges: [Int:String]) -> ([String], [[Class]]) {
-    var useDict = colleges
-    useDict[0] = "User Added Classes"
+    
+    var reversedDict = Dictionary(uniqueKeysWithValues: colleges.map({($1, $0)}))
+    
+    var sortedCollegenames = reversedDict.keys.sorted()
+    reversedDict["User Added Classes"] = 0
+    
+    //so user added classes always appears last in the list of sections
+    sortedCollegenames.append("User Added Classes")
+    
     var sectionClasses: [[Class]] = []
     var classTitles: [String] = []
     
-    for i in useDict {
+    //needs to be sorted here so classes appear in the same order
+    for i in sortedCollegenames {
         var counter = 0
-        classTitles.append(useDict[i.key]!)
+        classTitles.append(i)
         var array: [Class] = []
         for item in classes {
-            if item.collegeID == i.key {
+            if item.collegeID == reversedDict[i] {
                 array.append(item)
                 counter += 1
             }
         }
-        if counter == 0 && i.value != "User Added Classes" {
+        if counter == 0 && i != "User Added Classes" {
             classTitles.removeLast()
             array = []
             counter = 0
@@ -371,6 +382,10 @@ func takeInClassesForTableViewSections(classes: [Class], colleges: [Int:String])
             counter = 0
         }
     }
+    
+    // need to sort by the class titles to ensure that the sections appear in the same order between different page visits, need to sort both different aarrays in the same order, while sorting by classTitle
+    
+    
     
     return (classTitles, sectionClasses)
 }
