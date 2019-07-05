@@ -240,11 +240,19 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionNames.count
     }
-    
+    /*
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionNames[section]
     }
-    
+    */
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let l = UILabel()
+        l.text = sectionNames[section]
+        l.font = UIFont(name: "avenir", size: 15)
+        l.textColor = .white
+        l.backgroundColor = Colors.green
+        return l
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -355,7 +363,7 @@ func takeInClassesForTableViewSections(classes: [Class], colleges: [Int:String])
     var sortedCollegenames = reversedDict.keys.sorted()
     reversedDict["User Added Classes"] = 0
     
-    //so user added classes always appears last in the list of sections
+    //makes user added classes always appear last in class list selection table
     sortedCollegenames.append("User Added Classes")
     
     var sectionClasses: [[Class]] = []
@@ -385,7 +393,6 @@ func takeInClassesForTableViewSections(classes: [Class], colleges: [Int:String])
     
     // need to sort by the class titles to ensure that the sections appear in the same order between different page visits, need to sort both different aarrays in the same order, while sorting by classTitle
     
-    
-    
     return (classTitles, sectionClasses)
 }
+

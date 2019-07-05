@@ -38,9 +38,11 @@ class HelpVC: UIViewController {
     
     @objc func schoolButtonAction(sender: UIButton) {
         // do not have to delete all the classes from database technically, would only show in status when that specific university is selected
+        /*
         try! realm.write {
             realm.deleteAll()
         }
+         */
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "schoolSelectionVC") as! SchoolSelectVC
         self.present(vc, animated: false, completion: nil)
     }

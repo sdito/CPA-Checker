@@ -16,4 +16,5 @@ struct Colors {
     static let lightestGray = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)
     static let calPolyGreen = UIColor(red: 28.0/255.0, green: 70.0/255.0, blue: 51.0/255.0, alpha: 1.0)
     static let calPolyGold = UIColor(red: 164.0/255.0, green: 152.0/255.0, blue: 89.0/255.0, alpha: 1.0)
+    static let green = UIColor(red: 29.0/255.0, green: 65.0/255.0, blue: 31.0/255.0, alpha: 1.0)
 }
