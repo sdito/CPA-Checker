@@ -61,6 +61,7 @@ class InstructionsVC: UIViewController {
         label.text = labelText
         label.numberOfLines = 0
         label.font = UIFont(name: "avenir", size: 17)
+        label.textColor = .white
         if boolean == false {
             stack.insertArrangedSubview(label, at: 1)
         } else {

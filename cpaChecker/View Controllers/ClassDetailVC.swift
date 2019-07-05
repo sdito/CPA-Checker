@@ -30,7 +30,7 @@ class ClassDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createUI()
-        gradientView.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
+        //gradientView.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
     }
     
     //allows user to see detailed view of selected class
@@ -39,45 +39,45 @@ class ClassDetailVC: UIViewController {
         courseTitleLabel.text = units?.title
         courseDescriptionLabel.text = units?.courseDescription
         if units?.isAccounting == true {
-            isAccounting.textColor = Colors.calPolyGreen
+            isAccounting.textColor = Colors.main
         } else {
-            isAccounting.textColor = .red
+            isAccounting.textColor = .white
         }
         if units?.isBusiness == true {
-            isBusiness.textColor = Colors.calPolyGreen
+            isBusiness.textColor = Colors.main
         } else {
-            isBusiness.textColor = .red
+            isBusiness.textColor = .white
         }
         if units?.isEthics == true {
-            isEthics.textColor = Colors.calPolyGreen
+            isEthics.textColor = Colors.main
         } else {
-            isEthics.textColor = .red
+            isEthics.textColor = .white
         }
         if units?.offeredFall == true {
-            isFall.textColor = Colors.calPolyGreen
+            isFall.textColor = Colors.main
         } else if units?.offeredFall == false{
-            isFall.textColor = .red
+            isFall.textColor = .white
         } else {
             isFall.text = ""
         }
         if units?.offeredWinter == true {
-            isWinter.textColor = Colors.calPolyGreen
+            isWinter.textColor = Colors.main
         } else if units?.offeredWinter == false{
-            isWinter.textColor = .red
+            isWinter.textColor = .white
         } else {
             isWinter.text = ""
         }
         if units?.offeredSpring == true {
-            isSpring.textColor = Colors.calPolyGreen
+            isSpring.textColor = Colors.main
         } else if units?.offeredSpring == false{
-            isSpring.textColor = .red
+            isSpring.textColor = .white
         } else {
             isSpring.text = ""
         }
         if units?.offeredSummer == true {
-            isSummer.textColor = Colors.calPolyGreen
+            isSummer.textColor = Colors.main
         } else if units?.offeredSummer == false {
-            isSummer.textColor = .red
+            isSummer.textColor = .white
         } else {
             isSummer.text = ""
         }

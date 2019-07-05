@@ -32,7 +32,7 @@ class SchoolSelectVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = .lightGray
-        continueLabel.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
+        //continueLabel.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
         tableView.delegate = self
         tableView.dataSource = self
         //filteredCollegeList = tempCollegeList
@@ -107,6 +107,7 @@ extension SchoolSelectVC: UITableViewDataSource, UITableViewDelegate {
         cell?.textLabel?.text = school
         cell?.textLabel?.font = UIFont(name: "avenir", size: 17)
         cell?.textLabel?.numberOfLines = 0
+        cell?.textLabel?.textColor = .white
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

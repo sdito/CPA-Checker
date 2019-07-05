@@ -42,7 +42,7 @@ class StatusVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.isHidden = true
-        forGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
+        //forGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
         statusScrollView.delegate = self
     }
     
@@ -83,7 +83,7 @@ class StatusVC: UIViewController {
             view?.setUI(message: item)
             stackView.insertArrangedSubview(view!, at: 0)
             let pageView = UIView()
-            pageView.backgroundColor = .black
+            pageView.backgroundColor = .white
             pageStackView.insertArrangedSubview(pageView, at: 0)
             
             //to add an arrow (or technically remove the arrow) to only have arrow on first view, confusing since in reverse order
@@ -99,9 +99,9 @@ class StatusVC: UIViewController {
         statusScrollView.setContentOffset(CGPoint(x: 1, y: 1), animated: false)
         for item in pageStackView.arrangedSubviews {
             if item == pageStackView.arrangedSubviews.first! {
-                item.backgroundColor = .gray
+                item.backgroundColor = Colors.main
             } else {
-                item.backgroundColor = .black
+                item.backgroundColor = .white
             }
         }
         
@@ -504,9 +504,9 @@ extension StatusVC: UIScrollViewDelegate {
         if scrollView == statusScrollView {
             for view in stackView.subviews {
                 if isVisible(view: view) == true {
-                    pageStackView.subviews[counter].backgroundColor = .gray
+                    pageStackView.subviews[counter].backgroundColor = Colors.main
                 } else {
-                    pageStackView.subviews[counter].backgroundColor = .black
+                    pageStackView.subviews[counter].backgroundColor = .white
                 }
                 counter += 1
             }

@@ -38,7 +38,7 @@ class ClassListSelectionVC: UIViewController {
         tableView.dataSource = self
         realm = try! Realm()
         print(Realm.Configuration.defaultConfiguration.fileURL ?? "Realm location print didnt work")
-        headerViewGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
+        //headerViewGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
         sortedClasses = SharedAllClasses.shared.sharedAllClasses
     }
     // need to fix the deleted class getting added again from here
@@ -102,9 +102,12 @@ class ClassListSelectionVC: UIViewController {
     //only show classes that have accounting and potentially others
     @IBAction func accountingSorted(_ sender: Any) {
         sortAccounting = !sortAccounting
-        if sortAccounting == true {accountingSortedOutlet.backgroundColor = .yellow
+        if sortAccounting == true {
+            accountingSortedOutlet.backgroundColor = Colors.main
+            accountingSortedOutlet.setTitleColor(.black, for: .normal)
         } else {
-            accountingSortedOutlet.backgroundColor = .clear
+            accountingSortedOutlet.backgroundColor = .black
+            accountingSortedOutlet.setTitleColor(Colors.main, for: .normal)
         }
         updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
@@ -113,9 +116,11 @@ class ClassListSelectionVC: UIViewController {
     @IBAction func businessSorted(_ sender: Any) {
         sortBusiness = !sortBusiness
         if sortBusiness == true {
-            businessSortedOutlet.backgroundColor = .yellow
+            businessSortedOutlet.backgroundColor = Colors.main
+            businessSortedOutlet.setTitleColor(.black, for: .normal)
         } else {
-            businessSortedOutlet.backgroundColor = .clear
+            businessSortedOutlet.backgroundColor = .black
+            businessSortedOutlet.setTitleColor(Colors.main, for: .normal)
         }
         updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
@@ -124,9 +129,11 @@ class ClassListSelectionVC: UIViewController {
     @IBAction func ethicsSorted(_ sender: Any) {
         sortEthics = !sortEthics
         if sortEthics == true {
-            ethicsSortedOutlet.backgroundColor = .yellow
+            ethicsSortedOutlet.backgroundColor = Colors.main
+            ethicsSortedOutlet.setTitleColor(.black, for: .normal)
         } else {
-            ethicsSortedOutlet.backgroundColor = .clear
+            ethicsSortedOutlet.backgroundColor = .black
+            ethicsSortedOutlet.setTitleColor(Colors.main, for: .normal)
         }
         updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
@@ -163,7 +170,7 @@ class ClassListSelectionVC: UIViewController {
     
     func overlayBlurredBackgroundView() {
         let blurredBackgroundView = UIVisualEffectView()
-        blurredBackgroundView.frame = view.frame
+        blurredBackgroundView.frame = UIScreen.main.bounds//view.frame
         blurredBackgroundView.effect = UIBlurEffect(style: .dark)
         view.addSubview(blurredBackgroundView)
     }
@@ -249,8 +256,9 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
         let l = UILabel()
         l.text = sectionNames[section]
         l.font = UIFont(name: "avenir", size: 15)
-        l.textColor = .white
-        l.backgroundColor = Colors.green
+        l.textColor = .black
+        l.backgroundColor = .white
+        l.alpha = 0.9
         return l
     }
     

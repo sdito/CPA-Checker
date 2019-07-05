@@ -23,6 +23,7 @@ class HelpVC: UIViewController {
     @IBOutlet weak var termsArrow: UILabel!
     @IBOutlet weak var aboutArrow: UILabel!
     
+    @IBOutlet weak var exitOutlet: UIButton!
     
     var realm = try! Realm()
     
