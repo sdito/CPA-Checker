@@ -58,7 +58,7 @@ class HelpVC: UIViewController {
         button.addTarget(self, action: #selector(schoolButtonAction), for: .touchUpInside)
         
         let firstView = universityStackView.subviews.first
-        label.text = "Select the below button to select a new University to calculate CPA status for. Selecting a new university will erase all of the data you currently have. This action can't be undone.\n\nAre you sure you want to select a new University?"
+        label.text = "Select the below button to select a new University to calculate CPA status for. Selecting a new university will not erase all the data you currently have. You will need to re-select the old university (along with the new university) if you want to add a new university to your list.\n\nAre you sure you want to select a new University?"
         label.numberOfLines = 0
         label.font = UIFont(name: "avenir", size: 17)
         label.textAlignment = .center

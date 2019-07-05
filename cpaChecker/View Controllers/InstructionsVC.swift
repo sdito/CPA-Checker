@@ -16,16 +16,19 @@ class InstructionsVC: UIViewController {
     private var buinessSubjects = false
     private var accountingStudy = false
     private var ethicsStudy = false
+    private var professionalEthics = false
     
     @IBOutlet weak var accountingSubjectsStack: UIStackView!
     @IBOutlet weak var businessSubjectsStack: UIStackView!
     @IBOutlet weak var accountingStudyStack: UIStackView!
     @IBOutlet weak var ethicsStudyStack: UIStackView!
+    @IBOutlet weak var professionalEthicsStack: UIStackView!
     
     @IBOutlet weak var accountingSubjectsArrow: UILabel!
     @IBOutlet weak var businessSubjectsArrow: UILabel!
     @IBOutlet weak var accountingStudyArrow: UILabel!
     @IBOutlet weak var ethicsStudyArrow: UILabel!
+    @IBOutlet weak var professionalEthicsArrow: UILabel!
     
     
     @IBOutlet weak var viewArea: UIView!
@@ -34,6 +37,7 @@ class InstructionsVC: UIViewController {
     let busRelatedSubsMessage = "36 Quarter Units\n\nBusiness Administration, Business Management, Business Communication, Economics, Finance, Business Law, Marketing, Statistics, Mathematics, Computer Science & Information Systems, Business Related Law Courses Offered at an Accredited Law School, Any Accounting Subjects in excess of the 36 Units needed to fulfill the accounting requirement"
     let accountingStudyMessage = "30 Quarter Units\n\nMinimum 6 semester in accounting subjects (see above). Maximum 14 semester units in business-related subjects (see above). Maximum 9 semester units in other academic work relevant to business and accounting. Maximum 6 quarter units in internships/independent studies in accounting and/or business-related subjects. Completion of a Master of Accounting, Taxation, or Laws in Taxation is equivalent to 30 quarter units of accounting study."
     let ethicsStudyMessage = "15 Quarter Units\n\nMinimum 4 quarter units in accounting ethics of accountants' professional responsibilities; the course must be completed at an upper division level or higher, unless it was completed at a community college. Maximum 11 quarter units in courses in any of the following subject areas: Auditing, Government & Society, Business Leadership, Business Law, Corporate Governance, Corporate Social Responsibility, Ethics, Fraud, Human Resources Management, Legal Environment of Business, Management of Organizations, Morals, Organizational Behavior, Professional Responsibilities. Maximum 4 quarter units in courses from the following disciplines: Philosophy, Religion, Theology. Course title must contain one of the following words or terms, or the sole name in the course title is the name of the discipline: Introduction, General, Fundamentals of, Survey of, Introductory, Principles of, Foundations of."
+    let professionalEthicsMessage = "Professional Ethics is required as part of Ethics Study. An Example of a professional ethics class would be titled 'Accounting Ethics.' Professional ethics classes will be marked; tap on a class in the class selection list and see if the class qualifies."
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +58,10 @@ class InstructionsVC: UIViewController {
     @IBAction func ethicsStudy(_ sender: Any) {
         addAndRemoveText(stack: ethicsStudyStack, labelText: ethicsStudyMessage, boolean: ethicsStudy, arrow: ethicsStudyArrow)
         ethicsStudy = !ethicsStudy
+    }
+    @IBAction func professionalEthics(_ sender: Any) {
+        addAndRemoveText(stack: professionalEthicsStack, labelText: professionalEthicsMessage, boolean: professionalEthics, arrow: professionalEthicsArrow)
+        professionalEthics = !professionalEthics
     }
     
     func addAndRemoveText(stack: UIStackView, labelText: String, boolean: Bool, arrow: UILabel) {

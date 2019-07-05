@@ -17,6 +17,7 @@ class ClassDetailVC: UIViewController {
     @IBOutlet weak var courseNumLabel: UILabel!
     @IBOutlet weak var courseTitleLabel: UILabel!
     @IBOutlet weak var courseDescriptionLabel: UILabel!
+    @IBOutlet weak var unitsLabel: UILabel!
     @IBOutlet weak var isAccounting: UILabel!
     @IBOutlet weak var isBusiness: UILabel!
     @IBOutlet weak var isEthics: UILabel!
@@ -38,6 +39,7 @@ class ClassDetailVC: UIViewController {
         courseNumLabel.text = units?.courseNum
         courseTitleLabel.text = units?.title
         courseDescriptionLabel.text = units?.courseDescription
+        unitsLabel.text = "\(String(describing: units!.numUnits)) units"
         if units?.isAccounting == true {
             isAccounting.textColor = Colors.main
         } else {
@@ -80,6 +82,9 @@ class ClassDetailVC: UIViewController {
             isSummer.textColor = .white
         } else {
             isSummer.text = ""
+        }
+        if units?.mustBeEthics == true {
+            isEthics.text = "  Professional Ethics"
         }
     }
 }

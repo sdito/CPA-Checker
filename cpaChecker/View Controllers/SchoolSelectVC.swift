@@ -11,7 +11,7 @@ import SQLite
 
 
 class SchoolSelectVC: UIViewController {
-
+    
     @IBOutlet weak var continueLabel: UIButton!
     
     @IBOutlet weak var collegeNameLabel: UILabel!
@@ -19,19 +19,12 @@ class SchoolSelectVC: UIViewController {
     var whatSchoolSelected: Set<String> = []
     
     var schoolIdentifier: [String:Int] = [:]
-    
+    var tableArray: [String] = []
     let path = Bundle.main.path(forResource: "cpa", ofType: "db")!
-    
-    /*
-    var tempCollegeList = ["California Polytechnic State University, San Luis Obispo", "University of California - Santa Barbara", "University of California - Los Angeles", "University of Southern California", "Stanford", "Harvard", "San Diego State University", "Santa Clara University", "University of California - San Diego", "California Polytechnic State University, Pomona"]
-    var string = "string"
-    var filteredCollegeList: [String] = []
-    */
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = .lightGray
         //continueLabel.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
         tableView.delegate = self
         tableView.dataSource = self
@@ -46,6 +39,10 @@ class SchoolSelectVC: UIViewController {
                 schoolIdentifier[s[0] as! String] = Int(s[1] as! Int64)
                 
         }
+        //whatSchoolsRed = Set(stringToIntArray(str: UserDefaults.standard.value(forKey: "college") as! String))
+        
+        tableArray = orderClassesForSchoolSelect(dictAll: schoolIdentifier, using: stringToIntArray(str: UserDefaults.standard.value(forKey: "college") as! String))
+        
     }
     @IBAction func continuePressed(_ sender: Any) {
         if whatSchoolSelected.isEmpty == true {
@@ -65,7 +62,7 @@ class SchoolSelectVC: UIViewController {
         })
         sqlSelect.remove(at: sqlSelect.startIndex)
         UserDefaults.standard.set(sqlSelect, forKey: "college")
-        print(sqlSelect)
+        //print(sqlSelect)
         let db = try? Connection(path, readonly: true)
         for c in try! db!.prepare("""
             SELECT * FROM classes co
@@ -92,52 +89,65 @@ class SchoolSelectVC: UIViewController {
             }
         SharedAllClasses.shared.sharedAllClasses = ac
     }
+    func orderClassesForSchoolSelect(dictAll: [String:Int], using: [String]) -> [String] {
+        var orderedArray: [String] = []
+        let allClasses = Array(schoolIdentifier.keys)
+        let setUsing = Set(using)
+        orderedArray += using.sorted()
+        let availableNotSorted: [String] = allClasses.filter{setUsing.contains($0) == false}
+        orderedArray += availableNotSorted.sorted()
+        return orderedArray
+    }
 }
 
 
 extension SchoolSelectVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return schoolIdentifier.count
+        return tableArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "collegeCell")
         //let school = filteredCollegeList[indexPath.row]
-        let school = Array(schoolIdentifier.keys)[indexPath.row]
+        let school = tableArray[indexPath.row]
+        if whatSchoolSelected.contains(school) {
+            cell?.textLabel?.textColor = Colors.main
+            cell?.accessoryType = .checkmark
+        } else {
+            cell?.textLabel?.textColor = .white
+            cell?.accessoryType = .none
+        }
         cell?.textLabel?.text = school
         cell?.textLabel?.font = UIFont(name: "avenir", size: 17)
         cell?.textLabel?.numberOfLines = 0
-        cell?.textLabel?.textColor = .white
+        cell?.selectionStyle = .none
         return cell!
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //collegeNameLabel.text = Array(schoolIdentifier.keys)[indexPath.row]
-        let value = Array(schoolIdentifier.keys)[indexPath.row]
-        print(value)
+        let value = tableArray[indexPath.row]
+        self.tableView.cellForRow(at: indexPath)?.textLabel?.textColor = Colors.main
+        self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        //whatSchoolSelected.insert(value)
         
-        whatSchoolSelected.insert(value)
-        /*
+        
         if whatSchoolSelected.contains(value) {
-            print("remove")
             whatSchoolSelected.remove(value)
         } else {
             whatSchoolSelected.insert(value)
-            print("Add")
         }
-        */
+
         collegeNameLabel.text = setToString(set: whatSchoolSelected)
-        print(whatSchoolSelected)
-        //UserDefaults.standard.set(whatSchoolSelected, forKey: "colleges")
-        
-        //UserDefaults.standard.set(Array(schoolIdentifier.keys)[indexPath.row], forKey: "college")
-        //print(Array(schoolIdentifier.keys)[indexPath.row])
-        //print(UserDefaults.value(forKey: "colleges"))
+
     }
+    
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        let value = Array(schoolIdentifier.keys)[indexPath.row]
-        print(value)
+        let value = tableArray[indexPath.row]
         whatSchoolSelected.remove(value)
         collegeNameLabel.text = setToString(set: whatSchoolSelected)
+        self.tableView.cellForRow(at: indexPath)?.textLabel?.textColor = .white
+        self.tableView.cellForRow(at: indexPath)?.accessoryType = .none
     }
 }
 
@@ -162,4 +172,5 @@ func setToString(set: Set<String>) -> String {
     }
     return text
 }
+
 

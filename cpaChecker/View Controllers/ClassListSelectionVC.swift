@@ -343,12 +343,19 @@ func stringToIntArray(str: String) -> [String] {
     }
     var array: [Int] = []
     var num = ""
+    
+    
     for c in str {
-        if c == "," || c == str.last {
+        if c == "," {
             if let n = Int(num) {
                 array.append(n)
             }
             num = ""
+        } else if c == str.last {
+            num.append(c)
+            if let n = Int(num) {
+                array.append(n)
+            }
         } else if "0"..."9" ~= c {
             num.append(c)
         }
