@@ -41,7 +41,7 @@ class SchoolSelectVC: UIViewController {
         }
         //whatSchoolsRed = Set(stringToIntArray(str: UserDefaults.standard.value(forKey: "college") as! String))
         
-        tableArray = orderClassesForSchoolSelect(dictAll: schoolIdentifier, using: stringToIntArray(str: UserDefaults.standard.value(forKey: "college") as! String))
+        tableArray = orderClassesForSchoolSelect(dictAll: schoolIdentifier, using: stringToIntArray(str: UserDefaults.standard.value(forKey: "college") as? String ?? ""))
         
     }
     @IBAction func continuePressed(_ sender: Any) {
@@ -62,7 +62,6 @@ class SchoolSelectVC: UIViewController {
         })
         sqlSelect.remove(at: sqlSelect.startIndex)
         UserDefaults.standard.set(sqlSelect, forKey: "college")
-        //print(sqlSelect)
         let db = try? Connection(path, readonly: true)
         for c in try! db!.prepare("""
             SELECT * FROM classes co
@@ -90,13 +89,18 @@ class SchoolSelectVC: UIViewController {
         SharedAllClasses.shared.sharedAllClasses = ac
     }
     func orderClassesForSchoolSelect(dictAll: [String:Int], using: [String]) -> [String] {
-        var orderedArray: [String] = []
-        let allClasses = Array(schoolIdentifier.keys)
-        let setUsing = Set(using)
-        orderedArray += using.sorted()
-        let availableNotSorted: [String] = allClasses.filter{setUsing.contains($0) == false}
-        orderedArray += availableNotSorted.sorted()
-        return orderedArray
+        if UserDefaults.standard.value(forKey: "college") == nil {
+            return Array(schoolIdentifier.keys).sorted()
+        } else {
+            var orderedArray: [String] = []
+            let allClasses = Array(schoolIdentifier.keys)
+            let setUsing = Set(using)
+            orderedArray += using.sorted()
+            let availableNotSorted: [String] = allClasses.filter{setUsing.contains($0) == false}
+            orderedArray += availableNotSorted.sorted()
+            return orderedArray
+        }
+        
     }
 }
 

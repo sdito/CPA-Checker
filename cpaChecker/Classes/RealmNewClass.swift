@@ -16,5 +16,5 @@ class RealmNewClass: Object {
     @objc dynamic var isBusiness: Bool = false
     @objc dynamic var isEthics: Bool = false
     @objc dynamic var numUnits: Int = 0
-    
+    @objc dynamic var mustBeEthics: Bool = false
 }

@@ -35,7 +35,6 @@ class PopUpVC: UIViewController {
     
     //create the class
     @IBAction func donePressed(_ sender: Any) {
-        print(Realm.Configuration.defaultConfiguration.fileURL as Any)
         let realmClass = RealmNewClass()
         var isAccounting: Bool
         var isBusiness: Bool
@@ -60,6 +59,9 @@ class PopUpVC: UIViewController {
         realmClass.isAccounting = isAccounting
         realmClass.isBusiness = isBusiness
         realmClass.isEthics = isEthics
+        
+        //CHANGE THIS TO ACTUALLY TAKING IN DATA
+        realmClass.mustBeEthics = false
         // for continue on alert
         func endNewClass(alert: UIAlertAction!) {
             try! realm.write {

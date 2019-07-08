@@ -76,7 +76,7 @@ class ClassListSelectionVC: UIViewController {
     // assimilates the classes from realm into sharedAllClasses and eventually sortedClasses through updateClassesForTableView, only does not allow duplicate classes to be shown on the table view,
     func updateTableInfoAndResetData() {
         for item in realm.objects(RealmNewClass.self) {
-            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil, mustBeEthics: nil, collegeID: 0)
+            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil, mustBeEthics: item.mustBeEthics, collegeID: 0)
             var allCourseNums: [String] = []
             for name in SharedAllClasses.shared.sharedAllClasses {
                 allCourseNums.append(name.courseNum)
@@ -400,7 +400,10 @@ func takeInClassesForTableViewSections(classes: [Class], colleges: [Int:String])
             array = []
             counter = 0
         } else {
-            sectionClasses.append(array)
+            // sort the classes right here alphabetically by course number
+            sectionClasses.append(array.sorted(by: { (c1, c2) -> Bool in
+                c1.courseNum < c2.courseNum
+            }))
             array = []
             counter = 0
         }

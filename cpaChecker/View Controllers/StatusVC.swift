@@ -360,7 +360,6 @@ class StatusVC: UIViewController {
         var answer: Set<String> = []
         for item in SharedAllClasses.shared.sharedAllClasses {
             if item.mustBeEthics == true {
-                print("\(item.courseNum) must be ethics")
                 answer.insert(item.courseNum)
             }
         }
@@ -490,7 +489,10 @@ extension StatusVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let object = classesForTable[indexPath.row]
+        let sorted = classesForTable.sorted { (c1, c2) -> Bool in
+            c1.courseNum < c2.courseNum
+        }
+        let object = sorted[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell") as! StatusCell
         cell.statusCellUI(object: object)
         return cell
@@ -527,7 +529,7 @@ extension StatusVC: UIScrollViewDelegate {
     //not being used anywhere currently
     func addNewClassIfStraightToStatus() {
         for item in realm.objects(RealmNewClass.self) {
-            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil, mustBeEthics: nil, collegeID: nil)
+            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil, mustBeEthics: item.mustBeEthics, collegeID: nil)
             var allCourseNums: [String] = []
             for name in SharedAllClasses.shared.sharedAllClasses {
                 allCourseNums.append(name.courseNum)

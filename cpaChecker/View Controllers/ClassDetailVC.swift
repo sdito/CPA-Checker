@@ -38,8 +38,14 @@ class ClassDetailVC: UIViewController {
     func createUI() {
         courseNumLabel.text = units?.courseNum
         courseTitleLabel.text = units?.title
-        courseDescriptionLabel.text = units?.courseDescription
+        
         unitsLabel.text = "\(String(describing: units!.numUnits)) units"
+        
+        if let text = units?.courseDescription {
+            courseDescriptionLabel.text = text
+        } else {
+            courseDescriptionLabel.text = "No description available."
+        }
         if units?.isAccounting == true {
             isAccounting.textColor = Colors.main
         } else {
