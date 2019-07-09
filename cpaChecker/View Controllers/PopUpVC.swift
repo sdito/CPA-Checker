@@ -21,9 +21,13 @@ class PopUpVC: UIViewController {
     var realm = try! Realm()
     @IBOutlet weak var courseNameTextEntry: UITextField!
     @IBOutlet weak var numberUnitsTextEntry: UITextField!
+    
+    
+    @IBOutlet weak var semesterQuarter: UISegmentedControl!
     @IBOutlet weak var accounting: UISegmentedControl!
     @IBOutlet weak var business: UISegmentedControl!
     @IBOutlet weak var ethics: UISegmentedControl!
+    private var professionalEthics: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +36,12 @@ class PopUpVC: UIViewController {
         numberUnitsTextEntry.delegate = self
         courseNameTextEntry.becomeFirstResponder()
     }
+    
+    @IBAction func isProfessionalEthics(_ sender: Any) {
+        professionalEthics = !professionalEthics
+        print(professionalEthics)
+    }
+    
     
     //create the class
     @IBAction func donePressed(_ sender: Any) {
@@ -59,9 +69,8 @@ class PopUpVC: UIViewController {
         realmClass.isAccounting = isAccounting
         realmClass.isBusiness = isBusiness
         realmClass.isEthics = isEthics
+        realmClass.mustBeEthics = professionalEthics
         
-        //CHANGE THIS TO ACTUALLY TAKING IN DATA
-        realmClass.mustBeEthics = false
         // for continue on alert
         func endNewClass(alert: UIAlertAction!) {
             try! realm.write {

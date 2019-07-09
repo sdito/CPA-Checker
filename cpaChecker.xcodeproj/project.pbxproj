@@ -37,6 +37,8 @@
 		E2AEB38922B4A5120017D0F3 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AEB38822B4A5120017D0F3 /* StatusView.xib */; };
 		E2D746A522B5497E006AC0A4 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D746A422B5497E006AC0A4 /* WelcomeVC.swift */; };
 		E2D746A722B54995006AC0A4 /* SchoolSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D746A622B54995006AC0A4 /* SchoolSelectVC.swift */; };
+		E2ECBEA322D2E2480064B59A /* QuarterSemesterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ECBEA222D2E2470064B59A /* QuarterSemesterVC.swift */; };
+		E2ECBEA522D432500064B59A /* SharedUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ECBEA422D432500064B59A /* SharedUnits.swift */; };
 		F6299FE7FDE2D45B7DEA3917 /* Pods_cpaCheckerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE547A30552B2156072C892 /* Pods_cpaCheckerTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +102,8 @@
 		E2AEB38822B4A5120017D0F3 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		E2D746A422B5497E006AC0A4 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		E2D746A622B54995006AC0A4 /* SchoolSelectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolSelectVC.swift; sourceTree = "<group>"; };
+		E2ECBEA222D2E2470064B59A /* QuarterSemesterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterSemesterVC.swift; sourceTree = "<group>"; };
+		E2ECBEA422D432500064B59A /* SharedUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUnits.swift; sourceTree = "<group>"; };
 		ED1B3068C4EEF3A0F52F508A /* Pods-cpaChecker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cpaChecker.release.xcconfig"; path = "Target Support Files/Pods-cpaChecker/Pods-cpaChecker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -224,6 +228,7 @@
 				E2D746A422B5497E006AC0A4 /* WelcomeVC.swift */,
 				E2D746A622B54995006AC0A4 /* SchoolSelectVC.swift */,
 				E2508B2522CA94720092C978 /* HelpVC.swift */,
+				E2ECBEA222D2E2470064B59A /* QuarterSemesterVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 			children = (
 				E2018D02229DC1A800973C97 /* Class.swift */,
 				E207C87522AB825700BFDA24 /* SharedAllClasses.swift */,
+				E2ECBEA422D432500064B59A /* SharedUnits.swift */,
 				E22B3E1922A496A7009DEF96 /* Result.swift */,
 				E2198A5E22A1BBAB00B9D42F /* RealmClass.swift */,
 				E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */,
@@ -508,7 +514,9 @@
 				E2018CD4229DBFE700973C97 /* InstructionsVC.swift in Sources */,
 				E2508B2622CA94720092C978 /* HelpVC.swift in Sources */,
 				E2198A5B22A0B0F100B9D42F /* UnitEntryVC.swift in Sources */,
+				E2ECBEA322D2E2480064B59A /* QuarterSemesterVC.swift in Sources */,
 				E22B3D9C22A251B3009DEF96 /* RealmUnits.swift in Sources */,
+				E2ECBEA522D432500064B59A /* SharedUnits.swift in Sources */,
 				E2198A5F22A1BBAB00B9D42F /* RealmClass.swift in Sources */,
 				E2018D06229E247200973C97 /* ClassCell.swift in Sources */,
 				E207C87622AB825700BFDA24 /* SharedAllClasses.swift in Sources */,

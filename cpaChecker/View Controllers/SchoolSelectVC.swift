@@ -87,6 +87,7 @@ class SchoolSelectVC: UIViewController {
                         
             }
         SharedAllClasses.shared.sharedAllClasses = ac
+        quarterOrSemesterOrChoose()
     }
     func orderClassesForSchoolSelect(dictAll: [String:Int], using: [String]) -> [String] {
         if UserDefaults.standard.value(forKey: "college") == nil {
@@ -153,6 +154,33 @@ extension SchoolSelectVC: UITableViewDataSource, UITableViewDelegate {
         self.tableView.cellForRow(at: indexPath)?.textLabel?.textColor = .white
         self.tableView.cellForRow(at: indexPath)?.accessoryType = .none
     }
+    
+    func quarterOrSemesterOrChoose() {
+        var numQuarter: Int64 = 0 // c[1]
+        var numSemester: Int64 = 0 // c[2]
+        var putInQuery: String = ""
+        putInQuery = setToSQL(from: whatSchoolSelected)
+        let path = Bundle.main.path(forResource: "cpa", ofType: "db")!
+        let db = try? Connection(path, readonly: true)
+        for c in try! db!.prepare("""
+            select name, isQuarter, isSemester from colleges
+            where name in (\(putInQuery))
+        """) {
+            numQuarter += c[1] as! Int64
+            numSemester += c[2] as! Int64
+        }
+        
+
+        if numQuarter == 0 || numSemester == 0 {
+            if numQuarter > 0 {
+                UserDefaults.standard.set("quarter", forKey: "units")
+            } else if numSemester > 0 {
+                UserDefaults.standard.set("semester", forKey: "units")
+            }
+        } else {
+            UserDefaults.standard.set("user", forKey: "units")
+        }
+    }
 }
 
 
@@ -175,6 +203,14 @@ func setToString(set: Set<String>) -> String {
         }
     }
     return text
+}
+func setToSQL(from set: Set<String>) -> String {
+    var str = ""
+    for item in set {
+        str.append(",'\(item)'")
+    }
+    let rtn = str.dropFirst()
+    return String(rtn)
 }
 
 

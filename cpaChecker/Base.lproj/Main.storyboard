@@ -235,6 +235,7 @@
                         <outlet property="accountingSubjectsStack" destination="f5w-kA-Swj" id="dDZ-Hi-b0p"/>
                         <outlet property="businessSubjectsArrow" destination="tcL-hi-M7I" id="Ycm-iO-Chp"/>
                         <outlet property="businessSubjectsStack" destination="wme-pm-zLc" id="uAN-9H-kfG"/>
+                        <outlet property="degreeInfo" destination="v5g-bV-QQm" id="jvQ-em-4V8"/>
                         <outlet property="ethicsStudyArrow" destination="1Ai-a9-1ek" id="w7c-w9-iGJ"/>
                         <outlet property="ethicsStudyStack" destination="u2I-Wo-2ZT" id="3TV-wZ-4bp"/>
                         <outlet property="professionalEthicsArrow" destination="QkE-jF-LiT" id="IVY-aK-nzd"/>
@@ -443,13 +444,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Course Name (i.e. BUS 214)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dZ0-CP-saf">
-                                        <rect key="frame" x="9" y="42" width="232" height="30"/>
+                                        <rect key="frame" x="9" y="32" width="232" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of Units" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vKo-OQ-bbl">
-                                        <rect key="frame" x="9" y="82" width="232" height="30"/>
+                                        <rect key="frame" x="9" y="67" width="232" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
@@ -479,11 +480,19 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ifv-qm-Cyg">
-                                        <rect key="frame" x="16.5" y="147" width="217" height="100"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ifv-qm-Cyg">
+                                        <rect key="frame" x="16.5" y="102" width="217" height="163"/>
                                         <subviews>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qwb-UF-rLa">
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="1Ha-LG-fHZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="217" height="29"/>
+                                                <segments>
+                                                    <segment title="Semester"/>
+                                                    <segment title="Quarter"/>
+                                                </segments>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </segmentedControl>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qwb-UF-rLa">
+                                                <rect key="frame" x="0.0" y="33" width="217" height="29"/>
                                                 <segments>
                                                     <segment title="Accounting"/>
                                                     <segment title="Not Accounting"/>
@@ -491,7 +500,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </segmentedControl>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="WUg-3S-fmi">
-                                                <rect key="frame" x="0.0" y="36" width="217" height="29"/>
+                                                <rect key="frame" x="0.0" y="66" width="217" height="29"/>
                                                 <segments>
                                                     <segment title="Business"/>
                                                     <segment title="Not Business"/>
@@ -499,13 +508,32 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </segmentedControl>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="NEI-T3-OmZ">
-                                                <rect key="frame" x="0.0" y="72" width="217" height="29"/>
+                                                <rect key="frame" x="0.0" y="99" width="217" height="29"/>
                                                 <segments>
                                                     <segment title="Ethics"/>
                                                     <segment title="Not Ethics"/>
                                                 </segments>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </segmentedControl>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIN-bx-BPh">
+                                                <rect key="frame" x="0.0" y="132" width="217" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Professional Ethics?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Bl-ZV-mJh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="168" height="31"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Pku-FH-sXd">
+                                                        <rect key="frame" x="168" y="0.0" width="51" height="31"/>
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="onTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="isProfessionalEthics:" destination="V4I-lj-EiC" eventType="valueChanged" id="5Ux-CY-pX1"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -515,13 +543,13 @@
                                     <constraint firstAttribute="height" constant="350" id="6LS-Iv-YpW"/>
                                     <constraint firstItem="I9O-EI-f6f" firstAttribute="centerX" secondItem="YpM-zW-gZE" secondAttribute="centerX" id="GKf-3i-R7U"/>
                                     <constraint firstItem="I9O-EI-f6f" firstAttribute="top" secondItem="YpM-zW-gZE" secondAttribute="top" constant="5" id="LVp-J6-Y0J"/>
-                                    <constraint firstItem="vKo-OQ-bbl" firstAttribute="top" secondItem="dZ0-CP-saf" secondAttribute="bottom" constant="10" id="MMI-ra-QoM"/>
-                                    <constraint firstItem="Ifv-qm-Cyg" firstAttribute="top" secondItem="vKo-OQ-bbl" secondAttribute="bottom" constant="35" id="Mc2-Tb-5GM"/>
+                                    <constraint firstItem="vKo-OQ-bbl" firstAttribute="top" secondItem="dZ0-CP-saf" secondAttribute="bottom" constant="5" id="MMI-ra-QoM"/>
+                                    <constraint firstItem="Ifv-qm-Cyg" firstAttribute="top" secondItem="vKo-OQ-bbl" secondAttribute="bottom" constant="5" id="Mc2-Tb-5GM"/>
                                     <constraint firstItem="Ifv-qm-Cyg" firstAttribute="centerX" secondItem="YpM-zW-gZE" secondAttribute="centerX" id="STg-9K-Ss0"/>
                                     <constraint firstItem="dZ0-CP-saf" firstAttribute="leading" secondItem="YpM-zW-gZE" secondAttribute="leading" constant="9" id="XLg-kz-JtB"/>
                                     <constraint firstItem="3bQ-j5-YFp" firstAttribute="centerX" secondItem="YpM-zW-gZE" secondAttribute="centerX" id="XOs-mv-cHd"/>
                                     <constraint firstItem="vKo-OQ-bbl" firstAttribute="centerX" secondItem="YpM-zW-gZE" secondAttribute="centerX" id="lZt-oP-ZsO"/>
-                                    <constraint firstItem="dZ0-CP-saf" firstAttribute="top" secondItem="I9O-EI-f6f" secondAttribute="bottom" constant="15" id="plV-Ko-sdF"/>
+                                    <constraint firstItem="dZ0-CP-saf" firstAttribute="top" secondItem="I9O-EI-f6f" secondAttribute="bottom" constant="5" id="plV-Ko-sdF"/>
                                     <constraint firstItem="3bQ-j5-YFp" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ifv-qm-Cyg" secondAttribute="bottom" constant="10" id="s7Y-eJ-VGM"/>
                                     <constraint firstAttribute="width" constant="250" id="udi-hm-cd5"/>
                                     <constraint firstItem="vKo-OQ-bbl" firstAttribute="leading" secondItem="YpM-zW-gZE" secondAttribute="leading" constant="9" id="yhv-OR-bvG"/>
@@ -546,6 +574,7 @@
                         <outlet property="courseNameTextEntry" destination="dZ0-CP-saf" id="Xlb-i8-bkW"/>
                         <outlet property="ethics" destination="NEI-T3-OmZ" id="SIT-eF-EVO"/>
                         <outlet property="numberUnitsTextEntry" destination="vKo-OQ-bbl" id="RJh-IR-JzU"/>
+                        <outlet property="semesterQuarter" destination="1Ha-LG-fHZ" id="ZKz-g1-niM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21e-9i-PWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1676,6 +1705,73 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-999" y="465"/>
+        </scene>
+        <!--Quarter SemesterVC-->
+        <scene sceneID="trr-Ji-ofo">
+            <objects>
+                <viewController storyboardIdentifier="quarterSemesterID" id="Rzv-CK-j26" customClass="QuarterSemesterVC" customModule="cpaChecker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z9O-bK-do2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yI-ah-AYj">
+                                <rect key="frame" x="10" y="136" width="394" height="109.5"/>
+                                <string key="text">Both a quarter system college and a semester system college were selected. Please select if you want to use quarter units or semester units for this application.</string>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quarter or Semester Units" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6k-Qh-MTO">
+                                <rect key="frame" x="0.0" y="69" width="414" height="37"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="27"/>
+                                <color key="textColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0a-7z-QXa">
+                                <rect key="frame" x="164" y="485.5" width="86" height="60"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="35"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="done:" destination="Rzv-CK-j26" eventType="touchUpInside" id="dDl-wg-ry0"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TLb-7P-aSt">
+                                <rect key="frame" x="50" y="345.5" width="314" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="yR4-43-BgU"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Semester"/>
+                                    <segment title="Quarter"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TLb-7P-aSt" firstAttribute="centerX" secondItem="z9O-bK-do2" secondAttribute="centerX" id="4ox-97-Gr1"/>
+                            <constraint firstItem="jX6-rK-pGx" firstAttribute="trailing" secondItem="TLb-7P-aSt" secondAttribute="trailing" constant="50" id="Fdu-I1-hsi"/>
+                            <constraint firstItem="3yI-ah-AYj" firstAttribute="top" secondItem="c6k-Qh-MTO" secondAttribute="bottom" constant="30" id="I7b-Sp-qOh"/>
+                            <constraint firstAttribute="trailing" secondItem="3yI-ah-AYj" secondAttribute="trailing" constant="10" id="RGP-hh-njS"/>
+                            <constraint firstItem="c6k-Qh-MTO" firstAttribute="top" secondItem="jX6-rK-pGx" secondAttribute="top" constant="25" id="SNc-5y-EYb"/>
+                            <constraint firstItem="TLb-7P-aSt" firstAttribute="leading" secondItem="jX6-rK-pGx" secondAttribute="leading" constant="50" id="Sae-mo-3zw"/>
+                            <constraint firstItem="3yI-ah-AYj" firstAttribute="leading" secondItem="jX6-rK-pGx" secondAttribute="leading" constant="10" id="UsH-Ly-xc5"/>
+                            <constraint firstItem="c6k-Qh-MTO" firstAttribute="leading" secondItem="jX6-rK-pGx" secondAttribute="leading" id="acg-GK-jKl"/>
+                            <constraint firstItem="i0a-7z-QXa" firstAttribute="top" secondItem="TLb-7P-aSt" secondAttribute="bottom" constant="80" id="eZ3-Kh-iBl"/>
+                            <constraint firstItem="i0a-7z-QXa" firstAttribute="centerX" secondItem="z9O-bK-do2" secondAttribute="centerX" id="k43-rs-tdU"/>
+                            <constraint firstItem="TLb-7P-aSt" firstAttribute="top" secondItem="3yI-ah-AYj" secondAttribute="bottom" constant="100" id="qnj-eX-nlx"/>
+                            <constraint firstAttribute="trailing" secondItem="c6k-Qh-MTO" secondAttribute="trailing" id="vRh-dp-07N"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jX6-rK-pGx"/>
+                    </view>
+                    <connections>
+                        <outlet property="segmentedControl" destination="TLb-7P-aSt" id="zOw-G9-CR4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qir-GL-cCd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="181" y="-356"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

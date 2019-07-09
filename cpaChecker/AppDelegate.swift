@@ -72,6 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = otherVC
             self.window?.makeKeyAndVisible()
         }
+
+        
         return true
     }
 
