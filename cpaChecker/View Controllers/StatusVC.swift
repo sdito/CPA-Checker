@@ -71,9 +71,7 @@ class StatusVC: UIViewController {
                         anotherView.removeFromSuperview()
                     }
                 }
-                //            for _ in 1...(numViews - 1) {
-                //                let view = stackView.subviews[0]
-                //                stackView.removeArrangedSubview(view)
+
             }
         }
         let accurrateMessages = decideWhatMessagesAndHandleDeletion(result: result!)
@@ -253,13 +251,6 @@ class StatusVC: UIViewController {
         
         // add a bool value to support this for when multiple universities are in the application
         for item in tempAccountingClasses {
-            // commented out initially would only work for Cal Poly, other works for all by testing in sharedAllClasses has a course number that matches with the RealmClass
-            /*
-            if item.courseNum == "BUS 424" {
-                tempEthicsClasses.insert(item, at: 0)
-                tempAccountingClasses.removeAll{$0.courseNum == "BUS 424"}
-            }
-            */
             if mustBeEthicsClasses.contains(item.courseNum) {
                 tempEthicsClasses.insert(item, at: 0)
                 tempAccountingClasses.removeAll{$0.courseNum == "\(item.courseNum)"}
@@ -294,22 +285,6 @@ class StatusVC: UIViewController {
             }
         }
         
-        // NEED TO TEST
-        // Fix issue for if there are less than 4 extra accounting units and not enough business units; the extra units from accounting should be pushed into business
-//        let extraAccountingClasses = currExtraAccounting / 4  class
-//        if (extraAccountingClasses >= 1) && (neededBusinessClasses > 0) {
-//            var amtSwitch = min(extraAccountingClasses, neededBusinessClasses)
-//            
-//            for item in tempAccountingClasses {
-//                if (item.isBusiness == true) && (amtSwitch > 0) {
-//                    let forDelete = item.courseNum
-//                    tempBusinessClasses.append(item)
-//                    tempAccountingClasses.removeAll{$0.courseNum == forDelete}
-//                    amtSwitch -= 1
-//                    neededBusinessClasses -= 1
-//                }
-//            }
-//        }
 
         (accountingClasses, accountingClassesLeft) = stringToClass(strings: tempAccountingClasses, type: "acc")
         (businessClasses, businessClassesLeft) = stringToClass(strings: tempBusinessClasses, type: "bus")

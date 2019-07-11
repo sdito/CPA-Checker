@@ -75,9 +75,14 @@ class HelpVC: UIViewController {
         }
         // rotate the arrow in a label 180 degrees
         if newSchool == false {
-            universityArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
+            UIView.animate(withDuration: 0.2) {
+                self.universityArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
+            }
+            
         } else {
-            universityArrow.transform = CGAffineTransform(rotationAngle: 0)
+            UIView.animate(withDuration: 0.2) {
+                self.universityArrow.transform = CGAffineTransform(rotationAngle: 0)
+            }
         }
         
         newSchool = !newSchool
@@ -96,9 +101,13 @@ class HelpVC: UIViewController {
         }
         // rotate the arrow in a label 180 degrees
         if terms == false {
-            termsArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
+            UIView.animate(withDuration: 0.2) {
+                self.termsArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
+            }
         } else {
-            termsArrow.transform = CGAffineTransform(rotationAngle: 0)
+            UIView.animate(withDuration: 0.2) {
+                self.termsArrow.transform = CGAffineTransform(rotationAngle: 0)
+            }
         }
         terms = !terms
     }
@@ -116,9 +125,13 @@ class HelpVC: UIViewController {
         }
         // rotate the arrow in a label 180 degrees
         if about == false {
-            aboutArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
+            UIView.animate(withDuration: 0.2) {
+                self.aboutArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
+            }
         } else {
-            aboutArrow.transform = CGAffineTransform(rotationAngle: 0)
+            UIView.animate(withDuration: 0.2) {
+                self.aboutArrow.transform = CGAffineTransform(rotationAngle: 0)
+            }
         }
         about = !about
     }

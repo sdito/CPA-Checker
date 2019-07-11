@@ -49,6 +49,8 @@ class PopUpVC: UIViewController {
         var isAccounting: Bool
         var isBusiness: Bool
         var isEthics: Bool
+        var semQtr: String
+        
         if accounting.selectedSegmentIndex == 0 {
             isAccounting = true
         } else {
@@ -64,19 +66,24 @@ class PopUpVC: UIViewController {
         } else {
             isEthics = false
         }
+        if semesterQuarter.selectedSegmentIndex == 0 {
+            semQtr = "semester"
+        } else {
+            semQtr = "quarter"
+        }
         realmClass.courseNum = (courseNameTextEntry.text?.uppercased() ?? "")
         realmClass.numUnits = (Int(numberUnitsTextEntry.text ?? "") ?? 0)
         realmClass.isAccounting = isAccounting
         realmClass.isBusiness = isBusiness
         realmClass.isEthics = isEthics
         realmClass.mustBeEthics = professionalEthics
+        realmClass.semesterOrQuarter = semQtr
         
         // for continue on alert
         func endNewClass(alert: UIAlertAction!) {
             try! realm.write {
                 realm.add(realmClass)
             }
-            
             delegate.removeBlurViews()
             delegate.resetTableData()
             view.removeFromSuperview()
@@ -97,8 +104,7 @@ class PopUpVC: UIViewController {
             delegate.resetTableData()
             view.removeFromSuperview()
         }
-        
-        
+
     }
     @IBAction func exitPressed(_ sender: Any) {
         delegate.removeBlurViews()

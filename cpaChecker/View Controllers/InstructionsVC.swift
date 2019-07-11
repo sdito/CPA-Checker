@@ -42,9 +42,10 @@ class InstructionsVC: UIViewController {
                 self.present(vc, animated: false, completion: nil)
             }
         }
+    }
+    override func viewDidAppear(_ animated: Bool) {
         degreeInfo.text = "Baccalaureate Degree & \(SharedUnits.shared.units["totalUnits"] ?? 0) \(SharedUnits.shared.text) Units"
     }
-
     
     @IBAction func accountingSubjects(_ sender: Any) {
         let acountingSubjectsMessage = "\(SharedUnits.shared.units["accountingSubjects"] ?? 0) \(SharedUnits.shared.text) Units\n\nAccounting, Auditing, Taxation, Financial Reporting, Financial Statement Analysis, External & Internal Reporting"
@@ -86,9 +87,13 @@ class InstructionsVC: UIViewController {
             view.removeFromSuperview()
         }
         if boolean == false {
-            arrow.transform = CGAffineTransform(rotationAngle: .pi/1)
+            UIView.animate(withDuration: 0.2) {
+                arrow.transform = CGAffineTransform(rotationAngle: .pi/1)
+            }
         } else {
-            arrow.transform = CGAffineTransform(rotationAngle: 0)
+            UIView.animate(withDuration: 0.2) {
+                arrow.transform = CGAffineTransform(rotationAngle: 0)
+            }
         }
     }
     

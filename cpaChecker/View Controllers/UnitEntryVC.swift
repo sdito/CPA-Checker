@@ -11,6 +11,7 @@ import RealmSwift
 
 
 class UnitEntryVC: UIViewController, UITextFieldDelegate {
+    @IBOutlet weak var totalUnitsRequired: UILabel!
     
     var realm = try! Realm()
     
@@ -28,13 +29,21 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var spring4: UITextField!
     @IBOutlet weak var apOther: UITextField!
     @IBOutlet weak var ccUnits: UITextField!
-    @IBOutlet weak var ccAccounting: UITextField!
-    @IBOutlet weak var ccBusiness: UITextField!
-    @IBOutlet weak var ccEthics: UITextField!
 
-    @IBOutlet weak var hideLabel: UILabel!
-
-    
+    @IBOutlet weak var fall1S: UISegmentedControl!
+    @IBOutlet weak var winter1S: UISegmentedControl!
+    @IBOutlet weak var spring1S: UISegmentedControl!
+    @IBOutlet weak var fall2S: UISegmentedControl!
+    @IBOutlet weak var winter2S: UISegmentedControl!
+    @IBOutlet weak var spring2S: UISegmentedControl!
+    @IBOutlet weak var fall3S: UISegmentedControl!
+    @IBOutlet weak var winter3S: UISegmentedControl!
+    @IBOutlet weak var spring3S: UISegmentedControl!
+    @IBOutlet weak var fall4S: UISegmentedControl!
+    @IBOutlet weak var winter4S: UISegmentedControl!
+    @IBOutlet weak var spring4S: UISegmentedControl!
+    @IBOutlet weak var apOtherS: UISegmentedControl!
+    @IBOutlet weak var ccUnitsS: UISegmentedControl!
     
     var activeTextField: UITextField?
     //var kbHeight: CGFloat?
@@ -58,9 +67,6 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         spring4.delegate = self
         apOther.delegate = self
         ccUnits.delegate = self
-        ccAccounting.delegate = self
-        ccBusiness.delegate = self
-        ccEthics.delegate = self
         
         
         // could most likely go bad
@@ -85,16 +91,16 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         spring4.inputAccessoryView = toolbar
         apOther.inputAccessoryView = toolbar
         ccUnits.inputAccessoryView = toolbar
-        ccAccounting.inputAccessoryView = toolbar
-        ccBusiness.inputAccessoryView = toolbar
-        ccEthics.inputAccessoryView = toolbar
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
+        totalUnitsRequired.text = "\(SharedUnits.shared.units["totalUnits"] ?? 0) Total Units Required"
     }
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+        segmentedControlStartingSegment()
+    }
     // since in a tab bar and no segue, is this a bad way to update the realm about the units? or should I update them another way
     override func viewWillDisappear(_ animated: Bool) {
         // works, but is it the right way to just create an instance on each view controller of the realm? or should I put it in a shared class and access it that way?
@@ -103,66 +109,71 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         let f1 = RealmUnits()
         f1.identifier = "Fall 1"
         f1.units = Int(fall1.text ?? "") ?? 0
+        f1.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: fall1S)
         let f2 = RealmUnits()
         f2.identifier = "Fall 2"
         f2.units = Int(fall2.text ?? "") ?? 0
+        f2.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: fall2S)
         let f3 = RealmUnits()
         f3.identifier = "Fall 3"
         f3.units = Int(fall3.text ?? "") ?? 0
+        f3.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: fall3S)
         let f4 = RealmUnits()
         f4.identifier = "Fall 4"
         f4.units = Int(fall4.text ?? "") ?? 0
+        f4.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: fall4S)
         
         let w1 = RealmUnits()
         w1.identifier = "Winter 1"
         w1.units = Int(winter1.text ?? "") ?? 0
+        w1.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: winter1S)
         let w2 = RealmUnits()
         w2.identifier = "Winter 2"
         w2.units = Int(winter2.text ?? "") ?? 0
+        w2.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: winter2S)
         let w3 = RealmUnits()
         w3.identifier = "Winter 3"
         w3.units = Int(winter3.text ?? "") ?? 0
+        w3.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: winter3S)
         let w4 = RealmUnits()
         w4.identifier = "Winter 4"
         w4.units = Int(winter4.text ?? "") ?? 0
+        w4.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: winter4S)
         
         let s1 = RealmUnits()
         s1.identifier = "Spring 1"
         s1.units = Int(spring1.text ?? "") ?? 0
+        s1.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: spring1S)
         let s2 = RealmUnits()
         s2.identifier = "Spring 2"
         s2.units = Int(spring2.text ?? "") ?? 0
+        s2.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: spring2S)
         let s3 = RealmUnits()
         s3.identifier = "Spring 3"
         s3.units = Int(spring3.text ?? "") ?? 0
+        s3.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: spring3S)
         let s4 = RealmUnits()
         s4.identifier = "Spring 4"
         s4.units = Int(spring4.text ?? "") ?? 0
+        s4.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: spring4S)
         
         let apO = RealmUnits()
         apO.identifier = "AP and Other"
         apO.units = Int(apOther.text ?? "") ?? 0
+        apO.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: apOtherS)
         let cc = RealmUnits()
         cc.identifier = "Community College"
         cc.units = Int(ccUnits.text ?? "") ?? 0
+        cc.semesterOrQuarter = scToSemesterOrQuarter(segmentedControl: ccUnitsS)
         
-        let ccA = RealmUnits()
-        ccA.identifier = "ACC - CC"
-        ccA.units = Int(ccAccounting.text ?? "") ?? 0
-        let ccB = RealmUnits()
-        ccB.identifier = "BUS - CC"
-        ccB.units = Int(ccBusiness.text ?? "") ?? 0
-        let ccE = RealmUnits()
-        ccE.identifier = "ETH - CC"
-        ccE.units = Int(ccEthics.text ?? "") ?? 0
-        
-        let realmObjects: [RealmUnits] = [f1, f2, f3, f4, w1, w2, w3, w4, s1, s2, s3, s4, apO, cc, ccA, ccB, ccE]
+        let realmObjects: [RealmUnits] = [f1, f2, f3, f4, w1, w2, w3, w4, s1, s2, s3, s4, apO, cc]
         //add textfields to an array instead
         try! realm.write {
             let allUnitsToDelete = realm.objects(RealmUnits.self)
             realm.delete(allUnitsToDelete)
             realm.add(realmObjects)
         }
+        segmentedControlStartingSegment()
     }
     
     deinit {
@@ -275,25 +286,12 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
             ccUnits.becomeFirstResponder()
         } else if textField == ccUnits {
-            if ccUnits.text != "" {
-                textField.resignFirstResponder()
-                ccAccounting.becomeFirstResponder()
-            } else {
-            textField.resignFirstResponder()
-            fall1.becomeFirstResponder()
-            }
-        } else if textField == ccAccounting {
-            textField.resignFirstResponder()
-            ccBusiness.becomeFirstResponder()
-        } else if textField == ccBusiness {
-            textField.resignFirstResponder()
-            ccEthics.becomeFirstResponder()
-        } else if textField == ccEthics {
             textField.resignFirstResponder()
             fall1.becomeFirstResponder()
         }
         return true
     }
+    /*
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if ccUnits.text != "" {
             //unhide
@@ -317,6 +315,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         }
         return true
     }
+ */
     func handleExtraEthicsOverCC() {
         // create, currently if ccEthics is the one that makes total greater than ccUnits (and error alert pop up), keybaord show doesnt work correctly and textfield is hidden
     }
@@ -349,13 +348,44 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         apOther.text = (apOtext == "0") ? "" : apOtext
         let ccUtext = realm.objects(RealmUnits.self).filter("identifier = 'Community College'").first?.units.description
         ccUnits.text = (ccUtext == "0") ? "" : ccUtext
-        let ccAtext = realm.objects(RealmUnits.self).filter("identifier = 'ACC - CC'").first?.units.description
-        ccAccounting.text = (ccAtext == "0") ? "" : ccAtext
-        let ccEtext = realm.objects(RealmUnits.self).filter("identifier = 'BUS - CC'").first?.units.description
-        ccEthics.text = (ccEtext == "0") ? "" : ccEtext
-        let ccBtext = realm.objects(RealmUnits.self).filter("identifier = 'ETH - CC'").first?.units.description
-        ccBusiness.text = (ccBtext == "0") ? "" : ccBtext
+
+    }
+    func scToSemesterOrQuarter(segmentedControl: UISegmentedControl) -> String {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            return "semester"
+        } else {
+            return "quarter"
+        }
+    }
+    
+    // to set the segmented controls to the correct display of either semester or quarter when the app is loaded for the first time or a subsequent time
+    func segmentedControlStartingSegment() {
+        let objects = Array(realm.objects(RealmUnits.self))
+        if objects.isEmpty == true {
+            // preload the entry for quarters to whatever the user selected since it is the first time using the app
+            if let userSelected = UserDefaults.standard.value(forKey: "units") as? String {
+                var num: Int?
+                if userSelected == "semester" {
+                    num = 0
+                } else if userSelected == "quarter" {
+                    num = 1
+                }
+                if let n = num {
+                   fall1S.selectedSegmentIndex = n; fall2S.selectedSegmentIndex = n; fall3S.selectedSegmentIndex = n; fall4S.selectedSegmentIndex = n; winter1S.selectedSegmentIndex = n; winter2S.selectedSegmentIndex = n; winter3S.selectedSegmentIndex = n; winter4S.selectedSegmentIndex = n; spring1S.selectedSegmentIndex = n; spring2S.selectedSegmentIndex = n; spring3S.selectedSegmentIndex = n; spring4S.selectedSegmentIndex = n; apOtherS.selectedSegmentIndex = n; ccUnitsS.selectedSegmentIndex = n
+                }
+            }
+        } else {
+            //preload the type of units to whatever the user had from before
+            let match: [String?:UISegmentedControl] = ["Fall 1":fall1S, "Fall 2":fall2S, "Fall 3":fall3S, "Fall 4":fall4S, "Winter 1":winter1S, "Winter 2":winter2S, "Winter 3":winter3S, "Winter 4":winter4S, "Spring 1":spring1S, "Spring 2":spring2S, "Spring 3":spring3S, "Spring 4":spring4S, "AP and Other":apOtherS, "Community College":ccUnitsS]
+            match.forEach { (pair) in
+                let object = objects.filter{$0.identifier == pair.key}.first
+                if object?.semesterOrQuarter == "semester" {
+                    match[object?.identifier]?.selectedSegmentIndex = 0
+                } else if object?.semesterOrQuarter == "quarter" {
+                    match[object?.identifier]?.selectedSegmentIndex = 1
+                }
+            }
+        }
     }
 }
-
 

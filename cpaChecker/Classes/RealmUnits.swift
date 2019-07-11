@@ -11,6 +11,7 @@ import RealmSwift
 class RealmUnits: Object {
     @objc dynamic var identifier: String?
     @objc dynamic var units = 0
+    @objc dynamic var semesterOrQuarter: String?
 }
 
 
