@@ -36,3 +36,38 @@ struct Result {
         self.ethicsClassesLeft = ethicsClassesLeft
     }
 }
+
+
+func calculateResult(units: [RealmUnits], key: String, realmClasses: [RealmClass]) {//-> Result {
+    let accountingNeeded = SharedUnits.shared.units["totalAccounting"]!
+    let businessNeeded = SharedUnits.shared.units["totalBusiness"]!
+    let ethicsNeeded = SharedUnits.shared.units["totalEthics"]!
+    let totalNeeded = SharedUnits.shared.units["totalUnits"]!
+    
+    var setCourseNumbers: Set<String> = []
+    
+    var allClasses: [Class] {
+        return SharedAllClasses.shared.sharedAllClasses.filter {setCourseNumbers.contains($0.courseNum)}
+    }
+    realmClasses.forEach { (rc) in
+        setCourseNumbers.insert(rc.courseNum)
+    }
+    
+    let classesUserIsTaking: [Class] = SharedAllClasses.shared.sharedAllClasses.filter { (course) -> Bool in
+        setCourseNumbers.contains(course.courseNum)
+    }
+    classesUserIsTaking.forEach { (c) in
+        if c.semesterOrQuarter == "semester" {
+            c.quarterUnits = (Double(c.numUnits) * 1.5)
+        } else {
+            c.quarterUnits = Double(c.numUnits)
+        }
+    }
+    var initialAccounting: [Class] = []
+    var initialBusiness: [Class] = []
+    var initialEthics: [Class] = []
+    classesUserIsTaking.forEach { (c) in
+        print("\(c.courseNum), number: \(c.numUnits), quarter: \(c.quarterUnits), \(c.mustBeEthics)")
+    }
+    
+}

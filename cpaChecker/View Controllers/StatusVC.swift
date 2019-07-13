@@ -29,12 +29,17 @@ class StatusVC: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var pageStackView: UIStackView!
     
+    @IBOutlet weak var neededAccountingLabel: UILabel!
+    @IBOutlet weak var neededBusinessLabel: UILabel!
+    @IBOutlet weak var neededEthicsLabel: UILabel!
+    @IBOutlet weak var totalNeededLabel: UILabel!
     
-    var accounting = true
-    var business = false
-    var ethics = false
-    var taking = true
-    var available = false
+    
+    private var accounting = true
+    private var business = false
+    private var ethics = false
+    private var taking = true
+    private var available = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +49,16 @@ class StatusVC: UIViewController {
         tableView.isHidden = true
         //forGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
         statusScrollView.delegate = self
+        neededAccountingLabel.text = "\(SharedUnits.shared.units["totalAccounting"]!)"
+        neededBusinessLabel.text = "\(SharedUnits.shared.units["totalBusiness"]!)"
+        neededEthicsLabel.text = "\(SharedUnits.shared.units["totalEthics"]!)"
+        totalNeededLabel.text = "\(SharedUnits.shared.units["totalUnits"]!)"
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //addNewClassIfStraightToStatus()
         result = calculateStatus()
+        calculateResult(units: Array(realm.objects(RealmUnits.self)), key: "none", realmClasses: Array(realm.objects(RealmClass.self)))
         accountingUnitsNumber.text = result?.accountingUnits.description
         businessUnitsNumber.text = result?.businessUnits.description
         ethicsUnitsNumber.text = result?.ethicsUnits.description
@@ -228,9 +238,9 @@ class StatusVC: UIViewController {
     // code could definitely be cleaner; takes classes from realm and converts that into result to be displayed
     func calculateStatus() -> Result {
         let mustBeEthicsClasses = whatClassesMustBeEthics()
-        let accountingNeeded = 45
-        let businessNeeded = 57
-        let ethicsNeeded = 15
+        let accountingNeeded = SharedUnits.shared.units["totalAccounting"]!
+        let businessNeeded = SharedUnits.shared.units["totalBusiness"]!
+        let ethicsNeeded = SharedUnits.shared.units["totalEthics"]!
         
         var totalUnits: Int = 0
         var accountingUnits: Int = 0
@@ -245,6 +255,7 @@ class StatusVC: UIViewController {
         var businessClassesLeft: [Class] = []
         var ethicsClassesLeft: [Class] = []
         
+        // after this need to make these of type Class before doing anything else
         var tempAccountingClasses = Array(realm.objects(RealmClass.self).filter("isAccounting = true"))
         var tempEthicsClasses = Array(realm.objects(RealmClass.self).filter("isEthics = true and isAccounting = false"))
         var tempBusinessClasses = Array(realm.objects(RealmClass.self).filter("isBusiness = true and isAccounting = false and isEthics = false"))
@@ -290,19 +301,9 @@ class StatusVC: UIViewController {
         (businessClasses, businessClassesLeft) = stringToClass(strings: tempBusinessClasses, type: "bus")
         (ethicsClasses, ethicsClassesLeft) = stringToClass(strings: tempEthicsClasses, type: "eth")
         
-        let unitsRealm = Array(realm.objects(RealmUnits.self))
-        for item in unitsRealm {
-            if item.identifier == "ACC - CC" {
-                accountingUnits = accountingUnits + item.units
-            } else if item.identifier == "BUS - CC" {
-                businessUnits = businessUnits + item.units
-            } else if item.identifier == "ETH - CC" {
-                ethicsUnits = ethicsUnits + item.units
-            } else {
-                totalUnits = totalUnits + item.units
-            }
-        }
+        totalUnits = calculateTotalUnits(terms: Array(realm.objects(RealmUnits.self)), key: UserDefaults.standard.value(forKey: "units") as! String)
         
+        // sort here by if class is quarter or semester similar to with RealmUnits
         for item in accountingClasses {
             accountingUnits = accountingUnits + item.numUnits
         }
@@ -338,10 +339,17 @@ class StatusVC: UIViewController {
                 answer.insert(item.courseNum)
             }
         }
+        /*
+        for item in Array(realm.objects(RealmNewClass.self)) {
+            if item.mustBeEthics == true {
+                answer.insert(item.courseNum)
+            }
+        }
+ */
         return answer
     }
     
-    // this adds a class that is already taken to the wrong section
+    // this adds a class that is already taken to the wrong section -- fixed
     func stringToClass(strings: [RealmClass], type: String) -> ([Class], [Class]) {
         var classes: [Class] = []
         var notTakingClasses: [Class] = []
@@ -381,10 +389,10 @@ class StatusVC: UIViewController {
         // need to make this work eventually for a semester school too
         var messages: [String] = []
         
-        let accountingNeeded = 45
-        let businessNeeded = 57
-        let ethicsNeeded = 15
-        let totalNeeded = 225
+        let accountingNeeded = SharedUnits.shared.units["totalAccounting"]!
+        let businessNeeded = SharedUnits.shared.units["totalBusiness"]!
+        let ethicsNeeded = SharedUnits.shared.units["totalEthics"]!
+        let totalNeeded = SharedUnits.shared.units["totalUnits"]!
         let accountingDifference = result.accountingUnits - accountingNeeded
         let businessDifference = result.businessUnits - businessNeeded
         let ethicsDifference = result.ethicsUnits - ethicsNeeded
@@ -504,7 +512,7 @@ extension StatusVC: UIScrollViewDelegate {
     //not being used anywhere currently
     func addNewClassIfStraightToStatus() {
         for item in realm.objects(RealmNewClass.self) {
-            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil, mustBeEthics: item.mustBeEthics, collegeID: nil)
+            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil, mustBeEthics: item.mustBeEthics, collegeID: nil, semesterOrQuarter: item.semesterOrQuarter)
             var allCourseNums: [String] = []
             for name in SharedAllClasses.shared.sharedAllClasses {
                 allCourseNums.append(name.courseNum)

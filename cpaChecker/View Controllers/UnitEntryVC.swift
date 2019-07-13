@@ -374,6 +374,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
                    fall1S.selectedSegmentIndex = n; fall2S.selectedSegmentIndex = n; fall3S.selectedSegmentIndex = n; fall4S.selectedSegmentIndex = n; winter1S.selectedSegmentIndex = n; winter2S.selectedSegmentIndex = n; winter3S.selectedSegmentIndex = n; winter4S.selectedSegmentIndex = n; spring1S.selectedSegmentIndex = n; spring2S.selectedSegmentIndex = n; spring3S.selectedSegmentIndex = n; spring4S.selectedSegmentIndex = n; apOtherS.selectedSegmentIndex = n; ccUnitsS.selectedSegmentIndex = n
                 }
             }
+            
         } else {
             //preload the type of units to whatever the user had from before
             let match: [String?:UISegmentedControl] = ["Fall 1":fall1S, "Fall 2":fall2S, "Fall 3":fall3S, "Fall 4":fall4S, "Winter 1":winter1S, "Winter 2":winter2S, "Winter 3":winter3S, "Winter 4":winter4S, "Spring 1":spring1S, "Spring 2":spring2S, "Spring 3":spring3S, "Spring 4":spring4S, "AP and Other":apOtherS, "Community College":ccUnitsS]

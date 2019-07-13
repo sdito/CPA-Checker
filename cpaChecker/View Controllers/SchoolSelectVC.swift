@@ -63,11 +63,21 @@ class SchoolSelectVC: UIViewController {
         sqlSelect.remove(at: sqlSelect.startIndex)
         UserDefaults.standard.set(sqlSelect, forKey: "college")
         let db = try? Connection(path, readonly: true)
+        // add isSemester and isQuarter to this query and on appDelegate, and add that to Class Class
         for c in try! db!.prepare("""
-            SELECT * FROM classes co
-            WHERE collegeID in (\(sqlSelect))
+            SELECT courseNumber, title, description, isAccounting, isBusiness, isEthics, numberUnits, offeredFall, offeredWinter, offeredSpring, offeredSummer, mustBeEthics, cl.collegeID, isSemester FROM classes cl
+            join colleges co
+            on cl.collegeID = co.collegeID
+            WHERE cl.collegeID in (\(sqlSelect))
             """)
                 {
+                    var sq: String {
+                        if c[13] as! Int64 == 1 {
+                            return "semester"
+                        } else {
+                            return "quarter"
+                        }
+                    }
                     let add = Class.init(
                         courseNum: c[0] as! String,
                         title: c[1] as! String,
@@ -81,10 +91,10 @@ class SchoolSelectVC: UIViewController {
                         offeredSpring: nil,
                         offeredSummer: nil,
                         mustBeEthics: intToBool(int: Int(c[11] as! Int64)) ?? false,
-                        collegeID: Int(c[12] as! Int64))
+                        collegeID: Int(c[12] as! Int64),
+                        semesterOrQuarter: sq)
                     ac.append(add)
                     
-                        
             }
         SharedAllClasses.shared.sharedAllClasses = ac
         quarterOrSemesterOrChoose()

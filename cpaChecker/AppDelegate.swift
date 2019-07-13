@@ -39,10 +39,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let indii = UserDefaults.standard.string(forKey: "college")
             var ac: [Class] = []
             for c in try! db!.prepare("""
-                SELECT * FROM classes co
-                WHERE collegeID in (\(indii ?? "0"))
+                SELECT courseNumber, title, description, isAccounting, isBusiness, isEthics, numberUnits, offeredFall, offeredWinter, offeredSpring, offeredSummer, mustBeEthics, cl.collegeID, isSemester FROM classes cl
+                join colleges co
+                on cl.collegeID = co.collegeID
+                WHERE cl.collegeID in (\(indii ?? "0"))
                 """)
             {
+                var sq: String {
+                    if c[13] as! Int64 == 1 {
+                        return "semester"
+                    } else {
+                        return "quarter"
+                    }
+                }
+                
                 let add = Class.init(
                     courseNum: c[0] as! String,
                     title: c[1] as! String,
@@ -56,7 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     offeredSpring: nil,
                     offeredSummer: nil,
                     mustBeEthics: intToBool(int: Int(c[11] as! Int64)) ?? false,
-                    collegeID: Int(c[12] as! Int64))
+                    collegeID: Int(c[12] as! Int64),
+                    semesterOrQuarter: sq)
                 ac.append(add)
                 
                 

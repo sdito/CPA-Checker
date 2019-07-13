@@ -26,8 +26,11 @@ class Class {
 
     var mustBeEthics: Bool?
     var collegeID: Int?
+    var semesterOrQuarter: String
     
-    init(courseNum: String, title: String, description: String?, isAccounting: Bool, isBusiness: Bool, isEthics: Bool, numUnits: Int, offeredFall: Bool?, offeredWinter: Bool?, offeredSpring: Bool?, offeredSummer: Bool?, mustBeEthics: Bool?, collegeID: Int?) {
+    var quarterUnits: Double?
+    
+    init(courseNum: String, title: String, description: String?, isAccounting: Bool, isBusiness: Bool, isEthics: Bool, numUnits: Int, offeredFall: Bool?, offeredWinter: Bool?, offeredSpring: Bool?, offeredSummer: Bool?, mustBeEthics: Bool?, collegeID: Int?, semesterOrQuarter: String) {
         self.courseNum = courseNum
         self.title = title
         self.courseDescription = description
@@ -41,6 +44,7 @@ class Class {
         self.offeredSummer = offeredSummer
         self.mustBeEthics = mustBeEthics
         self.collegeID = collegeID
+        self.semesterOrQuarter = semesterOrQuarter
     }
     
 }
@@ -51,4 +55,23 @@ extension Class: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(courseNum)
     }
+}
+
+func numberOfUnits(for classes: [Class], key: String) -> Int {
+    var counter: Double = 0
+    let semToQtr = 1.5
+    
+    classes.forEach { (c) in
+        if c.semesterOrQuarter == "quarter" {
+            counter += Double(c.numUnits)
+        } else if c.semesterOrQuarter == "semester" {
+            counter += (Double(c.numUnits) * semToQtr)
+        }
+    }
+    if key == "quarter" {
+        return Int(round(counter))
+    } else if key == "semester" {
+        return Int(round(counter/semToQtr))
+    }
+    return 0
 }
