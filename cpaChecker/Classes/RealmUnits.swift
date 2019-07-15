@@ -14,7 +14,6 @@ class RealmUnits: Object {
     @objc dynamic var semesterOrQuarter: String?
 }
 
-
 func calculateTotalUnits(terms: [RealmUnits], key: String) -> Int {
     // first put them all into quarter units
     var counter: Double = 0
@@ -36,3 +35,13 @@ func calculateTotalUnits(terms: [RealmUnits], key: String) -> Int {
     }
     return 0
 }
+
+/*
+extension Array where Element: RealmUnits {
+    func calculateToUnits(key: String) -> Int {
+        
+        return 10
+    }
+}
+*/
+
