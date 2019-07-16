@@ -57,8 +57,8 @@ class StatusVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         //addNewClassIfStraightToStatus()
+        calculateResult(units: Array(realm.objects(RealmUnits.self)), key: "doesnt matter uet", realmClasses: Array(realm.objects(RealmClass.self)))
         result = calculateStatus()
-        calculateResult(units: Array(realm.objects(RealmUnits.self)), key: "none", realmClasses: Array(realm.objects(RealmClass.self)))
         accountingUnitsNumber.text = result?.accountingUnits.description
         businessUnitsNumber.text = result?.businessUnits.description
         ethicsUnitsNumber.text = result?.ethicsUnits.description
@@ -275,7 +275,7 @@ class StatusVC: UIViewController {
         // possible extra accounting (BUS 425) could be added to ethics, need to add case for that
         //let currExtraAccounting = currAccounting - accountingNeeded
         //let currExtraBusiness = currBusiness - businessNeeded // shouldnt need to use
-        let currExtraEthics = currEthics - ethicsNeeded
+        let currExtraEthics = 0//currEthics - ethicsNeeded
         
         let extraEthicsClasses = currExtraEthics / 4
         let neededBusinessClasses = (businessNeeded - currBusiness) / 4
