@@ -57,7 +57,8 @@ class StatusVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         //addNewClassIfStraightToStatus()
-        calculateResult(units: Array(realm.objects(RealmUnits.self)), key: "doesnt matter uet", realmClasses: Array(realm.objects(RealmClass.self)))
+        
+        Result.calculateResult(units: Array(realm.objects(RealmUnits.self)), key: "doesnt matter uet", realmClasses: Array(realm.objects(RealmClass.self)))
         result = calculateStatus()
         accountingUnitsNumber.text = result?.accountingUnits.description
         businessUnitsNumber.text = result?.businessUnits.description
@@ -301,7 +302,8 @@ class StatusVC: UIViewController {
         (businessClasses, businessClassesLeft) = stringToClass(strings: tempBusinessClasses, type: "bus")
         (ethicsClasses, ethicsClassesLeft) = stringToClass(strings: tempEthicsClasses, type: "eth")
         
-        totalUnits = calculateTotalUnits(terms: Array(realm.objects(RealmUnits.self)), key: UserDefaults.standard.value(forKey: "units") as! String)
+        totalUnits = Array(realm.objects(RealmUnits.self)).calculateTotalRealmUnits(key: UserDefaults.standard.value(forKey: "units") as! String)
+        //totalUnits = calculateTotalUnits(terms: Array(realm.objects(RealmUnits.self)), key: UserDefaults.standard.value(forKey: "units") as! String)
         
         // sort here by if class is quarter or semester similar to with RealmUnits
         for item in accountingClasses {

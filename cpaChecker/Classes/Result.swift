@@ -32,126 +32,143 @@ struct Result {
         self.businessClassesLeft = businessClassesLeft
         self.ethicsClassesLeft = ethicsClassesLeft
     }
-}
-
-
-func calculateResult(units: [RealmUnits], key: String, realmClasses: [RealmClass]) {//-> Result {
-    var setCourseNumbers: Set<String> = []
     
-    var allClasses: [Class] {
-        return SharedAllClasses.shared.sharedAllClasses.filter {setCourseNumbers.contains($0.courseNum)}
-    }
-    realmClasses.forEach { (rc) in
-        setCourseNumbers.insert(rc.courseNum)
-    }
-    let classesUserIsTaking: [Class] = SharedAllClasses.shared.sharedAllClasses.filter { (course) -> Bool in
-        setCourseNumbers.contains(course.courseNum)
-    }
-    // to have all classes using a standard unit valuation
-    classesUserIsTaking.forEach { (c) in
-        if c.semesterOrQuarter == "semester" {
-            c.quarterUnits = (Double(c.numUnits) * 1.5)
-        } else {
-            c.quarterUnits = Double(c.numUnits)
-        }
-    }
-    
-    var initialAccounting: [Class] = []
-    var initialBusiness: [Class] = []
-    var initialEthics: [Class] = []
-    // to do initial sort and find status from there before moving classes into other sections besides their main
-    for c in classesUserIsTaking {
+    static func calculateResult(units: [RealmUnits], key: String, realmClasses: [RealmClass]) {//-> Result {
+        var setCourseNumbers: Set<String> = []
         
-        if c.mustBeEthics == true {
-            initialEthics.append(c)
-        } else if c.isAccounting == true {
-            initialAccounting.append(c)
-        } else if c.isEthics == true {
-            initialEthics.append(c)
-        } else if c.isBusiness == true {
-            initialBusiness.append(c)
+        var allClasses: [Class] {
+            return SharedAllClasses.shared.sharedAllClasses.filter {setCourseNumbers.contains($0.courseNum)}
         }
-    }
-    var numberAccountingUnits = initialAccounting.map{$0.quarterUnits!}.reduce(0.0, +)
-    var numberBusinessUnits = initialBusiness.map{$0.quarterUnits!}.reduce(0.0, +)
-    var numberEthicsUnits = initialEthics.map{$0.quarterUnits!}.reduce(0.0, +)
-    
-    let accountingDifference = numberAccountingUnits - 45.0
-    let businessDifference = numberBusinessUnits - 57.0
-    let ethicsDifference = numberEthicsUnits - 15.0
-    // filter extra accounting units into business units without changing the classification of the classes
-    if accountingDifference > 0.0 {
-        numberBusinessUnits += accountingDifference
-        numberAccountingUnits -= accountingDifference
-    }
-    
-    // switch; if applicable, needed, and possible, extra ethics classes into business classes
-    //let maxPossibleUnitsToSwitch = min(ethicsDifference, -businessDifference)
-    let potentialClassesToSwitch = initialEthics.filter { (c) -> Bool in
-        c.isBusiness == true && c.mustBeEthics == false
-    }
-    
-    //now have an array of classes that could switch, and maximum units that could be switched, need to decide which classes to switch
-    func decideWhatClassesToSwitch(classes: [Class], busNeeded: Double, ethExtra: Double, values: [[Class]]?, highest: [Class]?) -> [Class]? {
-        print(busNeeded)
-        print(ethicsDifference)
-        var highestAmount: [Class]? = highest
-        if classes.isEmpty == true || busNeeded < 0 || ethExtra < 0 {
-            return nil
-        } else if values == nil {
-            var c: [[Class]] = []
-            for course in classes {
-                if course.quarterUnits! >= busNeeded && course.quarterUnits! <= ethExtra {
-                    return [course]
-                } else {
-                    c.append([course])
+        realmClasses.forEach { (rc) in
+            setCourseNumbers.insert(rc.courseNum)
+        }
+        let classesUserIsTaking: [Class] = SharedAllClasses.shared.sharedAllClasses.filter { (course) -> Bool in
+            setCourseNumbers.contains(course.courseNum)
+        }
+        // to have all classes using a standard unit valuation
+        classesUserIsTaking.addQuarterUnits()
+ 
+        var initialAccounting: [Class] = []
+        var initialBusiness: [Class] = []
+        var initialEthics: [Class] = []
+        // to do initial sort and find status from there before moving classes into other sections besides their main
+        for c in classesUserIsTaking {
+            if c.mustBeEthics == true {
+                initialEthics.append(c)
+            } else if c.isAccounting == true {
+                initialAccounting.append(c)
+            } else if c.isEthics == true {
+                initialEthics.append(c)
+            } else if c.isBusiness == true {
+                initialBusiness.append(c)
+            }
+        }
+        
+        var numberAccountingUnits = initialAccounting.sumOfQuarterUnits()
+        var numberBusinessUnits = initialBusiness.sumOfQuarterUnits()
+        var numberEthicsUnits = initialEthics.sumOfQuarterUnits()
+        
+        
+        let accountingDifference = numberAccountingUnits - Double(SharedUnits.shared.units["totalAccounting"]!)
+        let businessDifference = numberBusinessUnits - Double(SharedUnits.shared.units["totalBusiness"]!)
+        let ethicsDifference = numberEthicsUnits - Double(SharedUnits.shared.units["totalEthics"]!)
+        // filter extra accounting units into business units without changing the classification of the classes
+        if accountingDifference > 0.0 {
+            numberBusinessUnits += accountingDifference
+            numberAccountingUnits -= accountingDifference
+        }
+        // switch; if applicable, needed, and possible, extra ethics classes into business classes
+        //let maxPossibleUnitsToSwitch = min(ethicsDifference, -businessDifference)
+        let potentialClassesToSwitch = initialEthics.filter { (c) -> Bool in
+            c.isBusiness == true && c.mustBeEthics == false
+        }
+        
+        //now have an array of classes that could switch, and maximum units that could be switched, need to decide which classes to switch
+        func decideWhatClassesToSwitch(classes: [Class], busNeeded: Double, ethExtra: Double, values: [[Class]]?, highest: [Class]?) -> [Class]? {
+            print(ethExtra, "is ethics extra")
+            var highestAmount: [Class]? = highest
+            if classes.isEmpty == true || busNeeded <= 0 || ethExtra <= 0 {
+                return nil
+            } else if values == nil {
+                var c: [[Class]] = []
+                for course in classes {
+                    if course.quarterUnits! >= busNeeded && course.quarterUnits! <= ethExtra {
+                        return [course]
+                    } else {
+                        if course.quarterUnits! <= ethExtra && course.quarterUnits! > highestAmount?.first?.quarterUnits ?? 0 {
+                            highestAmount = [course]
+                        }
+                        c.append([course])
+                    }
                 }
-            }
-            return decideWhatClassesToSwitch(classes: classes, busNeeded: busNeeded, ethExtra: ethExtra, values: c, highest: nil)
-        } else if classes.map({$0.quarterUnits!}).reduce(0.0, +) >= busNeeded && classes.map({$0.quarterUnits!}).reduce(0.0, +) <= ethExtra {
-            return classes
-        } else if classes.count == 1 {
-            if classes.first!.quarterUnits! <= ethExtra {
+                if highestAmount?.first?.quarterUnits == ethExtra {
+                    return highestAmount
+                } else {
+                    return decideWhatClassesToSwitch(classes: classes, busNeeded: busNeeded, ethExtra: ethExtra, values: c, highest: highestAmount)
+                }
+            } else if classes.sumOfQuarterUnits() >= busNeeded && classes.sumOfQuarterUnits() <= ethExtra {
                 return classes
-            }
-        } else if (values != nil) && (values!.last!.count < classes.count) {
-            var newValues: [[Class]] = []
-            for ti in values! {
-                for classItem in classes {
-                    if (classes.filter{$0 == classItem}.count) != (ti.filter{$0 == classItem}.count) {
-                        var tempItem = ti
-                        tempItem.append(classItem)
-                        //print("class item: \(tempItem.map({$0.courseNum}))")
-                        //print("\((tempItem.map({$0.quarterUnits!}).reduce(0.0, +))) && \((tempItem.map({$0.quarterUnits!}).reduce(0.0, +)))")
-                        if (tempItem.map({$0.quarterUnits!}).reduce(0.0, +) >= busNeeded) && (tempItem.map({$0.quarterUnits!}).reduce(0.0, +) <= ethExtra) {
-                            //highestAmount = tempItem
-                            //print("Should be returning from deicdeWhatClasses: \(tempItem)")
-                            return tempItem
-                        } else {
-                            newValues.append(tempItem)
-                            if highest != nil {
-                                if (tempItem.map({$0.quarterUnits!}).reduce(0.0, +) > highestAmount!.map({$0.quarterUnits!}).reduce(0.0, +)) && (tempItem.map({$0.quarterUnits!}).reduce(0.0, +) <= ethExtra) {
-                                    highestAmount = tempItem
-                                    print(highestAmount)
+            } else if classes.count == 1 {
+                if classes.first!.quarterUnits! <= ethExtra {
+                    return classes
+                }
+            } else if (values != nil) && (values!.last!.count < classes.count) {
+                var newValues: [[Class]] = []
+                for ti in values! {
+                    for classItem in classes {
+                        if (classes.filter{$0 == classItem}.count) != (ti.filter{$0 == classItem}.count) {
+                            var tempItem = ti
+                            tempItem.append(classItem)
+                            //print("class item: \(tempItem.map({$0.courseNum}))")
+                            //print("\((tempItem.map({$0.quarterUnits!}).reduce(0.0, +))) && \((tempItem.map({$0.quarterUnits!}).reduce(0.0, +)))")
+                            if (tempItem.sumOfQuarterUnits() >= busNeeded) && (tempItem.sumOfQuarterUnits() <= ethExtra) {
+                                //highestAmount = tempItem
+                                //print("Should be returning from deicdeWhatClasses: \(tempItem)")
+                                return tempItem
+                            } else {
+                                newValues.append(tempItem)
+                                if highestAmount != nil {
+                                    if (tempItem.sumOfQuarterUnits() > highestAmount!.sumOfQuarterUnits()) && (tempItem.sumOfQuarterUnits() <= ethExtra) {
+                                        highestAmount = tempItem
+                                    }
+                                } else if highestAmount == nil {
+                                    if tempItem.sumOfQuarterUnits() <= ethExtra {
+                                        highestAmount = tempItem
+                                    }
                                 }
-                            } else if highest == nil {
-                                highestAmount = tempItem
                             }
                         }
                     }
                 }
+                if highestAmount != nil && highestAmount!.map({$0.quarterUnits!}).reduce(0,+) == ethExtra {
+                    return highestAmount
+                } else {
+                    return decideWhatClassesToSwitch(classes: classes, busNeeded: busNeeded, ethExtra: ethExtra, values: newValues, highest: highestAmount)
+                }
             }
-            return decideWhatClassesToSwitch(classes: classes, busNeeded: busNeeded, ethExtra: ethExtra, values: newValues, highest: highestAmount)
+            print("returning highest")
+            return highest
         }
-        print("returning highest")
-        return highest
+        
+        print(numberBusinessUnits, numberEthicsUnits)
+        guard let switchTheseClasses = decideWhatClassesToSwitch(classes: potentialClassesToSwitch, busNeeded: -businessDifference, ethExtra: ethicsDifference, values: nil, highest: nil) else { return }
+        for course in switchTheseClasses {
+            initialEthics.remove(at: initialEthics.firstIndex(of: course)!)
+            initialBusiness.append(course)
+        }
+        numberBusinessUnits = initialBusiness.sumOfQuarterUnits()
+        numberEthicsUnits = initialEthics.sumOfQuarterUnits()
+        print(numberBusinessUnits, numberEthicsUnits)
+        
+        
+        
+        // should be set to go to return the correct result now
+        if key == "quarter" {
+            
+        } else if key == "semester" {
+            
+        }
     }
-    
-    
-    
-    let SWITCHTHESECLASSES = decideWhatClassesToSwitch(classes: potentialClassesToSwitch, busNeeded: -businessDifference, ethExtra: ethicsDifference, values: nil, highest: nil)
-    print(potentialClassesToSwitch.map({$0.courseNum}))
-    print(SWITCHTHESECLASSES!.map({$0.courseNum}))
-    
-    
 }
+
+

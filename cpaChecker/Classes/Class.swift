@@ -46,8 +46,28 @@ class Class {
         self.collegeID = collegeID
         self.semesterOrQuarter = semesterOrQuarter
     }
-    
+    /*
+    class func numberOfUnits(for classes: [Class], key: String) -> Int {
+        var counter: Double = 0
+        let semToQtr = 1.5
+        
+        classes.forEach { (c) in
+            if c.semesterOrQuarter == "quarter" {
+                counter += Double(c.numUnits)
+            } else if c.semesterOrQuarter == "semester" {
+                counter += (Double(c.numUnits) * semToQtr)
+            }
+        }
+        if key == "quarter" {
+            return Int(round(counter))
+        } else if key == "semester" {
+            return Int(round(counter/semToQtr))
+        }
+        return 0
+    }
+ */
 }
+
 extension Class: Hashable {
     static func == (lhs: Class, rhs: Class) -> Bool {
         return lhs.courseNum == rhs.courseNum
@@ -57,21 +77,17 @@ extension Class: Hashable {
     }
 }
 
-func numberOfUnits(for classes: [Class], key: String) -> Int {
-    var counter: Double = 0
-    let semToQtr = 1.5
-    
-    classes.forEach { (c) in
-        if c.semesterOrQuarter == "quarter" {
-            counter += Double(c.numUnits)
-        } else if c.semesterOrQuarter == "semester" {
-            counter += (Double(c.numUnits) * semToQtr)
+extension Array where Element: Class {
+    func sumOfQuarterUnits() -> Double {
+        return self.map({$0.quarterUnits!}).reduce(0, +)
+    }
+    func addQuarterUnits() {
+        self.forEach { (c) in
+            if c.semesterOrQuarter == "semester" {
+                c.quarterUnits = (Double(c.numUnits) * 1.5)
+            } else {
+                c.quarterUnits = Double(c.numUnits)
+            }
         }
     }
-    if key == "quarter" {
-        return Int(round(counter))
-    } else if key == "semester" {
-        return Int(round(counter/semToQtr))
-    }
-    return 0
 }
