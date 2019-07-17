@@ -33,7 +33,7 @@ struct Result {
         self.ethicsClassesLeft = ethicsClassesLeft
     }
     
-    static func calculateResult(units: [RealmUnits], key: String, realmClasses: [RealmClass]) {//-> Result {
+    static func calculateResult(units: [RealmUnits], key: String, realmClasses: [RealmClass]) -> Result {
         var setCourseNumbers: Set<String> = []
         
         var allClasses: [Class] {
@@ -69,9 +69,9 @@ struct Result {
         var numberEthicsUnits = initialEthics.sumOfQuarterUnits()
         
         
-        let accountingDifference = numberAccountingUnits - Double(SharedUnits.shared.units["totalAccounting"]!)
-        let businessDifference = numberBusinessUnits - Double(SharedUnits.shared.units["totalBusiness"]!)
-        let ethicsDifference = numberEthicsUnits - Double(SharedUnits.shared.units["totalEthics"]!)
+        let accountingDifference = numberAccountingUnits - 45//Double(SharedUnits.shared.units["totalAccounting"]!)
+        let businessDifference = numberBusinessUnits - 57//Double(SharedUnits.shared.units["totalBusiness"]!)
+        let ethicsDifference = numberEthicsUnits - 15//Double(SharedUnits.shared.units["totalEthics"]!)
         // filter extra accounting units into business units without changing the classification of the classes
         if accountingDifference > 0.0 {
             numberBusinessUnits += accountingDifference
@@ -150,24 +150,44 @@ struct Result {
             return highest
         }
         
-        print(numberBusinessUnits, numberEthicsUnits)
-        guard let switchTheseClasses = decideWhatClassesToSwitch(classes: potentialClassesToSwitch, busNeeded: -businessDifference, ethExtra: ethicsDifference, values: nil, highest: nil) else { return }
-        for course in switchTheseClasses {
-            initialEthics.remove(at: initialEthics.firstIndex(of: course)!)
-            initialBusiness.append(course)
+        let switchTheseClasses = decideWhatClassesToSwitch(classes: potentialClassesToSwitch, busNeeded: -businessDifference, ethExtra: ethicsDifference, values: nil, highest: nil)
+        
+        if switchTheseClasses != nil && switchTheseClasses?.isEmpty == false {
+            for course in switchTheseClasses! {
+                initialEthics.remove(at: initialEthics.firstIndex(of: course)!)
+                initialBusiness.append(course)
+            }
         }
+        
+        numberAccountingUnits = initialAccounting.sumOfQuarterUnits()
         numberBusinessUnits = initialBusiness.sumOfQuarterUnits()
         numberEthicsUnits = initialEthics.sumOfQuarterUnits()
-        print(numberBusinessUnits, numberEthicsUnits)
         
-        
-        
-        // should be set to go to return the correct result now
-        if key == "quarter" {
-            
-        } else if key == "semester" {
-            
+        let ad = numberAccountingUnits - 45//Double(SharedUnits.shared.units["totalAccounting"]!)
+        if ad > 0 {
+            numberBusinessUnits += ad
+            numberAccountingUnits -= ad
         }
+        
+        
+        let setTitles = Set(allClasses.map({$0.courseNum}))
+        
+        print(numberAccountingUnits, numberBusinessUnits, numberEthicsUnits)
+        if key == "semester" {
+            numberAccountingUnits = numberAccountingUnits / 1.5
+            numberBusinessUnits = numberBusinessUnits / 1.5
+            numberEthicsUnits = numberEthicsUnits / 1.5
+        }
+        print(numberAccountingUnits, numberBusinessUnits, numberEthicsUnits)
+        
+        var acl: [Class] = []
+        var bcl: [Class] = []
+        var ecl: [Class] = []
+        
+        (acl, bcl, ecl) = SharedAllClasses.shared.sharedAllClasses.notTakingFor(set: setTitles)
+        
+        
+        return Result(totalUnits: units.calculateTotalRealmUnits(key: key), accountingUnits: Int(numberAccountingUnits), businessUnits: Int(numberBusinessUnits), ethicsUnits: Int(numberEthicsUnits), accountingClasses: initialAccounting, businessClasses: initialBusiness, ethicsClasses: initialEthics, accountingClassesLeft: acl, businessClassesLeft: bcl, ethicsClassesLeft: ecl)
     }
 }
 

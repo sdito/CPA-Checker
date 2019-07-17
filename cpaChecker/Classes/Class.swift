@@ -90,4 +90,23 @@ extension Array where Element: Class {
             }
         }
     }
+    func notTakingFor(set: Set<String>) -> ([Class], [Class], [Class]) {
+        var acl: [Class] = []
+        var bcl: [Class] = []
+        var ecl: [Class] = []
+        self.forEach { (course) in
+            if set.contains(course.courseNum) == false {
+                if course.isAccounting == true {
+                    acl.append(course)
+                }
+                if course.isBusiness == true {
+                    bcl.append(course)
+                }
+                if course.isEthics == true {
+                    ecl.append(course)
+                }
+            }
+        }
+        return (acl, bcl, ecl)
+    }
 }

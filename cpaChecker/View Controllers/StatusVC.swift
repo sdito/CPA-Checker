@@ -58,8 +58,9 @@ class StatusVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         //addNewClassIfStraightToStatus()
         
-        Result.calculateResult(units: Array(realm.objects(RealmUnits.self)), key: "doesnt matter uet", realmClasses: Array(realm.objects(RealmClass.self)))
-        result = calculateStatus()
+        
+        result = Result.calculateResult(units: Array(realm.objects(RealmUnits.self)), key: UserDefaults.standard.value(forKey: "units") as! String, realmClasses: Array(realm.objects(RealmClass.self)))
+        //result = calculateStatus()
         accountingUnitsNumber.text = result?.accountingUnits.description
         businessUnitsNumber.text = result?.businessUnits.description
         ethicsUnitsNumber.text = result?.ethicsUnits.description
