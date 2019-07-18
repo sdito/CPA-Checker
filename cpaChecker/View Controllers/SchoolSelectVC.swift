@@ -41,7 +41,7 @@ class SchoolSelectVC: UIViewController {
         }
         //whatSchoolsRed = Set(stringToIntArray(str: UserDefaults.standard.value(forKey: "college") as! String))
         
-        tableArray = orderClassesForSchoolSelect(dictAll: schoolIdentifier, using: stringToIntArray(str: UserDefaults.standard.value(forKey: "college") as? String ?? ""))
+        tableArray = orderClassesForSchoolSelect(dictAll: schoolIdentifier, using: (UserDefaults.standard.value(forKey: "college") as? String)?.turnSQLstrToArray() ?? [""])
         
     }
     @IBAction func continuePressed(_ sender: Any) {
@@ -222,5 +222,8 @@ func setToSQL(from set: Set<String>) -> String {
     let rtn = str.dropFirst()
     return String(rtn)
 }
+
+
+
 
 

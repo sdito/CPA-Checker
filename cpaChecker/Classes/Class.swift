@@ -46,26 +46,6 @@ class Class {
         self.collegeID = collegeID
         self.semesterOrQuarter = semesterOrQuarter
     }
-    /*
-    class func numberOfUnits(for classes: [Class], key: String) -> Int {
-        var counter: Double = 0
-        let semToQtr = 1.5
-        
-        classes.forEach { (c) in
-            if c.semesterOrQuarter == "quarter" {
-                counter += Double(c.numUnits)
-            } else if c.semesterOrQuarter == "semester" {
-                counter += (Double(c.numUnits) * semToQtr)
-            }
-        }
-        if key == "quarter" {
-            return Int(round(counter))
-        } else if key == "semester" {
-            return Int(round(counter/semToQtr))
-        }
-        return 0
-    }
- */
 }
 
 extension Class: Hashable {
@@ -78,9 +58,6 @@ extension Class: Hashable {
 }
 
 extension Array where Element: Class {
-    func sumOfQuarterUnits() -> Double {
-        return self.map({$0.quarterUnits!}).reduce(0, +)
-    }
     func addQuarterUnits() {
         self.forEach { (c) in
             if c.semesterOrQuarter == "semester" {
@@ -89,6 +66,9 @@ extension Array where Element: Class {
                 c.quarterUnits = Double(c.numUnits)
             }
         }
+    }
+    func sumOfQuarterUnits() -> Double {
+        return self.map({$0.quarterUnits!}).reduce(0, +)
     }
     func notTakingFor(set: Set<String>) -> ([Class], [Class], [Class]) {
         var acl: [Class] = []
@@ -108,5 +88,40 @@ extension Array where Element: Class {
             }
         }
         return (acl, bcl, ecl)
+    }
+    func classesForTableViewSections(colleges: [Int:String]) -> ([String], [[Class]]) {
+        var reversedDict = Dictionary(uniqueKeysWithValues: colleges.map({($1, $0)}))
+        var sortedCollegenames = reversedDict.keys.sorted()
+        reversedDict["User Added Classes"] = 0
+        //makes user added classes always appear last in class list selection table
+        sortedCollegenames.append("User Added Classes")
+        var sectionClasses: [[Class]] = []
+        var classTitles: [String] = []
+        //needs to be sorted here so classes appear in the same order
+        for i in sortedCollegenames {
+            var counter = 0
+            classTitles.append(i)
+            var array: [Class] = []
+            for item in self {
+                if item.collegeID == reversedDict[i] {
+                    array.append(item)
+                    counter += 1
+                }
+            }
+            if counter == 0 && i != "User Added Classes" {
+                classTitles.removeLast()
+                array = []
+                counter = 0
+            } else {
+                // sort the classes right here alphabetically by course number
+                sectionClasses.append(array.sorted(by: { (c1, c2) -> Bool in
+                    c1.courseNum < c2.courseNum
+                }))
+                array = []
+                counter = 0
+            }
+        }
+        // need to sort by the class titles to ensure that the sections appear in the same order between different page visits, need to sort both different aarrays in the same order, while sorting by classTitle
+        return (classTitles, sectionClasses)
     }
 }

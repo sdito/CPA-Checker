@@ -94,17 +94,14 @@ class PopUpVC: UIViewController {
             alert.addAction(UIAlertAction(title: "Continue", style: .destructive, handler: endNewClass))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             present(alert, animated: true, completion: nil)
-            
         } else {
             try! realm.write {
                 realm.add(realmClass)
             }
-            
             delegate.removeBlurViews()
             delegate.resetTableData()
             view.removeFromSuperview()
         }
-
     }
     @IBAction func exitPressed(_ sender: Any) {
         delegate.removeBlurViews()

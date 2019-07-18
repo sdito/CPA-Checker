@@ -86,15 +86,7 @@ class InstructionsVC: UIViewController {
             let view = stack.subviews.last!
             view.removeFromSuperview()
         }
-        if boolean == false {
-            UIView.animate(withDuration: 0.2) {
-                arrow.transform = CGAffineTransform(rotationAngle: .pi/1)
-            }
-        } else {
-            UIView.animate(withDuration: 0.2) {
-                arrow.transform = CGAffineTransform(rotationAngle: 0)
-            }
-        }
+        arrow.rotate(boolean: boolean)
     }
     
     @IBAction func helpPressed(_ sender: Any) {

@@ -22,11 +22,12 @@
 		E2018D09229E2D5200973C97 /* ClassDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2018D08229E2D5200973C97 /* ClassDetailVC.swift */; };
 		E207C87222AB6E3300BFDA24 /* RealmNewClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E207C87122AB6E3300BFDA24 /* RealmNewClass.swift */; };
 		E207C87622AB825700BFDA24 /* SharedAllClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E207C87522AB825700BFDA24 /* SharedAllClasses.swift */; };
-		E20D1D0C22B1C5C200B1AE68 /* UIView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20D1D0B22B1C5C200B1AE68 /* UIView-Extension.swift */; };
 		E20D1D0E22B1C69300B1AE68 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20D1D0D22B1C69300B1AE68 /* PopUpVC.swift */; };
 		E2198A5B22A0B0F100B9D42F /* UnitEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2198A5A22A0B0F100B9D42F /* UnitEntryVC.swift */; };
 		E2198A5D22A1B36000B9D42F /* StatusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2198A5C22A1B36000B9D42F /* StatusVC.swift */; };
 		E2198A5F22A1BBAB00B9D42F /* RealmClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2198A5E22A1BBAB00B9D42F /* RealmClass.swift */; };
+		E21B1DF022E02E00007688B3 /* String-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DEF22E02E00007688B3 /* String-Extension.swift */; };
+		E21B1DF322E02E42007688B3 /* UILabel-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */; };
 		E22B3D9C22A251B3009DEF96 /* RealmUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */; };
 		E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E1922A496A7009DEF96 /* Result.swift */; };
 		E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E5722A63C87009DEF96 /* StatusCell.swift */; };
@@ -87,11 +88,12 @@
 		E2018D08229E2D5200973C97 /* ClassDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDetailVC.swift; sourceTree = "<group>"; };
 		E207C87122AB6E3300BFDA24 /* RealmNewClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNewClass.swift; sourceTree = "<group>"; };
 		E207C87522AB825700BFDA24 /* SharedAllClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedAllClasses.swift; sourceTree = "<group>"; };
-		E20D1D0B22B1C5C200B1AE68 /* UIView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Extension.swift"; sourceTree = "<group>"; };
 		E20D1D0D22B1C69300B1AE68 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
 		E2198A5A22A0B0F100B9D42F /* UnitEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitEntryVC.swift; sourceTree = "<group>"; };
 		E2198A5C22A1B36000B9D42F /* StatusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusVC.swift; sourceTree = "<group>"; };
 		E2198A5E22A1BBAB00B9D42F /* RealmClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClass.swift; sourceTree = "<group>"; };
+		E21B1DEF22E02E00007688B3 /* String-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-Extension.swift"; sourceTree = "<group>"; };
+		E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel-Extension.swift"; sourceTree = "<group>"; };
 		E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUnits.swift; sourceTree = "<group>"; };
 		E22B3E1922A496A7009DEF96 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E22B3E5722A63C87009DEF96 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
@@ -188,9 +190,9 @@
 				E2018CD7229DBFE700973C97 /* Main.storyboard */,
 				E2508B2122C824D40092C978 /* cpa.db */,
 				E2018CDC229DBFEA00973C97 /* LaunchScreen.storyboard */,
+				E21B1DF122E02E14007688B3 /* Extensions */,
 				E22B3E5922A63C91009DEF96 /* Cells */,
 				E2018D04229DC1B100973C97 /* Classes */,
-				E29CDEB322AF0E1C00CD8DCE /* Gradient */,
 				E2AEB38722B4A4ED0017D0F3 /* StatusView */,
 				E2018CDA229DBFEA00973C97 /* Assets.xcassets */,
 				E2018CDF229DBFEA00973C97 /* Info.plist */,
@@ -243,8 +245,18 @@
 				E2198A5E22A1BBAB00B9D42F /* RealmClass.swift */,
 				E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */,
 				E207C87122AB6E3300BFDA24 /* RealmNewClass.swift */,
+				E29CDEB422AF0EF500CD8DCE /* Colors.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		E21B1DF122E02E14007688B3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E21B1DEF22E02E00007688B3 /* String-Extension.swift */,
+				E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E22B3E5922A63C91009DEF96 /* Cells */ = {
@@ -254,15 +266,6 @@
 				E2018D05229E247200973C97 /* ClassCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		E29CDEB322AF0E1C00CD8DCE /* Gradient */ = {
-			isa = PBXGroup;
-			children = (
-				E29CDEB422AF0EF500CD8DCE /* Colors.swift */,
-				E20D1D0B22B1C5C200B1AE68 /* UIView-Extension.swift */,
-			);
-			path = Gradient;
 			sourceTree = "<group>";
 		};
 		E2AEB38722B4A4ED0017D0F3 /* StatusView */ = {
@@ -505,18 +508,19 @@
 				E2198A5D22A1B36000B9D42F /* StatusVC.swift in Sources */,
 				E2D746A522B5497E006AC0A4 /* WelcomeVC.swift in Sources */,
 				E29CDEB522AF0EF500CD8DCE /* Colors.swift in Sources */,
-				E20D1D0C22B1C5C200B1AE68 /* UIView-Extension.swift in Sources */,
 				E207C87222AB6E3300BFDA24 /* RealmNewClass.swift in Sources */,
 				E2018D09229E2D5200973C97 /* ClassDetailVC.swift in Sources */,
 				E2018CD2229DBFE700973C97 /* AppDelegate.swift in Sources */,
 				E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */,
 				E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */,
+				E21B1DF322E02E42007688B3 /* UILabel-Extension.swift in Sources */,
 				E2018CD4229DBFE700973C97 /* InstructionsVC.swift in Sources */,
 				E2508B2622CA94720092C978 /* HelpVC.swift in Sources */,
 				E2198A5B22A0B0F100B9D42F /* UnitEntryVC.swift in Sources */,
 				E2ECBEA322D2E2480064B59A /* QuarterSemesterVC.swift in Sources */,
 				E22B3D9C22A251B3009DEF96 /* RealmUnits.swift in Sources */,
 				E2ECBEA522D432500064B59A /* SharedUnits.swift in Sources */,
+				E21B1DF022E02E00007688B3 /* String-Extension.swift in Sources */,
 				E2198A5F22A1BBAB00B9D42F /* RealmClass.swift in Sources */,
 				E2018D06229E247200973C97 /* ClassCell.swift in Sources */,
 				E207C87622AB825700BFDA24 /* SharedAllClasses.swift in Sources */,

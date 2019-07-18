@@ -85,7 +85,6 @@ struct Result {
         
         //now have an array of classes that could switch, and maximum units that could be switched, need to decide which classes to switch
         func decideWhatClassesToSwitch(classes: [Class], busNeeded: Double, ethExtra: Double, values: [[Class]]?, highest: [Class]?) -> [Class]? {
-            print(ethExtra, "is ethics extra")
             var highestAmount: [Class]? = highest
             if classes.isEmpty == true || busNeeded <= 0 || ethExtra <= 0 {
                 return nil
@@ -146,7 +145,6 @@ struct Result {
                     return decideWhatClassesToSwitch(classes: classes, busNeeded: busNeeded, ethExtra: ethExtra, values: newValues, highest: highestAmount)
                 }
             }
-            print("returning highest")
             return highest
         }
         
@@ -169,16 +167,13 @@ struct Result {
             numberAccountingUnits -= ad
         }
         
-        
         let setTitles = Set(allClasses.map({$0.courseNum}))
         
-        print(numberAccountingUnits, numberBusinessUnits, numberEthicsUnits)
         if key == "semester" {
             numberAccountingUnits = numberAccountingUnits / 1.5
             numberBusinessUnits = numberBusinessUnits / 1.5
             numberEthicsUnits = numberEthicsUnits / 1.5
         }
-        print(numberAccountingUnits, numberBusinessUnits, numberEthicsUnits)
         
         var acl: [Class] = []
         var bcl: [Class] = []
@@ -186,9 +181,71 @@ struct Result {
         
         (acl, bcl, ecl) = SharedAllClasses.shared.sharedAllClasses.notTakingFor(set: setTitles)
         
-        
         return Result(totalUnits: units.calculateTotalRealmUnits(key: key), accountingUnits: Int(numberAccountingUnits), businessUnits: Int(numberBusinessUnits), ethicsUnits: Int(numberEthicsUnits), accountingClasses: initialAccounting, businessClasses: initialBusiness, ethicsClasses: initialEthics, accountingClassesLeft: acl, businessClassesLeft: bcl, ethicsClassesLeft: ecl)
     }
 }
 
 
+extension Result {
+    func getMessages() -> [String] {
+        var messages: [String] = []
+        let accountingNeeded = SharedUnits.shared.units["totalAccounting"]!
+        let businessNeeded = SharedUnits.shared.units["totalBusiness"]!
+        let ethicsNeeded = SharedUnits.shared.units["totalEthics"]!
+        let totalNeeded = SharedUnits.shared.units["totalUnits"]!
+        let accountingDifference = self.accountingUnits - accountingNeeded
+        let businessDifference = self.businessUnits - businessNeeded
+        let ethicsDifference = self.ethicsUnits - ethicsNeeded
+        let totalDifference = self.totalUnits - totalNeeded
+        
+        var accS: String {
+            if abs(accountingDifference) == 1 {
+                return ""
+            } else {
+                return "s"
+            }
+        }
+        var busS: String {
+            if abs(businessDifference) == 1 {
+                return ""
+            } else {
+                return "s"
+            }
+        }
+        var ethS: String {
+            if abs(ethicsDifference) == 1 {
+                return ""
+            } else {
+                return "s"
+            }
+        }
+        var totS: String {
+            if abs(totalDifference) == 1 {
+                return ""
+            } else {
+                return "s"
+            }
+        }
+        if accountingDifference == -5 {
+            messages.append("Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.")
+        } else if accountingDifference < 0 {
+            messages.append("Need \(abs(accountingDifference)) more accounting unit\(accS), look into more accounting electives or community college classes.")
+        }
+        if businessDifference < 0 {
+            messages.append("Need \(abs(businessDifference)) more business unit\(busS). Look through your other classes that could count and add them to the class list.")
+        }
+        if ethicsDifference < 0 {
+            messages.append("Need \(abs(ethicsDifference)) more ethics unit\(ethS). Check for any free elective classes that could meet the ethics requirement.")
+        }
+        if totalDifference < 0 {
+            messages.append("Need \(abs(totalDifference)) more total unit\(totS). Look for some interesting free elective classes to take.")
+        }
+        if ethicsClasses.filter({$0.mustBeEthics == true}).count == 0 {
+            messages.append("Need a professional ethics class. Professional ethics classes have a title such as Accounting Ethics. Check the instructions for more information.")
+        }
+        if messages.isEmpty == true {
+            messages.append("Good job! All the conditions are met.")
+        }
+        return messages
+    }
+}

@@ -21,9 +21,9 @@ class ClassListSelectionVC: UIViewController {
     @IBOutlet weak var businessSortedOutlet: UIButton!
     @IBOutlet weak var ethicsSortedOutlet: UIButton!
     @IBOutlet weak var headerViewGradient: UIView!
-    var sortAccounting = false
-    var sortBusiness = false
-    var sortEthics = false
+    private var sortAccounting = false
+    private var sortBusiness = false
+    private var sortEthics = false
     var realm = try! Realm()
     
     
@@ -55,43 +55,13 @@ class ClassListSelectionVC: UIViewController {
                 collegeDict[Int(s[1] as! Int64)] = s[0] as? String
                 
         }
-        (sectionNames, arrayArrayClasses) = takeInClassesForTableViewSections(classes: sortedClasses, colleges: collegeDict)
-        updateTableInfoAndResetData()
-//        for item in realm.objects(RealmNewClass.self) {
-//            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil)
-//            var allCourseNums: [String] = []
-//            for name in SharedAllClasses.shared.sharedAllClasses {
-//                allCourseNums.append(name.courseNum)
-//            }
-//            if allCourseNums.contains(newClass.courseNum) {
-//                print("Dont add")
-//            } else {
-//                //combinedClasses.append(newClass)
-//                SharedAllClasses.shared.sharedAllClasses.append(newClass)
-//                updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
-//            }
-//        }
-//        tableView.reloadData()
-    }
-    // assimilates the classes from realm into sharedAllClasses and eventually sortedClasses through updateClassesForTableView, only does not allow duplicate classes to be shown on the table view,
-    func updateTableInfoAndResetData() {
-        for item in realm.objects(RealmNewClass.self) {
-            let newClass = Class(courseNum: item.courseNum.uppercased(), title: "User added class", description: nil, isAccounting: item.isAccounting, isBusiness: item.isBusiness, isEthics: item.isEthics, numUnits: item.numUnits, offeredFall: nil, offeredWinter: nil, offeredSpring: nil, offeredSummer: nil, mustBeEthics: item.mustBeEthics, collegeID: 0, semesterOrQuarter: item.semesterOrQuarter)
-            var allCourseNums: [String] = []
-            for name in SharedAllClasses.shared.sharedAllClasses {
-                allCourseNums.append(name.courseNum)
-            }
-            if allCourseNums.contains(newClass.courseNum) {
-                //do nothing
-            } else {
-                //combinedClasses.append(newClass)
-                SharedAllClasses.shared.sharedAllClasses.append(newClass)
-                updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
-            }
-        }
+        (sectionNames, arrayArrayClasses) = sortedClasses.classesForTableViewSections(colleges: collegeDict)
+        //updateTableInfoAndResetData()
+        SharedAllClasses.shared.sharedAllClasses = Array(realm.objects(RealmNewClass.self)).addNewClassesTo(courses: SharedAllClasses.shared.sharedAllClasses)
+        updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
-        //tableView.scrollToRow(at: IndexPath, at: scrollPositiom, animated: bool)
     }
+
     //pop up to add classes
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "classDetailSegue" {
@@ -156,8 +126,6 @@ class ClassListSelectionVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    
-    
     func deleteClasses(alert: UIAlertAction!) {
         try! realm.write {
             let all = realm.objects(RealmClass.self)
@@ -165,8 +133,6 @@ class ClassListSelectionVC: UIViewController {
             tableView.reloadData()
         }
     }
-    
-    
     
     func overlayBlurredBackgroundView() {
         let blurredBackgroundView = UIVisualEffectView()
@@ -203,9 +169,10 @@ class ClassListSelectionVC: UIViewController {
         } else {
             sortedClasses = SharedAllClasses.shared.sharedAllClasses
         }
-        (sectionNames, arrayArrayClasses) = takeInClassesForTableViewSections(classes: sortedClasses, colleges: collegeDict)
+        (sectionNames, arrayArrayClasses) = sortedClasses.classesForTableViewSections(colleges: collegeDict)
     }
 }
+
 
 extension ClassListSelectionVC: ClassCellDelegate {
     func classSwitchPressed(units: Class) {
@@ -237,7 +204,9 @@ extension ClassListSelectionVC: PopUpDelegate {
     }
     
     func resetTableData() {
-        updateTableInfoAndResetData()
+        SharedAllClasses.shared.sharedAllClasses = Array(realm.objects(RealmNewClass.self)).addNewClassesTo(courses: SharedAllClasses.shared.sharedAllClasses)
+        updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
+        tableView.reloadData()
     }
 }
 // need to get this to work to get pop up view to work correctly UI wise
@@ -325,92 +294,4 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
-// function to convert the text from user defaults such as "(1,2,4)" into an array of strings that represent the college's names
-func stringToIntArray(str: String) -> [String] {
-    var schoolIdentifier: [Int:String] = [:]
-    let path = Bundle.main.path(forResource: "cpa", ofType: "db")!
-    let db = try? Connection(path, readonly: true)
-    for s in try! db!.prepare(
-        """
-            SELECT name, collegeID FROM colleges
-            order by name
-            """
-        ) {
-            //schoolIdentifier[s[0] as! String] = Int(s[1] as! Int64)
-            schoolIdentifier[Int(s[1] as! Int64)] = s[0] as? String
-            
-    }
-    var array: [Int] = []
-    var num = ""
-    
-    
-    for c in str {
-        if c == "," {
-            if let n = Int(num) {
-                array.append(n)
-            }
-            num = ""
-        } else if c == str.last {
-            num.append(c)
-            if let n = Int(num) {
-                array.append(n)
-            }
-        } else if "0"..."9" ~= c {
-            num.append(c)
-        }
-    }
-    var names: [String] = []
-    for item in array {
-        if let school = schoolIdentifier[item] {
-          names.append(school)
-        }
-    }
-    return names
-}
-
-
-// to section out the classes for table view, splitting them up by college
-func takeInClassesForTableViewSections(classes: [Class], colleges: [Int:String]) -> ([String], [[Class]]) {
-    
-    var reversedDict = Dictionary(uniqueKeysWithValues: colleges.map({($1, $0)}))
-    
-    var sortedCollegenames = reversedDict.keys.sorted()
-    reversedDict["User Added Classes"] = 0
-    
-    //makes user added classes always appear last in class list selection table
-    sortedCollegenames.append("User Added Classes")
-    
-    var sectionClasses: [[Class]] = []
-    var classTitles: [String] = []
-    
-    //needs to be sorted here so classes appear in the same order
-    for i in sortedCollegenames {
-        var counter = 0
-        classTitles.append(i)
-        var array: [Class] = []
-        for item in classes {
-            if item.collegeID == reversedDict[i] {
-                array.append(item)
-                counter += 1
-            }
-        }
-        if counter == 0 && i != "User Added Classes" {
-            classTitles.removeLast()
-            array = []
-            counter = 0
-        } else {
-            // sort the classes right here alphabetically by course number
-            sectionClasses.append(array.sorted(by: { (c1, c2) -> Bool in
-                c1.courseNum < c2.courseNum
-            }))
-            array = []
-            counter = 0
-        }
-    }
-    
-    // need to sort by the class titles to ensure that the sections appear in the same order between different page visits, need to sort both different aarrays in the same order, while sorting by classTitle
-    
-    return (classTitles, sectionClasses)
-}
 

@@ -38,12 +38,6 @@ class HelpVC: UIViewController {
     }
     
     @objc func schoolButtonAction(sender: UIButton) {
-        // do not have to delete all the classes from database technically, would only show in status when that specific university is selected
-        /*
-        try! realm.write {
-            realm.deleteAll()
-        }
-         */
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "schoolSelectionVC") as! SchoolSelectVC
         self.present(vc, animated: false, completion: nil)
     }
@@ -74,17 +68,7 @@ class HelpVC: UIViewController {
             }
         }
         // rotate the arrow in a label 180 degrees
-        if newSchool == false {
-            UIView.animate(withDuration: 0.2) {
-                self.universityArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
-            }
-            
-        } else {
-            UIView.animate(withDuration: 0.2) {
-                self.universityArrow.transform = CGAffineTransform(rotationAngle: 0)
-            }
-        }
-        
+        universityArrow.rotate(boolean: newSchool)
         newSchool = !newSchool
     }
     @IBAction func termsPressed(_ sender: Any) {
@@ -100,15 +84,7 @@ class HelpVC: UIViewController {
             view.removeFromSuperview()
         }
         // rotate the arrow in a label 180 degrees
-        if terms == false {
-            UIView.animate(withDuration: 0.2) {
-                self.termsArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
-            }
-        } else {
-            UIView.animate(withDuration: 0.2) {
-                self.termsArrow.transform = CGAffineTransform(rotationAngle: 0)
-            }
-        }
+        termsArrow.rotate(boolean: terms)
         terms = !terms
     }
     @IBAction func aboutPressed(_ sender: Any) {
@@ -124,15 +100,10 @@ class HelpVC: UIViewController {
             view.removeFromSuperview()
         }
         // rotate the arrow in a label 180 degrees
-        if about == false {
-            UIView.animate(withDuration: 0.2) {
-                self.aboutArrow.transform = CGAffineTransform(rotationAngle: .pi/1)
-            }
-        } else {
-            UIView.animate(withDuration: 0.2) {
-                self.aboutArrow.transform = CGAffineTransform(rotationAngle: 0)
-            }
-        }
+        aboutArrow.rotate(boolean: about)
         about = !about
     }
 }
+
+
+

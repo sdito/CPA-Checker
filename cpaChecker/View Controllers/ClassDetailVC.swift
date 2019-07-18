@@ -33,7 +33,15 @@ class ClassDetailVC: UIViewController {
         createUI()
         //gradientView.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
     }
-    
+    func setColorForLabel(boolean: Bool?, label: UILabel) {
+        if boolean == true {
+            label.textColor = Colors.main
+        } else if boolean == false {
+            label.textColor = .white
+        } else {
+            label.text = ""
+        }
+    }
     //allows user to see detailed view of selected class
     func createUI() {
         courseNumLabel.text = units?.courseNum
@@ -46,49 +54,13 @@ class ClassDetailVC: UIViewController {
         } else {
             courseDescriptionLabel.text = "No description available."
         }
-        if units?.isAccounting == true {
-            isAccounting.textColor = Colors.main
-        } else {
-            isAccounting.textColor = .white
-        }
-        if units?.isBusiness == true {
-            isBusiness.textColor = Colors.main
-        } else {
-            isBusiness.textColor = .white
-        }
-        if units?.isEthics == true {
-            isEthics.textColor = Colors.main
-        } else {
-            isEthics.textColor = .white
-        }
-        if units?.offeredFall == true {
-            isFall.textColor = Colors.main
-        } else if units?.offeredFall == false{
-            isFall.textColor = .white
-        } else {
-            isFall.text = ""
-        }
-        if units?.offeredWinter == true {
-            isWinter.textColor = Colors.main
-        } else if units?.offeredWinter == false{
-            isWinter.textColor = .white
-        } else {
-            isWinter.text = ""
-        }
-        if units?.offeredSpring == true {
-            isSpring.textColor = Colors.main
-        } else if units?.offeredSpring == false{
-            isSpring.textColor = .white
-        } else {
-            isSpring.text = ""
-        }
-        if units?.offeredSummer == true {
-            isSummer.textColor = Colors.main
-        } else if units?.offeredSummer == false {
-            isSummer.textColor = .white
-        } else {
-            isSummer.text = ""
-        }
+        setColorForLabel(boolean: units?.isAccounting, label: isAccounting)
+        setColorForLabel(boolean: units?.isBusiness, label: isBusiness)
+        setColorForLabel(boolean: units?.isEthics, label: isEthics)
+        setColorForLabel(boolean: units?.offeredFall, label: isFall)
+        setColorForLabel(boolean: units?.offeredWinter, label: isWinter)
+        setColorForLabel(boolean: units?.offeredSpring, label: isSpring)
+        setColorForLabel(boolean: units?.offeredSummer, label: isSummer)
         if units?.mustBeEthics == true {
             isEthics.text = "  Professional Ethics"
         }

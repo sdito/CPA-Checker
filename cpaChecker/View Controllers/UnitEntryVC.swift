@@ -291,34 +291,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-    /*
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if ccUnits.text != "" {
-            //unhide
-            ccAccounting.isHidden = false
-            ccBusiness.isHidden = false
-            ccEthics.isHidden = false
-            hideLabel.isHidden = false
-            
-            if CFStringGetIntValue(ccUnits?.text as CFString?) < CFStringGetIntValue(ccAccounting?.text as CFString?) + CFStringGetIntValue(ccBusiness?.text as CFString?) + CFStringGetIntValue(ccEthics?.text as CFString?) {
-                let alert = UIAlertController(title: "Error", message: "Incorrect Entry of Community College Units", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.activeTextField?.text = ""
-                present(alert, animated: true, completion: nil)
-            }
-        } else {
-            //hide
-            ccAccounting.isHidden = true
-            ccBusiness.isHidden = true
-            ccEthics.isHidden = true
-            hideLabel.isHidden = true
-        }
-        return true
-    }
- */
-    func handleExtraEthicsOverCC() {
-        // create, currently if ccEthics is the one that makes total greater than ccUnits (and error alert pop up), keybaord show doesnt work correctly and textfield is hidden
-    }
+
     func textFieldAmount() {
         let f1text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 1'").first?.units.description
         fall1.text = (f1text == "0") ? "" : f1text

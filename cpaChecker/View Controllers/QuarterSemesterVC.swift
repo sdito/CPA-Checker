@@ -23,7 +23,6 @@ class QuarterSemesterVC: UIViewController {
         } else if segmentedControl.selectedSegmentIndex == 1 {
             UserDefaults.standard.set("quarter", forKey: "units")
         }
-        
         dismiss(animated: false, completion: nil)
     }
 }
