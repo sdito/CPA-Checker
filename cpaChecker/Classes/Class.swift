@@ -89,6 +89,32 @@ extension Array where Element: Class {
         }
         return (acl, bcl, ecl)
     }
+    func updateTVclasses(acc: Bool, bus: Bool, eth: Bool, dict: [Int:String]) -> ([String], [[Class]]) {
+        var sortedClasses = self
+        var sectionNames: [String] = []
+        var arrayArrayClasses: [[Class]] = []
+        if (acc == true) && (bus == true) && (eth == true) {
+            sortedClasses = self.filter{$0.isAccounting == true && $0.isBusiness == true && $0.isEthics == true}
+        } else if (acc == true) && (bus == true) && (eth == false) {
+            sortedClasses = self.filter{$0.isAccounting == true && $0.isBusiness == true}
+        } else if (acc == true) && (bus == false) && (eth == true) {
+            sortedClasses = self.filter{$0.isAccounting == true && $0.isEthics == true}
+        } else if (acc == false) && (bus == true) && (eth == true) {
+            sortedClasses = self.filter{$0.isEthics == true && $0.isBusiness == true}
+        } else if (acc == true) && (bus == false) && (eth == false) {
+            sortedClasses = self.filter{$0.isAccounting == true}
+        } else if (acc == false) && (bus == true) && (eth == false) {
+            sortedClasses = self.filter{$0.isBusiness == true}
+        } else if (acc == false) && (bus == false) && (eth == true) {
+            sortedClasses = self.filter{$0.isEthics == true}
+        } else if (acc == false) && (bus == false) && (eth == false) {
+            sortedClasses = self
+        } else {
+            sortedClasses = self
+        }
+        (sectionNames, arrayArrayClasses) = sortedClasses.classesForTableViewSections(colleges: dict)
+        return (sectionNames, arrayArrayClasses)
+    }
     func classesForTableViewSections(colleges: [Int:String]) -> ([String], [[Class]]) {
         var reversedDict = Dictionary(uniqueKeysWithValues: colleges.map({($1, $0)}))
         var sortedCollegenames = reversedDict.keys.sorted()

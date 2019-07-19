@@ -293,36 +293,24 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     }
 
     func textFieldAmount() {
-        let f1text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 1'").first?.units.description
-        fall1.text = (f1text == "0") ? "" : f1text
-        let f2text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 2'").first?.units.description
-        fall2.text = (f2text == "0") ? "" : f2text
-        let f3text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 3'").first?.units.description
-        fall3.text = (f3text == "0") ? "" : f3text
-        let f4text = realm.objects(RealmUnits.self).filter("identifier = 'Fall 4'").first?.units.description
-        fall4.text = (f4text == "0") ? "" : f4text
-        let w1text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 1'").first?.units.description
-        winter1.text = (w1text == "0") ? "" : w1text
-        let w2text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 2'").first?.units.description
-        winter2.text = (w2text == "0") ? "" : w2text
-        let w3text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 3'").first?.units.description
-        winter3.text = (w3text == "0") ? "" : w3text
-        let w4text = realm.objects(RealmUnits.self).filter("identifier = 'Winter 4'").first?.units.description
-        winter4.text = (w4text == "0") ? "" : w4text
-        let s1text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 1'").first?.units.description
-        spring1.text = (s1text == "0") ? "" : s1text
-        let s2text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 2'").first?.units.description
-        spring2.text = (s2text == "0") ? "" : s2text
-        let s3text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 3'").first?.units.description
-        spring3.text = (s3text == "0") ? "" : s3text
-        let s4text = realm.objects(RealmUnits.self).filter("identifier = 'Spring 4'").first?.units.description
-        spring4.text = (s4text == "0") ? "" : s4text
-        let apOtext = realm.objects(RealmUnits.self).filter("identifier = 'AP and Other'").first?.units.description
-        apOther.text = (apOtext == "0") ? "" : apOtext
-        let ccUtext = realm.objects(RealmUnits.self).filter("identifier = 'Community College'").first?.units.description
-        ccUnits.text = (ccUtext == "0") ? "" : ccUtext
-
+        // set the standard text for unit entry, what the user had before, or if zero then empty
+        let realmUnitsObjects = realm.objects(RealmUnits.self)
+        fall1.setText(term: "Fall 1", objects: realmUnitsObjects)
+        fall2.setText(term: "Fall 2", objects: realmUnitsObjects)
+        fall3.setText(term: "Fall 3", objects: realmUnitsObjects)
+        fall4.setText(term: "Fall 4", objects: realmUnitsObjects)
+        winter1.setText(term: "Winter 1", objects: realmUnitsObjects)
+        winter2.setText(term: "Winter 2", objects: realmUnitsObjects)
+        winter3.setText(term: "Winter 3", objects: realmUnitsObjects)
+        winter4.setText(term: "Winter 4", objects: realmUnitsObjects)
+        spring1.setText(term: "Spring 1", objects: realmUnitsObjects)
+        spring2.setText(term: "Spring 2", objects: realmUnitsObjects)
+        spring3.setText(term: "Spring 3", objects: realmUnitsObjects)
+        spring4.setText(term: "Spring 4", objects: realmUnitsObjects)
+        apOther.setText(term: "AP and Other", objects: realmUnitsObjects)
+        ccUnits.setText(term: "Community College", objects: realmUnitsObjects)
     }
+    
     func scToSemesterOrQuarter(segmentedControl: UISegmentedControl) -> String {
         if segmentedControl.selectedSegmentIndex == 0 {
             return "semester"

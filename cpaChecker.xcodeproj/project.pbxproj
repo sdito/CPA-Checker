@@ -28,6 +28,8 @@
 		E2198A5F22A1BBAB00B9D42F /* RealmClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2198A5E22A1BBAB00B9D42F /* RealmClass.swift */; };
 		E21B1DF022E02E00007688B3 /* String-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DEF22E02E00007688B3 /* String-Extension.swift */; };
 		E21B1DF322E02E42007688B3 /* UILabel-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */; };
+		E21B1DF522E17A2A007688B3 /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF422E17A2A007688B3 /* UITextField-Extension.swift */; };
+		E21B1DF722E17F06007688B3 /* UIStackView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF622E17F06007688B3 /* UIStackView-Extension.swift */; };
 		E22B3D9C22A251B3009DEF96 /* RealmUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */; };
 		E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E1922A496A7009DEF96 /* Result.swift */; };
 		E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E5722A63C87009DEF96 /* StatusCell.swift */; };
@@ -94,6 +96,8 @@
 		E2198A5E22A1BBAB00B9D42F /* RealmClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClass.swift; sourceTree = "<group>"; };
 		E21B1DEF22E02E00007688B3 /* String-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-Extension.swift"; sourceTree = "<group>"; };
 		E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel-Extension.swift"; sourceTree = "<group>"; };
+		E21B1DF422E17A2A007688B3 /* UITextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
+		E21B1DF622E17F06007688B3 /* UIStackView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView-Extension.swift"; sourceTree = "<group>"; };
 		E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUnits.swift; sourceTree = "<group>"; };
 		E22B3E1922A496A7009DEF96 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E22B3E5722A63C87009DEF96 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
@@ -254,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				E21B1DEF22E02E00007688B3 /* String-Extension.swift */,
+				E21B1DF422E17A2A007688B3 /* UITextField-Extension.swift */,
+				E21B1DF622E17F06007688B3 /* UIStackView-Extension.swift */,
 				E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */,
 			);
 			path = Extensions;
@@ -505,6 +511,7 @@
 				E20D1D0E22B1C69300B1AE68 /* PopUpVC.swift in Sources */,
 				E2AEB38622B4A3F60017D0F3 /* StatusView.swift in Sources */,
 				E2018CD6229DBFE700973C97 /* ClassListSelectionVC.swift in Sources */,
+				E21B1DF722E17F06007688B3 /* UIStackView-Extension.swift in Sources */,
 				E2198A5D22A1B36000B9D42F /* StatusVC.swift in Sources */,
 				E2D746A522B5497E006AC0A4 /* WelcomeVC.swift in Sources */,
 				E29CDEB522AF0EF500CD8DCE /* Colors.swift in Sources */,
@@ -522,6 +529,7 @@
 				E2ECBEA522D432500064B59A /* SharedUnits.swift in Sources */,
 				E21B1DF022E02E00007688B3 /* String-Extension.swift in Sources */,
 				E2198A5F22A1BBAB00B9D42F /* RealmClass.swift in Sources */,
+				E21B1DF522E17A2A007688B3 /* UITextField-Extension.swift in Sources */,
 				E2018D06229E247200973C97 /* ClassCell.swift in Sources */,
 				E207C87622AB825700BFDA24 /* SharedAllClasses.swift in Sources */,
 			);

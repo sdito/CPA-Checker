@@ -6,6 +6,7 @@
 //  Copyright © 2019 Steven Dito. All rights reserved.
 //
 
+
 import UIKit
 import RealmSwift
 import SQLite
@@ -58,7 +59,8 @@ class ClassListSelectionVC: UIViewController {
         (sectionNames, arrayArrayClasses) = sortedClasses.classesForTableViewSections(colleges: collegeDict)
         //updateTableInfoAndResetData()
         SharedAllClasses.shared.sharedAllClasses = Array(realm.objects(RealmNewClass.self)).addNewClassesTo(courses: SharedAllClasses.shared.sharedAllClasses)
-        updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
+        (sectionNames, arrayArrayClasses) = SharedAllClasses.shared.sharedAllClasses.updateTVclasses(acc: sortAccounting, bus: sortBusiness, eth: sortEthics, dict: collegeDict)
+        //updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
     }
 
@@ -79,7 +81,8 @@ class ClassListSelectionVC: UIViewController {
             accountingSortedOutlet.backgroundColor = .black
             accountingSortedOutlet.setTitleColor(Colors.main, for: .normal)
         }
-        updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
+        (sectionNames, arrayArrayClasses) = SharedAllClasses.shared.sharedAllClasses.updateTVclasses(acc: sortAccounting, bus: sortBusiness, eth: sortEthics, dict: collegeDict)
+        //updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
     }
     //only show classes that have business and potentially others
@@ -92,7 +95,8 @@ class ClassListSelectionVC: UIViewController {
             businessSortedOutlet.backgroundColor = .black
             businessSortedOutlet.setTitleColor(Colors.main, for: .normal)
         }
-        updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
+        (sectionNames, arrayArrayClasses) = SharedAllClasses.shared.sharedAllClasses.updateTVclasses(acc: sortAccounting, bus: sortBusiness, eth: sortEthics, dict: collegeDict)
+        //updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
     }
     //only show classes that have ethics and potentially others
@@ -105,7 +109,8 @@ class ClassListSelectionVC: UIViewController {
             ethicsSortedOutlet.backgroundColor = .black
             ethicsSortedOutlet.setTitleColor(Colors.main, for: .normal)
         }
-        updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
+        (sectionNames, arrayArrayClasses) = SharedAllClasses.shared.sharedAllClasses.updateTVclasses(acc: sortAccounting, bus: sortBusiness, eth: sortEthics, dict: collegeDict)
+        //updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
     }
     
@@ -147,32 +152,7 @@ class ClassListSelectionVC: UIViewController {
             }
         }
     }
-    
-    // to filter classes in main table view based on what buttons are selected
-    func updateClassesForTableView(acc: Bool, bus: Bool, eth: Bool) {
-        if (acc == true) && (bus == true) && (eth == true) {
-            sortedClasses = SharedAllClasses.shared.sharedAllClasses.filter{$0.isAccounting == true && $0.isBusiness == true && $0.isEthics == true}
-        } else if (acc == true) && (bus == true) && (eth == false) {
-            sortedClasses = SharedAllClasses.shared.sharedAllClasses.filter{$0.isAccounting == true && $0.isBusiness == true}
-        } else if (acc == true) && (bus == false) && (eth == true) {
-            sortedClasses = SharedAllClasses.shared.sharedAllClasses.filter{$0.isAccounting == true && $0.isEthics == true}
-        } else if (acc == false) && (bus == true) && (eth == true) {
-            sortedClasses = SharedAllClasses.shared.sharedAllClasses.filter{$0.isEthics == true && $0.isBusiness == true}
-        } else if (acc == true) && (bus == false) && (eth == false) {
-            sortedClasses = SharedAllClasses.shared.sharedAllClasses.filter{$0.isAccounting == true}
-        } else if (acc == false) && (bus == true) && (eth == false) {
-            sortedClasses = SharedAllClasses.shared.sharedAllClasses.filter{$0.isBusiness == true}
-        } else if (acc == false) && (bus == false) && (eth == true) {
-            sortedClasses = SharedAllClasses.shared.sharedAllClasses.filter{$0.isEthics == true}
-        } else if (acc == false) && (bus == false) && (eth == false) {
-            sortedClasses = SharedAllClasses.shared.sharedAllClasses
-        } else {
-            sortedClasses = SharedAllClasses.shared.sharedAllClasses
-        }
-        (sectionNames, arrayArrayClasses) = sortedClasses.classesForTableViewSections(colleges: collegeDict)
-    }
 }
-
 
 extension ClassListSelectionVC: ClassCellDelegate {
     func classSwitchPressed(units: Class) {
@@ -205,7 +185,8 @@ extension ClassListSelectionVC: PopUpDelegate {
     
     func resetTableData() {
         SharedAllClasses.shared.sharedAllClasses = Array(realm.objects(RealmNewClass.self)).addNewClassesTo(courses: SharedAllClasses.shared.sharedAllClasses)
-        updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
+        (sectionNames, arrayArrayClasses) = SharedAllClasses.shared.sharedAllClasses.updateTVclasses(acc: sortAccounting, bus: sortBusiness, eth: sortEthics, dict: collegeDict)
+        //updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
     }
 }
@@ -216,11 +197,7 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionNames.count
     }
-    /*
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionNames[section]
-    }
-    */
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let l = UILabel()
         l.text = sectionNames[section]
@@ -230,7 +207,6 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
         l.alpha = 0.9
         return l
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayArrayClasses[section].count
@@ -260,9 +236,6 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let courseNum = arrayArrayClasses[indexPath.section][indexPath.row]
-            
-            // doesnt work now
-            //deletes class from RealmNewClass
             let count = realm.objects(RealmNewClass.self).filter("courseNum = '\(courseNum.courseNum.uppercased())'").count
             
             if count >= 1 {
@@ -280,10 +253,8 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             //have to delete the class from both, probably could reconcile into one delete by combining them somewhere
-            
             arrayArrayClasses[indexPath.section].remove(at: indexPath.row)
             
-            // NOT sure if i still need to update sharedAllClasses with the deleted classes deleted, test
             SharedAllClasses.shared.sharedAllClasses = SharedAllClasses.shared.sharedAllClasses.filter{$0.courseNum != courseNum.courseNum}
             sortedClasses = sortedClasses.filter {$0.courseNum != courseNum.courseNum}
             //(sectionNames, arrayArrayClasses) = takeInClassesForTableViewSections(classes: sortedClasses, colleges: collegeDict)

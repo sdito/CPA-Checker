@@ -15,14 +15,16 @@ class HelpVC: UIViewController {
     private var about = false
     private var terms = false
     
+    private let aboutText = "To filter classes, select 'Accounting' 'Business' and/or 'Ethics' on the Classes tab\n\nTo add a new class to the Classes tab, select the plus button on the top. Added classes can be deleted by swiping the class on the table."
+    private let newSchoolText = "Select the below button to select a new University to calculate CPA status for. Selecting a new university will not erase all the data you currently have. You will need to re-select the old university (along with the new university) if you want to add a new university to your list.\n\nAre you sure you want to select a new University?"
+    private let termsText = "No guarantee in the accuracy of the app. Recalculate with an outside source to ensure accuracy.\n\nContact resources from your university to ensure accuracy."
+    
     @IBOutlet weak var universityStackView: UIStackView!
     @IBOutlet weak var termsStackView: UIStackView!
     @IBOutlet weak var aboutStackView: UIStackView!
-    
     @IBOutlet weak var universityArrow: UILabel!
     @IBOutlet weak var termsArrow: UILabel!
     @IBOutlet weak var aboutArrow: UILabel!
-    
     @IBOutlet weak var exitOutlet: UIButton!
     
     var realm = try! Realm()
@@ -72,38 +74,17 @@ class HelpVC: UIViewController {
         newSchool = !newSchool
     }
     @IBAction func termsPressed(_ sender: Any) {
-        let label = UILabel()
-        label.text = "No guarantee in the accuracy of the app. Recalculate with an outside source to ensure accuracy.\n\nContact resources from your university to ensure accuracy."
-        label.numberOfLines = 0
-        label.font = UIFont(name: "avenir", size: 17)
-        label.textAlignment = .center
-        if terms == false {
-            termsStackView.insertArrangedSubview(label, at: 1)
-        } else {
-            let view = termsStackView.subviews.last!
-            view.removeFromSuperview()
-        }
+        termsStackView.addOrRemoveFromSV(txt: termsText, boolean: terms, textColor: .black)
         // rotate the arrow in a label 180 degrees
         termsArrow.rotate(boolean: terms)
         terms = !terms
     }
     @IBAction func aboutPressed(_ sender: Any) {
-        let label = UILabel()
-        label.text = "To filter classes, select 'Accounting' 'Business' and/or 'Ethics' on the Classes tab\n\nTo add a new class to the Classes tab, select the plus button on the top. Added classes can be deleted by swiping the class on the table."
-        label.numberOfLines = 0
-        label.font = UIFont(name: "avenir", size: 17)
-        label.textAlignment = .center
-        if about == false {
-            aboutStackView.insertArrangedSubview(label, at: 1)
-        } else {
-            let view = aboutStackView.subviews.last!
-            view.removeFromSuperview()
-        }
+        aboutStackView.addOrRemoveFromSV(txt: aboutText, boolean: about, textColor: .black)
         // rotate the arrow in a label 180 degrees
         aboutArrow.rotate(boolean: about)
         about = !about
     }
 }
-
 
 
