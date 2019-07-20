@@ -30,6 +30,8 @@
 		E21B1DF322E02E42007688B3 /* UILabel-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */; };
 		E21B1DF522E17A2A007688B3 /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF422E17A2A007688B3 /* UITextField-Extension.swift */; };
 		E21B1DF722E17F06007688B3 /* UIStackView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF622E17F06007688B3 /* UIStackView-Extension.swift */; };
+		E21B1DF922E18971007688B3 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF822E18971007688B3 /* Messages.swift */; };
+		E21B1DFB22E2BDFE007688B3 /* View-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DFA22E2BDFE007688B3 /* View-Extension.swift */; };
 		E22B3D9C22A251B3009DEF96 /* RealmUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */; };
 		E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E1922A496A7009DEF96 /* Result.swift */; };
 		E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E5722A63C87009DEF96 /* StatusCell.swift */; };
@@ -98,6 +100,8 @@
 		E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel-Extension.swift"; sourceTree = "<group>"; };
 		E21B1DF422E17A2A007688B3 /* UITextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
 		E21B1DF622E17F06007688B3 /* UIStackView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView-Extension.swift"; sourceTree = "<group>"; };
+		E21B1DF822E18971007688B3 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		E21B1DFA22E2BDFE007688B3 /* View-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-Extension.swift"; sourceTree = "<group>"; };
 		E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUnits.swift; sourceTree = "<group>"; };
 		E22B3E1922A496A7009DEF96 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E22B3E5722A63C87009DEF96 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 				E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */,
 				E207C87122AB6E3300BFDA24 /* RealmNewClass.swift */,
 				E29CDEB422AF0EF500CD8DCE /* Colors.swift */,
+				E21B1DF822E18971007688B3 /* Messages.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				E21B1DF422E17A2A007688B3 /* UITextField-Extension.swift */,
 				E21B1DF622E17F06007688B3 /* UIStackView-Extension.swift */,
 				E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */,
+				E21B1DFA22E2BDFE007688B3 /* View-Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -516,6 +522,7 @@
 				E2D746A522B5497E006AC0A4 /* WelcomeVC.swift in Sources */,
 				E29CDEB522AF0EF500CD8DCE /* Colors.swift in Sources */,
 				E207C87222AB6E3300BFDA24 /* RealmNewClass.swift in Sources */,
+				E21B1DF922E18971007688B3 /* Messages.swift in Sources */,
 				E2018D09229E2D5200973C97 /* ClassDetailVC.swift in Sources */,
 				E2018CD2229DBFE700973C97 /* AppDelegate.swift in Sources */,
 				E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */,
@@ -529,6 +536,7 @@
 				E2ECBEA522D432500064B59A /* SharedUnits.swift in Sources */,
 				E21B1DF022E02E00007688B3 /* String-Extension.swift in Sources */,
 				E2198A5F22A1BBAB00B9D42F /* RealmClass.swift in Sources */,
+				E21B1DFB22E2BDFE007688B3 /* View-Extension.swift in Sources */,
 				E21B1DF522E17A2A007688B3 /* UITextField-Extension.swift in Sources */,
 				E2018D06229E247200973C97 /* ClassCell.swift in Sources */,
 				E207C87622AB825700BFDA24 /* SharedAllClasses.swift in Sources */,

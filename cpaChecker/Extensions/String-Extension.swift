@@ -49,4 +49,14 @@ extension String {
         }
         return names
     }
+    mutating func changeUnitType() {
+        switch self {
+        case "quarter":
+            self = "semester"
+        case "semester":
+            self = "quarter"
+        default:
+            self = "quarter"
+        }
+    }
 }

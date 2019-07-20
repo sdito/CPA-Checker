@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UILabel {
+    // if needed to rotate other than 180 degrees change the function
     func rotate(boolean: Bool) {
         if boolean == false {
             UIView.animate(withDuration: 0.2) {

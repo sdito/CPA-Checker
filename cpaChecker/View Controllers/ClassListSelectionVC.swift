@@ -115,7 +115,7 @@ class ClassListSelectionVC: UIViewController {
     }
     
     @IBAction func addClassPopUp(_ sender: Any) {
-        overlayBlurredBackgroundView()
+        view.insertBlurredBackground()
         let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popOverID") as! PopUpVC
         popOverVC.delegate = self
         self.addChild(popOverVC)
@@ -136,20 +136,6 @@ class ClassListSelectionVC: UIViewController {
             let all = realm.objects(RealmClass.self)
             realm.delete(all)
             tableView.reloadData()
-        }
-    }
-    
-    func overlayBlurredBackgroundView() {
-        let blurredBackgroundView = UIVisualEffectView()
-        blurredBackgroundView.frame = UIScreen.main.bounds//view.frame
-        blurredBackgroundView.effect = UIBlurEffect(style: .dark)
-        view.addSubview(blurredBackgroundView)
-    }
-    func removeBlurredBackgroundView() {
-        for subview in view.subviews {
-            if subview.isKind(of: UIVisualEffectView.self) {
-                subview.removeFromSuperview()
-            }
         }
     }
 }
@@ -180,7 +166,7 @@ extension ClassListSelectionVC: ClassCellDelegate {
 //fix ui after pop up is dismissed
 extension ClassListSelectionVC: PopUpDelegate {
     func removeBlurViews() {
-        removeBlurredBackgroundView()
+        view.removeBlurredBackground()
     }
     
     func resetTableData() {

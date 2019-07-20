@@ -86,7 +86,7 @@ class StatusVC: UIViewController {
 
             }
         }
-        let accurrateMessages = result!.getMessages()//decideWhatMessagesAndHandleDeletion(result: result!)
+        let accurrateMessages = result!.getMessages()
         
         for item in accurrateMessages {
             let view = Bundle.main.loadNibNamed("StatusView", owner: nil, options: nil)?.first as? StatusView
@@ -114,9 +114,7 @@ class StatusVC: UIViewController {
                 item.backgroundColor = .white
             }
         }
-        
-
-        whatClassesForTable()
+        classesForTable = result!.selectedClasses(acc: accounting, bus: business, eth: ethics, taking: taking, available: available)
         tableView.reloadData()
     }
     @IBAction func helpPressed(_ sender: Any) {
@@ -129,54 +127,38 @@ class StatusVC: UIViewController {
         accounting = true
         business = false
         ethics = false
-        whatClassesForTable()
-        if classesForTable.isEmpty == true {
-            //tableView.isHidden = true
-        } else {
-            tableView.isHidden = false
-            self.tableView.reloadData()
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-        }
-        setCombinationLabel()
+        updateTableStuff()
     }
     @IBAction func businessPressed(_ sender: Any) {
         accounting = false
         business = true
         ethics = false
-        whatClassesForTable()
-        if classesForTable.isEmpty == true {
-            //tableView.isHidden = true
-        } else {
-            tableView.isHidden = false
-            self.tableView.reloadData()
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-            
-        }
-        setCombinationLabel()
+        updateTableStuff()
     }
     @IBAction func ethicsPressed(_ sender: Any) {
         accounting = false
         business = false
         ethics = true
-        whatClassesForTable()
-        if classesForTable.isEmpty == true {
-            //tableView.isHidden = true
-        } else {
-            tableView.isHidden = false
-            self.tableView.reloadData()
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-            
-        }
-        setCombinationLabel()
+        updateTableStuff()
     }
     @IBAction func totalPressed(_ sender: Any) {
-        // still need to implement
+        // still need to implement or delete the outlets/buttons
         
     }
     @IBAction func showTaking(_ sender: Any) {
         taking = true
         available = false
-        whatClassesForTable()
+        updateTableStuff()
+    }
+    @IBAction func showAvailable(_ sender: Any) {
+        taking = false
+        available = true
+        updateTableStuff()
+    }
+
+    
+    func updateTableStuff() {
+        classesForTable = result!.selectedClasses(acc: accounting, bus: business, eth: ethics, taking: taking, available: available)
         if classesForTable.isEmpty == true {
             tableView.isHidden = true
         } else {
@@ -185,40 +167,6 @@ class StatusVC: UIViewController {
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             
         }
-        setCombinationLabel()
-    }
-    @IBAction func showAvailable(_ sender: Any) {
-        taking = false
-        available = true
-        whatClassesForTable()
-        if classesForTable.isEmpty == true {
-            tableView.isHidden = true
-        } else {
-            tableView.isHidden = false
-            self.tableView.reloadData()
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-            setCombinationLabel()
-        }
-        
-    }
-    func whatClassesForTable() {
-        if (accounting == true) && (taking == true) {
-            classesForTable = result!.accountingClasses
-        } else if (accounting == true) && (available == true) {
-            classesForTable = result!.accountingClassesLeft
-        } else if (business == true) && (taking == true) {
-            classesForTable = result!.businessClasses
-        } else if (business == true) && (available == true) {
-            classesForTable = result!.businessClassesLeft
-        } else if (ethics == true) && (taking == true) {
-            classesForTable = result!.ethicsClasses
-        } else if (ethics == true) && (available == true) {
-            classesForTable = result!.ethicsClassesLeft
-        } else {
-            classesForTable = result!.accountingClasses
-        }
-    }
-    func setCombinationLabel() {
         var classType: String?
         var takeAvailable: String?
         if accounting == true {
@@ -237,7 +185,6 @@ class StatusVC: UIViewController {
         combinationLabel.text = message.description
     }
 
-    
     func isVisible(view: UIView) -> Bool {
         //let screenRect = wholeView.bounds
         let scrollRect = statusScrollView.bounds
@@ -250,7 +197,14 @@ class StatusVC: UIViewController {
     }
     
 }
-
+extension StatusVC: UpdateUnitLabels {
+    func updateLabels() {
+        neededAccountingLabel.text = "\(SharedUnits.shared.units["totalAccounting"]!)"
+        neededBusinessLabel.text = "\(SharedUnits.shared.units["totalBusiness"]!)"
+        neededEthicsLabel.text = "\(SharedUnits.shared.units["totalEthics"]!)"
+        totalNeededLabel.text = "\(SharedUnits.shared.units["totalUnits"]!)"
+    }
+}
 
 extension StatusVC: UITableViewDelegate, UITableViewDataSource {
     

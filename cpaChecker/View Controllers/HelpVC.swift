@@ -9,23 +9,24 @@
 import UIKit
 import RealmSwift
 
+protocol UpdateUnitLabels {
+    func updateLabels()
+}
 
 class HelpVC: UIViewController {
+    var delagate: UpdateUnitLabels!
     private var newSchool = false
     private var about = false
     private var terms = false
     
-    private let aboutText = "To filter classes, select 'Accounting' 'Business' and/or 'Ethics' on the Classes tab\n\nTo add a new class to the Classes tab, select the plus button on the top. Added classes can be deleted by swiping the class on the table."
-    private let newSchoolText = "Select the below button to select a new University to calculate CPA status for. Selecting a new university will not erase all the data you currently have. You will need to re-select the old university (along with the new university) if you want to add a new university to your list.\n\nAre you sure you want to select a new University?"
-    private let termsText = "No guarantee in the accuracy of the app. Recalculate with an outside source to ensure accuracy.\n\nContact resources from your university to ensure accuracy."
-    
+    @IBOutlet weak var switchUnitsOutlet: UIButton!
     @IBOutlet weak var universityStackView: UIStackView!
     @IBOutlet weak var termsStackView: UIStackView!
     @IBOutlet weak var aboutStackView: UIStackView!
     @IBOutlet weak var universityArrow: UILabel!
     @IBOutlet weak var termsArrow: UILabel!
     @IBOutlet weak var aboutArrow: UILabel!
-    @IBOutlet weak var exitOutlet: UIButton!
+    //@IBOutlet weak var exitOutlet: UIButton!
     
     var realm = try! Realm()
     
@@ -33,6 +34,7 @@ class HelpVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         realm = try! Realm()
+        switchUnitsOutlet.setTitle(Messages.switchUnits, for: .normal)
     }
 
     @IBAction func cancelPressed(_ sender: Any) {
@@ -54,7 +56,7 @@ class HelpVC: UIViewController {
         button.addTarget(self, action: #selector(schoolButtonAction), for: .touchUpInside)
         
         let firstView = universityStackView.subviews.first
-        label.text = "Select the below button to select a new University to calculate CPA status for. Selecting a new university will not erase all the data you currently have. You will need to re-select the old university (along with the new university) if you want to add a new university to your list.\n\nAre you sure you want to select a new University?"
+        label.text = Messages.newSchoolText
         label.numberOfLines = 0
         label.font = UIFont(name: "avenir", size: 17)
         label.textAlignment = .center
@@ -74,17 +76,25 @@ class HelpVC: UIViewController {
         newSchool = !newSchool
     }
     @IBAction func termsPressed(_ sender: Any) {
-        termsStackView.addOrRemoveFromSV(txt: termsText, boolean: terms, textColor: .black)
+        termsStackView.addOrRemoveFromSV(txt: Messages.termsText, boolean: terms, textColor: .black)
         // rotate the arrow in a label 180 degrees
         termsArrow.rotate(boolean: terms)
         terms = !terms
     }
     @IBAction func aboutPressed(_ sender: Any) {
-        aboutStackView.addOrRemoveFromSV(txt: aboutText, boolean: about, textColor: .black)
+        aboutStackView.addOrRemoveFromSV(txt: Messages.aboutText, boolean: about, textColor: .black)
         // rotate the arrow in a label 180 degrees
         aboutArrow.rotate(boolean: about)
         about = !about
     }
+    @IBAction func switchTypeOfUnits(_ sender: Any) {
+        var str = UserDefaults.standard.value(forKey: "units") as! String
+        str.changeUnitType()
+        UserDefaults.standard.set(str, forKey: "units")
+        switchUnitsOutlet.setTitle(Messages.switchUnits, for: .normal)
+        delagate.updateLabels()
+    }
 }
+
 
 

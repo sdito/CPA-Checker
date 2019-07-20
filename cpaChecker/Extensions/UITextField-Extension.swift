@@ -15,4 +15,7 @@ extension UITextField {
         let txt = objects.filter("identifier = '\(term)'").first?.units.description
         self.text = (txt == "0") ? "" : txt
     }
+    func toInt() -> Int {
+        return Int(self.text ?? "") ?? 0
+    }
 }

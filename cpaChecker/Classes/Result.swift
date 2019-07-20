@@ -248,4 +248,21 @@ extension Result {
         }
         return messages
     }
+    func selectedClasses(acc: Bool, bus: Bool, eth: Bool, taking: Bool, available: Bool) -> [Class] {
+        if (acc == true) && (taking == true) {
+            return self.accountingClasses
+        } else if (acc == true) && (available == true) {
+            return self.accountingClassesLeft
+        } else if (bus == true) && (taking == true) {
+            return self.businessClasses
+        } else if (bus == true) && (available == true) {
+            return self.businessClassesLeft
+        } else if (eth == true) && (taking == true) {
+            return self.ethicsClasses
+        } else if (eth == true) && (available == true) {
+            return self.ethicsClassesLeft
+        } else {
+            return self.accountingClasses
+        }
+    }
 }
