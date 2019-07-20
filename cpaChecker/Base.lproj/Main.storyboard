@@ -34,14 +34,14 @@
                                                 <rect key="frame" x="10" y="88.5" width="394" height="299"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="f5w-kA-Swj">
-                                                        <rect key="frame" x="76.5" y="0.0" width="241.5" height="47"/>
+                                                        <rect key="frame" x="69" y="0.0" width="256" height="47"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="0Qv-QD-KbZ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="241.5" height="47"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="256" height="47"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ItJ-vM-RVf">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="229" height="47"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="47"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="25"/>
                                                                         <state key="normal" title="Accounting Subjects">
                                                                             <color key="titleColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
@@ -49,9 +49,9 @@
                                                                             <action selector="accountingSubjects:" destination="9pv-A4-QxB" eventType="touchUpInside" id="n0v-ZW-61X"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▾" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qu5-pf-PjV">
-                                                                        <rect key="frame" x="231" y="8.5" width="10.5" height="30"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qu5-pf-PjV">
+                                                                        <rect key="frame" x="242" y="13.5" width="14" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -60,14 +60,14 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wme-pm-zLc">
-                                                        <rect key="frame" x="46" y="63" width="302.5" height="47"/>
+                                                        <rect key="frame" x="36" y="63" width="322" height="47"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="rOx-7B-aQD">
-                                                                <rect key="frame" x="0.0" y="0.0" width="302.5" height="47"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="322" height="47"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uff-gj-CRc">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="47"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="306" height="47"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="25"/>
                                                                         <state key="normal" title="Business-Related Subjects">
                                                                             <color key="titleColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
@@ -75,9 +75,9 @@
                                                                             <action selector="businessSubjects:" destination="9pv-A4-QxB" eventType="touchUpInside" id="4NV-Gv-MHK"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▾" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcL-hi-M7I">
-                                                                        <rect key="frame" x="292" y="0.0" width="10.5" height="47"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcL-hi-M7I">
+                                                                        <rect key="frame" x="308" y="0.0" width="14" height="47"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -86,14 +86,14 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dsc-F2-dSe">
-                                                        <rect key="frame" x="92" y="126" width="210.5" height="47"/>
+                                                        <rect key="frame" x="84" y="126" width="226" height="47"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="QrW-Zk-ofi">
-                                                                <rect key="frame" x="0.0" y="0.0" width="210.5" height="47"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="226" height="47"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FyL-2d-eNg">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="198" height="47"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="210" height="47"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="25"/>
                                                                         <state key="normal" title="Accounting Study">
                                                                             <color key="titleColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
@@ -101,9 +101,9 @@
                                                                             <action selector="accountingStudy:" destination="9pv-A4-QxB" eventType="touchUpInside" id="VeF-gj-BZ1"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▾" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgh-ez-1xX">
-                                                                        <rect key="frame" x="200" y="0.0" width="10.5" height="47"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgh-ez-1xX">
+                                                                        <rect key="frame" x="212" y="0.0" width="14" height="47"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -112,14 +112,14 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="u2I-Wo-2ZT">
-                                                        <rect key="frame" x="122.5" y="189" width="149.5" height="47"/>
+                                                        <rect key="frame" x="115.5" y="189" width="163" height="47"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="07E-Z6-2Jv">
-                                                                <rect key="frame" x="0.0" y="0.0" width="149.5" height="47"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="163" height="47"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fL-7o-Lo6">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="137" height="47"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="147" height="47"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="25"/>
                                                                         <state key="normal" title="Ethics Study">
                                                                             <color key="titleColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
@@ -127,9 +127,9 @@
                                                                             <action selector="ethicsStudy:" destination="9pv-A4-QxB" eventType="touchUpInside" id="40U-6X-8KX"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▾" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ai-a9-1ek">
-                                                                        <rect key="frame" x="139" y="0.0" width="10.5" height="47"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ai-a9-1ek">
+                                                                        <rect key="frame" x="149" y="0.0" width="14" height="47"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -138,14 +138,14 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MEo-2N-IDN">
-                                                        <rect key="frame" x="87.5" y="252" width="219.5" height="47"/>
+                                                        <rect key="frame" x="78" y="252" width="238" height="47"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="0Z7-zo-qIw">
-                                                                <rect key="frame" x="0.0" y="0.0" width="219.5" height="47"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="238" height="47"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-pL-6o0">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="207" height="47"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="222" height="47"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="25"/>
                                                                         <state key="normal" title="Professional Ethics">
                                                                             <color key="titleColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
@@ -153,9 +153,9 @@
                                                                             <action selector="professionalEthics:" destination="9pv-A4-QxB" eventType="touchUpInside" id="w00-xS-Zjq"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▾" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkE-jF-LiT">
-                                                                        <rect key="frame" x="209" y="0.0" width="10.5" height="47"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkE-jF-LiT">
+                                                                        <rect key="frame" x="224" y="0.0" width="14" height="47"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1501,13 +1501,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="wDe-8E-ILp">
-                                                <rect key="frame" x="20" y="30" width="374" height="286"/>
+                                                <rect key="frame" x="20" y="30" width="374" height="365"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ROe-bA-3Je">
-                                                        <rect key="frame" x="52.5" y="0.0" width="269" height="49"/>
+                                                        <rect key="frame" x="51.5" y="0.0" width="271" height="49"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Ahv-QP-hw2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="269" height="49"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="271" height="49"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8t-yt-Ls3">
                                                                         <rect key="frame" x="0.0" y="0.0" width="255" height="49"/>
@@ -1519,9 +1519,9 @@
                                                                             <action selector="selectNewSchool:" destination="fwF-KW-4pt" eventType="touchUpInside" id="8wR-Rh-g59"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▾" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGY-vi-KnC">
-                                                                        <rect key="frame" x="257" y="7" width="12" height="35"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGY-vi-KnC">
+                                                                        <rect key="frame" x="257" y="14.5" width="14" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -1529,10 +1529,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wD0-Fv-zZ9">
-                                                        <rect key="frame" x="142" y="79" width="90" height="49"/>
+                                                        <rect key="frame" x="141" y="79" width="92" height="49"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="K6d-s7-Rez">
-                                                                <rect key="frame" x="0.0" y="0.0" width="90" height="49"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="92" height="49"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EKw-cd-kxU">
                                                                         <rect key="frame" x="0.0" y="0.0" width="76" height="49"/>
@@ -1544,9 +1544,9 @@
                                                                             <action selector="termsPressed:" destination="fwF-KW-4pt" eventType="touchUpInside" id="QIc-aw-b91"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▾" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ey0-on-EYo">
-                                                                        <rect key="frame" x="78" y="7" width="12" height="35"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ey0-on-EYo">
+                                                                        <rect key="frame" x="78" y="14.5" width="14" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -1554,10 +1554,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bmh-02-mn1">
-                                                        <rect key="frame" x="140" y="158" width="94" height="49"/>
+                                                        <rect key="frame" x="139" y="158" width="96" height="49"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="oXI-4e-zs0">
-                                                                <rect key="frame" x="0.0" y="0.0" width="94" height="49"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="96" height="49"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHs-QN-46f">
                                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="49"/>
@@ -1569,9 +1569,9 @@
                                                                             <action selector="aboutPressed:" destination="fwF-KW-4pt" eventType="touchUpInside" id="qZl-6y-9lN"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▾" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zG7-Rc-d95">
-                                                                        <rect key="frame" x="82" y="7" width="12" height="35"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="➤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zG7-Rc-d95">
+                                                                        <rect key="frame" x="82" y="14.5" width="14" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -1586,6 +1586,16 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="switchTypeOfUnits:" destination="fwF-KW-4pt" eventType="touchUpInside" id="49F-W2-bAs"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8SV-2P-mqv">
+                                                        <rect key="frame" x="66" y="316" width="242" height="49"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="27"/>
+                                                        <state key="normal" title="Contact Developer">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="contactDeveloper:" destination="fwF-KW-4pt" eventType="touchUpInside" id="PIw-c8-uvM"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

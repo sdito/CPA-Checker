@@ -8,13 +8,9 @@
 
 import UIKit
 import RealmSwift
-
-protocol UpdateUnitLabels {
-    func updateLabels()
-}
+import MessageUI
 
 class HelpVC: UIViewController {
-    var delagate: UpdateUnitLabels!
     private var newSchool = false
     private var about = false
     private var terms = false
@@ -35,10 +31,11 @@ class HelpVC: UIViewController {
         // Do any additional setup after loading the view.
         realm = try! Realm()
         switchUnitsOutlet.setTitle(Messages.switchUnits, for: .normal)
+    
     }
 
     @IBAction func cancelPressed(_ sender: Any) {
-        dismiss(animated: false, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func schoolButtonAction(sender: UIButton) {
@@ -92,9 +89,25 @@ class HelpVC: UIViewController {
         str.changeUnitType()
         UserDefaults.standard.set(str, forKey: "units")
         switchUnitsOutlet.setTitle(Messages.switchUnits, for: .normal)
-        delagate.updateLabels()
+    }
+    @IBAction func contactDeveloper(_ sender: Any) {
+        showMailComposer()
+    }
+    func showMailComposer() {
+        guard MFMailComposeViewController.canSendMail() else {
+            return
+        }
+        let composer = MFMailComposeViewController()
+        composer.mailComposeDelegate = self //as? MFMailComposeViewControllerDelegate
+        composer.setToRecipients(["cpa.checker.app@gmail.com"])
+        composer.setSubject("CPA Checker")
+        present(composer, animated: true)
     }
 }
 
 
-
+extension HelpVC: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+}

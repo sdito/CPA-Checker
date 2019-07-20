@@ -49,10 +49,6 @@ class StatusVC: UIViewController {
         tableView.isHidden = true
         //forGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
         statusScrollView.delegate = self
-        neededAccountingLabel.text = "\(SharedUnits.shared.units["totalAccounting"]!)"
-        neededBusinessLabel.text = "\(SharedUnits.shared.units["totalBusiness"]!)"
-        neededEthicsLabel.text = "\(SharedUnits.shared.units["totalEthics"]!)"
-        totalNeededLabel.text = "\(SharedUnits.shared.units["totalUnits"]!)"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -116,6 +112,10 @@ class StatusVC: UIViewController {
         }
         classesForTable = result!.selectedClasses(acc: accounting, bus: business, eth: ethics, taking: taking, available: available)
         tableView.reloadData()
+        neededAccountingLabel.text = "\(SharedUnits.shared.units["totalAccounting"]!)"
+        neededBusinessLabel.text = "\(SharedUnits.shared.units["totalBusiness"]!)"
+        neededEthicsLabel.text = "\(SharedUnits.shared.units["totalEthics"]!)"
+        totalNeededLabel.text = "\(SharedUnits.shared.units["totalUnits"]!)"
     }
     @IBAction func helpPressed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "helpVC") as! HelpVC
@@ -197,14 +197,7 @@ class StatusVC: UIViewController {
     }
     
 }
-extension StatusVC: UpdateUnitLabels {
-    func updateLabels() {
-        neededAccountingLabel.text = "\(SharedUnits.shared.units["totalAccounting"]!)"
-        neededBusinessLabel.text = "\(SharedUnits.shared.units["totalBusiness"]!)"
-        neededEthicsLabel.text = "\(SharedUnits.shared.units["totalEthics"]!)"
-        totalNeededLabel.text = "\(SharedUnits.shared.units["totalUnits"]!)"
-    }
-}
+
 
 extension StatusVC: UITableViewDelegate, UITableViewDataSource {
     

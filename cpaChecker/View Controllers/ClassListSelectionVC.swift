@@ -162,7 +162,6 @@ extension ClassListSelectionVC: ClassCellDelegate {
         }
     }
 }
-
 //fix ui after pop up is dismissed
 extension ClassListSelectionVC: PopUpDelegate {
     func removeBlurViews() {

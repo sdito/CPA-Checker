@@ -14,7 +14,7 @@ extension UILabel {
     func rotate(boolean: Bool) {
         if boolean == false {
             UIView.animate(withDuration: 0.2) {
-                self.transform = CGAffineTransform(rotationAngle: .pi/1)
+                self.transform = CGAffineTransform(rotationAngle: .pi/2)
             }
         } else {
             UIView.animate(withDuration: 0.2) {

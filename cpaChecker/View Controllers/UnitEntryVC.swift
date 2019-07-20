@@ -12,9 +12,7 @@ import RealmSwift
 
 class UnitEntryVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var totalUnitsRequired: UILabel!
-    
     var realm = try! Realm()
-    
     @IBOutlet weak var fall1: UITextField!
     @IBOutlet weak var winter1: UITextField!
     @IBOutlet weak var spring1: UITextField!
@@ -50,9 +48,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         realm = try! Realm()
-        
         fall1.delegate = self
         fall2.delegate = self
         fall3.delegate = self
@@ -67,7 +63,6 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         spring4.delegate = self
         apOther.delegate = self
         ccUnits.delegate = self
-        
         
         // could most likely go bad
         textFieldAmount()
@@ -216,7 +211,6 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     
     // to push current textfield above the keyboard if below, need to fix issue with black screen at bottom after dismissed
     @objc func keyboardWillChange(notification: Notification) {
-        
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect) else {
             return
         }
@@ -236,13 +230,10 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         activeTextField = textField
         return true
     }
-    
-    
     
     //probably could have done this a shorter way
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -335,7 +326,6 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
                    fall1S.selectedSegmentIndex = n; fall2S.selectedSegmentIndex = n; fall3S.selectedSegmentIndex = n; fall4S.selectedSegmentIndex = n; winter1S.selectedSegmentIndex = n; winter2S.selectedSegmentIndex = n; winter3S.selectedSegmentIndex = n; winter4S.selectedSegmentIndex = n; spring1S.selectedSegmentIndex = n; spring2S.selectedSegmentIndex = n; spring3S.selectedSegmentIndex = n; spring4S.selectedSegmentIndex = n; apOtherS.selectedSegmentIndex = n; ccUnitsS.selectedSegmentIndex = n
                 }
             }
-            
         } else {
             //preload the type of units to whatever the user had from before
             let match: [String?:UISegmentedControl] = ["Fall 1":fall1S, "Fall 2":fall2S, "Fall 3":fall3S, "Fall 4":fall4S, "Winter 1":winter1S, "Winter 2":winter2S, "Winter 3":winter3S, "Winter 4":winter4S, "Spring 1":spring1S, "Spring 2":spring2S, "Spring 3":spring3S, "Spring 4":spring4S, "AP and Other":apOtherS, "Community College":ccUnitsS]

@@ -20,6 +20,16 @@ class RealmNewClass: Object {
     @objc dynamic var semesterOrQuarter: String = ""
 }
 
+extension RealmNewClass {
+    func isMissingData() -> Bool {
+        if (self.courseNum == "") || (self.isAccounting == false && self.isBusiness == false && self.isEthics == false ) || self.numUnits == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
 extension Array where Element: RealmNewClass {
     func addNewClassesTo(courses: [Class]) -> [Class] {
         var toReturn: [Class] = courses
