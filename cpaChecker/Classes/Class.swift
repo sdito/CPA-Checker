@@ -150,4 +150,9 @@ extension Array where Element: Class {
         // need to sort by the class titles to ensure that the sections appear in the same order between different page visits, need to sort both different aarrays in the same order, while sorting by classTitle
         return (classTitles, sectionClasses)
     }
+    func sortClasses() -> [Class] {
+        return self.sorted(by: { (c1, c2) -> Bool in
+            c1.courseNum < c2.courseNum
+        })
+    }
 }

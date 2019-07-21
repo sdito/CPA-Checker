@@ -249,7 +249,11 @@ extension Result {
         return messages
     }
     func selectedClasses(acc: Bool, bus: Bool, eth: Bool, taking: Bool, available: Bool) -> [Class] {
-        if (acc == true) && (taking == true) {
+        if (acc == true) && (bus == true) && (eth == true) && (taking == true) {
+            return (self.accountingClasses + self.businessClasses + self.ethicsClasses).sortClasses()
+        } else if (acc == true) && (bus == true) && (eth == true) && (available == true) {
+            return (self.accountingClassesLeft + self.businessClassesLeft + self.ethicsClassesLeft).sortClasses()
+        } else if (acc == true) && (taking == true) {
             return self.accountingClasses
         } else if (acc == true) && (available == true) {
             return self.accountingClassesLeft

@@ -142,7 +142,10 @@ class StatusVC: UIViewController {
         updateTableStuff()
     }
     @IBAction func totalPressed(_ sender: Any) {
-        // still need to implement or delete the outlets/buttons
+        accounting = true
+        business = true
+        ethics = true
+        updateTableStuff()
         
     }
     @IBAction func showTaking(_ sender: Any) {
@@ -169,7 +172,10 @@ class StatusVC: UIViewController {
         }
         var classType: String?
         var takeAvailable: String?
-        if accounting == true {
+        if accounting == true && business == true && ethics == true {
+            classType = "All"
+        }
+        else if accounting == true {
             classType = "Accounting"
         } else if business == true {
             classType = "Business"
@@ -206,13 +212,15 @@ extension StatusVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let sorted = classesForTable.sorted { (c1, c2) -> Bool in
-            c1.courseNum < c2.courseNum
-        }
+        let sorted = classesForTable.sortClasses()
         let object = sorted[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell") as! StatusCell
         cell.statusCellUI(object: object)
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)!.isHighlighted = true
+        tableView.reloadData()
     }
 }
 
