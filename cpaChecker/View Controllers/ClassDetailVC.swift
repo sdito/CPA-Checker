@@ -33,7 +33,7 @@ class ClassDetailVC: UIViewController {
         createUI()
         //gradientView.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
     }
-    func setColorForLabel(boolean: Bool?, label: UILabel) {
+    private func setColorForLabel(boolean: Bool?, label: UILabel) {
         if boolean == true {
             label.textColor = Colors.main
         } else if boolean == false {

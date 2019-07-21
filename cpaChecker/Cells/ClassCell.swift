@@ -31,6 +31,22 @@ class ClassCell: UITableViewCell {
         classItem = units
         classNumberLabel.text = units.courseNum
         if units.isAccounting == true {
+            isAccountingLabel.isHidden = false
+        } else if units.isAccounting == false {
+            isAccountingLabel.isHidden = true
+        }
+        if units.isBusiness == true {
+            isBusinessLabel.isHidden = false
+        } else if units.isBusiness == false {
+            isBusinessLabel.isHidden = true
+        }
+        if units.isEthics == true {
+            isEthicsLabel.isHidden = false
+        } else if units.isEthics == false {
+            isEthicsLabel.isHidden = true
+        }
+        /*
+        if units.isAccounting == true {
             isAccountingLabel.text = "x"
         } else {
             isAccountingLabel.text = " "
@@ -45,7 +61,7 @@ class ClassCell: UITableViewCell {
         } else {
             isEthicsLabel.text = " "
         }
-        
+        */
         // avoid dequeReusableCell problem
         if realm.objects(RealmClass.self).filter("courseNum = '\(units.courseNum)'").count >= 1 {
             classSwitch.isOn = true

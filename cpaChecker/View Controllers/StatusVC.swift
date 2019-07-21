@@ -14,6 +14,7 @@ class StatusVC: UIViewController {
     var realm = try! Realm()
     var result: Result?
     var classesForTable: [Class] = []
+    private var selectedClass: Class?
     
     @IBOutlet var wholeView: UIView!
     @IBOutlet weak var statusScrollView: UIScrollView!
@@ -214,12 +215,23 @@ extension StatusVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sorted = classesForTable.sortClasses()
         let object = sorted[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell") as! StatusCell
-        cell.statusCellUI(object: object)
-        return cell
+        if object.courseNum == selectedClass?.courseNum {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "selectedStatusCell") as! SelectedStatusCell
+            cell.setUI(course: object)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell") as! StatusCell
+            cell.statusCellUI(object: object)
+            return cell
+        }
+        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath)!.isHighlighted = true
+        if selectedClass != nil && selectedClass == classesForTable.sortClasses()[indexPath.row] {
+            selectedClass = nil
+        } else {
+            selectedClass = classesForTable.sortClasses()[indexPath.row]
+        }
         tableView.reloadData()
     }
 }
