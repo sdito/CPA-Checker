@@ -30,38 +30,23 @@ class ClassCell: UITableViewCell {
     func setClassData(units: Class) {
         classItem = units
         classNumberLabel.text = units.courseNum
+        
         if units.isAccounting == true {
-            isAccountingLabel.isHidden = false
-        } else if units.isAccounting == false {
-            isAccountingLabel.isHidden = true
+            isAccountingLabel.alpha = 1
+        } else {
+            isAccountingLabel.alpha = 0
         }
         if units.isBusiness == true {
-            isBusinessLabel.isHidden = false
-        } else if units.isBusiness == false {
-            isBusinessLabel.isHidden = true
+            isBusinessLabel.alpha = 1
+        } else {
+            isBusinessLabel.alpha = 0
         }
         if units.isEthics == true {
-            isEthicsLabel.isHidden = false
-        } else if units.isEthics == false {
-            isEthicsLabel.isHidden = true
-        }
-        /*
-        if units.isAccounting == true {
-            isAccountingLabel.text = "x"
+            isEthicsLabel.alpha = 1
         } else {
-            isAccountingLabel.text = " "
+            isEthicsLabel.alpha = 0
         }
-        if units.isBusiness == true {
-            isBusinessLabel.text = "x"
-        } else {
-            isBusinessLabel.text = " "
-        }
-        if units.isEthics == true {
-            isEthicsLabel.text = "x"
-        } else {
-            isEthicsLabel.text = " "
-        }
-        */
+        
         // avoid dequeReusableCell problem
         if realm.objects(RealmClass.self).filter("courseNum = '\(units.courseNum)'").count >= 1 {
             classSwitch.isOn = true
