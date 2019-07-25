@@ -29,7 +29,7 @@
 		E2198A5D22A1B36000B9D42F /* StatusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2198A5C22A1B36000B9D42F /* StatusVC.swift */; };
 		E2198A5F22A1BBAB00B9D42F /* RealmClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2198A5E22A1BBAB00B9D42F /* RealmClass.swift */; };
 		E21B1DF022E02E00007688B3 /* String-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DEF22E02E00007688B3 /* String-Extension.swift */; };
-		E21B1DF322E02E42007688B3 /* UILabel-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */; };
+		E21B1DF322E02E42007688B3 /* UILabel.UIButton-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF222E02E42007688B3 /* UILabel.UIButton-Extension.swift */; };
 		E21B1DF522E17A2A007688B3 /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF422E17A2A007688B3 /* UITextField-Extension.swift */; };
 		E21B1DF722E17F06007688B3 /* UIStackView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF622E17F06007688B3 /* UIStackView-Extension.swift */; };
 		E21B1DF922E18971007688B3 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF822E18971007688B3 /* Messages.swift */; };
@@ -101,7 +101,7 @@
 		E2198A5C22A1B36000B9D42F /* StatusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusVC.swift; sourceTree = "<group>"; };
 		E2198A5E22A1BBAB00B9D42F /* RealmClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClass.swift; sourceTree = "<group>"; };
 		E21B1DEF22E02E00007688B3 /* String-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-Extension.swift"; sourceTree = "<group>"; };
-		E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel-Extension.swift"; sourceTree = "<group>"; };
+		E21B1DF222E02E42007688B3 /* UILabel.UIButton-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel.UIButton-Extension.swift"; sourceTree = "<group>"; };
 		E21B1DF422E17A2A007688B3 /* UITextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
 		E21B1DF622E17F06007688B3 /* UIStackView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView-Extension.swift"; sourceTree = "<group>"; };
 		E21B1DF822E18971007688B3 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
@@ -270,7 +270,7 @@
 				E21066A422E4362400D28D17 /* Bool-Extension.swift */,
 				E21B1DF422E17A2A007688B3 /* UITextField-Extension.swift */,
 				E21B1DF622E17F06007688B3 /* UIStackView-Extension.swift */,
-				E21B1DF222E02E42007688B3 /* UILabel-Extension.swift */,
+				E21B1DF222E02E42007688B3 /* UILabel.UIButton-Extension.swift */,
 				E21B1DFA22E2BDFE007688B3 /* View-Extension.swift */,
 			);
 			path = Extensions;
@@ -535,7 +535,7 @@
 				E2018CD2229DBFE700973C97 /* AppDelegate.swift in Sources */,
 				E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */,
 				E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */,
-				E21B1DF322E02E42007688B3 /* UILabel-Extension.swift in Sources */,
+				E21B1DF322E02E42007688B3 /* UILabel.UIButton-Extension.swift in Sources */,
 				E2018CD4229DBFE700973C97 /* InstructionsVC.swift in Sources */,
 				E2508B2622CA94720092C978 /* HelpVC.swift in Sources */,
 				E2198A5B22A0B0F100B9D42F /* UnitEntryVC.swift in Sources */,

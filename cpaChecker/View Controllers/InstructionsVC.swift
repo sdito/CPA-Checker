@@ -31,12 +31,14 @@ class InstructionsVC: UIViewController {
     @IBOutlet weak var professionalEthicsArrow: UILabel!
     @IBOutlet weak var degreeInfo: UILabel!
     
+    @IBOutlet weak var buttonOutlet: UIButton!
     
     
     @IBOutlet weak var viewArea: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonOutlet.titleLabel?.adjustsFontSizeToFitWidth = true
         // if a user's colleges selected include a semester and quarter school, let the user decide if the app should use semester or quarter
         if let units = UserDefaults.standard.value(forKey: "units") as? String {
             if units == "user" {

@@ -23,3 +23,9 @@ extension UILabel {
         }
     }
 }
+
+extension Array where Element: UIButton {
+    mutating func setAllToMinFontSize() {
+        self.forEach({$0.titleLabel?.adjustsFontSizeToFitWidth = true})
+    }
+}

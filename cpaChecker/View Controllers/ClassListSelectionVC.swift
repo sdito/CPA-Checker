@@ -35,6 +35,9 @@ class ClassListSelectionVC: UIViewController {
     var blurBackground: Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
+        var ff = [accountingSortedOutlet!, businessSortedOutlet!, ethicsSortedOutlet!]
+        ff.setAllToMinFontSize()
+        
         tableView.delegate = self
         tableView.dataSource = self
         realm = try! Realm()
