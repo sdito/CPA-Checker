@@ -185,12 +185,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         self.activeTextField?.text = ""
         present(alert, animated: true, completion: nil)
     }
-    
-    @IBAction func helpPressed(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "helpVC") as! HelpVC
-        self.present(vc, animated: false, completion: nil)
-    }
-    
+
     
     // set all the textfields back to empty
     func resetUnitsData(alert: UIAlertAction!) {

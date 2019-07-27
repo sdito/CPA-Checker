@@ -23,6 +23,15 @@ extension UILabel {
         }
     }
 }
+extension UIButton {
+    func changeUIfor(boolean: Bool) {
+        if boolean == true {
+            self.alpha = 1.0
+        } else {
+            self.alpha = 0.55
+        }
+    }
+}
 
 extension Array where Element: UIButton {
     mutating func setAllToMinFontSize() {

@@ -35,6 +35,13 @@ class StatusVC: UIViewController {
     @IBOutlet weak var neededEthicsLabel: UILabel!
     @IBOutlet weak var totalNeededLabel: UILabel!
     
+    @IBOutlet weak var takingButtonOutlet: UIButton!
+    @IBOutlet weak var availableButtonOutlet: UIButton!
+    @IBOutlet weak var accountingButtonOutlet: UIButton!
+    @IBOutlet weak var businessButtonOutlet: UIButton!
+    @IBOutlet weak var ethicsButtonOutlet: UIButton!
+    @IBOutlet weak var totalButtonOutlet: UIButton!
+    
     
     private var accounting = true
     private var business = false
@@ -51,7 +58,6 @@ class StatusVC: UIViewController {
         //forGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
         statusScrollView.delegate = self
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         //addNewClassIfStraightToStatus()
         
@@ -117,47 +123,48 @@ class StatusVC: UIViewController {
         neededBusinessLabel.text = "\(SharedUnits.shared.units["totalBusiness"]!)"
         neededEthicsLabel.text = "\(SharedUnits.shared.units["totalEthics"]!)"
         totalNeededLabel.text = "\(SharedUnits.shared.units["totalUnits"]!)"
+        if combinationLabel.text != "Select + and Taking/Available" {setUIforButtons()}
     }
-    @IBAction func helpPressed(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "helpVC") as! HelpVC
-        self.present(vc, animated: false, completion: nil)
-    }
-    
-    
+
     @IBAction func accountingPressed(_ sender: Any) {
         accounting = true
         business = false
         ethics = false
         updateTableStuff()
+        setUIforButtons()
     }
     @IBAction func businessPressed(_ sender: Any) {
         accounting = false
         business = true
         ethics = false
         updateTableStuff()
+        setUIforButtons()
     }
     @IBAction func ethicsPressed(_ sender: Any) {
         accounting = false
         business = false
         ethics = true
         updateTableStuff()
+        setUIforButtons()
     }
     @IBAction func totalPressed(_ sender: Any) {
         accounting = true
         business = true
         ethics = true
         updateTableStuff()
-        
+        setUIforButtons()
     }
     @IBAction func showTaking(_ sender: Any) {
         taking = true
         available = false
         updateTableStuff()
+        setUIforButtons()
     }
     @IBAction func showAvailable(_ sender: Any) {
         taking = false
         available = true
         updateTableStuff()
+        setUIforButtons()
     }
 
     
@@ -202,7 +209,14 @@ class StatusVC: UIViewController {
             return false
         }
     }
-    
+    func setUIforButtons() {
+        takingButtonOutlet.changeUIfor(boolean: taking)
+        availableButtonOutlet.changeUIfor(boolean: available)
+        accountingButtonOutlet.changeUIfor(boolean: accounting)
+        businessButtonOutlet.changeUIfor(boolean: business)
+        ethicsButtonOutlet.changeUIfor(boolean: ethics)
+        totalButtonOutlet.changeUIfor(boolean: accounting == true && business == true && ethics == true)
+    }
 }
 
 

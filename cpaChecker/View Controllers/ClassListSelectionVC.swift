@@ -35,8 +35,8 @@ class ClassListSelectionVC: UIViewController {
     var blurBackground: Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
-        var ff = [accountingSortedOutlet!, businessSortedOutlet!, ethicsSortedOutlet!]
-        ff.setAllToMinFontSize()
+        var setto = [accountingSortedOutlet!, businessSortedOutlet!, ethicsSortedOutlet!]
+        setto.setAllToMinFontSize()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -66,7 +66,19 @@ class ClassListSelectionVC: UIViewController {
         //updateClassesForTableView(acc: sortAccounting, bus: sortBusiness, eth: sortEthics)
         tableView.reloadData()
     }
-
+    
+    
+    /*
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    */
+    
+    
+    
     //pop up to add classes
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "classDetailSegue" {
@@ -220,6 +232,7 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
             return false
         }
     }
+    
     // delete the object from the realm and also tableView if the class was user created
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

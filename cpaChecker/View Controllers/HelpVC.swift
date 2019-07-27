@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-import MessageUI
+//import MessageUI
 
 class HelpVC: UIViewController {
     private var newSchool = false
@@ -31,7 +31,8 @@ class HelpVC: UIViewController {
         // Do any additional setup after loading the view.
         realm = try! Realm()
         switchUnitsOutlet.setTitle(Messages.switchUnits, for: .normal)
-    
+        switchUnitsOutlet.titleLabel?.numberOfLines = 0
+        switchUnitsOutlet.titleLabel?.textAlignment = .center
     }
 
     @IBAction func cancelPressed(_ sender: Any) {
@@ -91,23 +92,31 @@ class HelpVC: UIViewController {
         switchUnitsOutlet.setTitle(Messages.switchUnits, for: .normal)
     }
     @IBAction func contactDeveloper(_ sender: Any) {
-        showMailComposer()
-    }
-    func showMailComposer() {
-        guard MFMailComposeViewController.canSendMail() else {
-            return
+        //showMailComposer()
+        let email = "cpa.checker.app@gmail.com"
+        if let url = URL(string: "mailto:\(email)") {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
         }
-        let composer = MFMailComposeViewController()
-        composer.mailComposeDelegate = self //as? MFMailComposeViewControllerDelegate
-        composer.setToRecipients(["cpa.checker.app@gmail.com"])
-        composer.setSubject("CPA Checker")
-        present(composer, animated: true)
     }
+//    func showMailComposer() {
+//        guard MFMailComposeViewController.canSendMail() else {
+//            return
+//        }
+//        let composer = MFMailComposeViewController()
+//        composer.mailComposeDelegate = self //as? MFMailComposeViewControllerDelegate
+//        composer.setToRecipients(["cpa.checker.app@gmail.com"])
+//        composer.setSubject("CPA Checker")
+//        present(composer, animated: true)
+//    }
 }
 
 
-extension HelpVC: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
-    }
-}
+//extension HelpVC: MFMailComposeViewControllerDelegate {
+//    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+//        controller.dismiss(animated: true)
+//    }
+//}
