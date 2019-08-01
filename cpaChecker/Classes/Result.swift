@@ -161,7 +161,20 @@ struct Result {
         numberBusinessUnits = initialBusiness.sumOfQuarterUnits()
         numberEthicsUnits = initialEthics.sumOfQuarterUnits()
         
-        let ad = numberAccountingUnits - 45//Double(SharedUnits.shared.units["totalAccounting"]!)
+        //add extra accounting units to ethics when applicable
+        if numberAccountingUnits > 45 && numberEthicsUnits < 15 {
+            initialAccounting.forEach { (course) in
+                if course.isEthics == true && course.mustBeEthics == false && numberAccountingUnits - Double(course.numUnits) > 45.0 {
+                    initialAccounting = initialAccounting.filter({$0.courseNum != course.courseNum})
+                    initialEthics.append(course)
+                    numberAccountingUnits = initialAccounting.sumOfQuarterUnits()
+                    numberEthicsUnits = initialEthics.sumOfQuarterUnits()
+    
+                }
+            }
+        }
+        
+        let ad = numberAccountingUnits - 45
         if ad > 0 {
             numberBusinessUnits += ad
             numberAccountingUnits -= ad

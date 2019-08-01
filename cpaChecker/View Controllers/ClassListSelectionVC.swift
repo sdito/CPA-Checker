@@ -131,8 +131,10 @@ class ClassListSelectionVC: UIViewController {
     
     @IBAction func addClassPopUp(_ sender: Any) {
         view.insertBlurredBackground()
+        
         let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popOverID") as! PopUpVC
         popOverVC.delegate = self
+        
         self.addChild(popOverVC)
         popOverVC.view.frame = self.view.frame
         self.view.addSubview(popOverVC.view)

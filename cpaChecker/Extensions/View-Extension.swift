@@ -15,6 +15,7 @@ extension UIView {
         let blurredBackgroundView = UIVisualEffectView()
         blurredBackgroundView.frame = UIScreen.main.bounds
         blurredBackgroundView.effect = UIBlurEffect(style: .dark)
+        
         self.addSubview(blurredBackgroundView)
     }
     func removeBlurredBackground() {

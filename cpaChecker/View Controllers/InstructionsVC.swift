@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
+
+protocol RemoveStatusDelegate {
+    func removeView()
+}
 
 class InstructionsVC: UIViewController {
-
+    var delegate: RemoveStatusDelegate!
     @IBOutlet weak var scrollView: UIScrollView!
-    
     private var accountingSubjects = false
     private var buinessSubjects = false
     private var accountingStudy = false
@@ -33,11 +37,13 @@ class InstructionsVC: UIViewController {
     
     @IBOutlet weak var buttonOutlet: UIButton!
     
+    var realm = try! Realm()
     
     @IBOutlet weak var viewArea: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        realm = try! Realm()
         buttonOutlet.titleLabel?.adjustsFontSizeToFitWidth = true
         // if a user's colleges selected include a semester and quarter school, let the user decide if the app should use semester or quarter
         if let units = UserDefaults.standard.value(forKey: "units") as? String {
@@ -50,6 +56,8 @@ class InstructionsVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         degreeInfo.text = "Baccalaureate Degree & \(SharedUnits.shared.units["totalUnits"] ?? 0) \(SharedUnits.shared.text) Units"
     }
+
+    
     
     @IBAction func accountingSubjects(_ sender: Any) {
         // add or remove text from stack view after user selects related button, text depends on if semester or quarter, rotate the arrow depending on if the user is adding the text or removing the text
@@ -78,11 +86,25 @@ class InstructionsVC: UIViewController {
         professionalEthicsArrow.rotate(boolean: professionalEthics)
         professionalEthics = !professionalEthics
     }
+    @IBAction func testPressed(_ sender: Any) {
+        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "statusPopID") as! StatusPopUpVC
+        self.addChild(popOverVC)
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParent: self)
+        
+    }
+    
+    @IBAction func testCancel(_ sender: Any) {
+        print("delegate was called")
+        delegate.removeView()
+    }
     
     @IBAction func helpPressed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "helpVC") as! HelpVC
         self.present(vc, animated: false, completion: nil)
     }
 
+    
 }
 

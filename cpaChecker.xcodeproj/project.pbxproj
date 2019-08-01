@@ -34,6 +34,7 @@
 		E21B1DF722E17F06007688B3 /* UIStackView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF622E17F06007688B3 /* UIStackView-Extension.swift */; };
 		E21B1DF922E18971007688B3 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DF822E18971007688B3 /* Messages.swift */; };
 		E21B1DFB22E2BDFE007688B3 /* View-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21B1DFA22E2BDFE007688B3 /* View-Extension.swift */; };
+		E22AD16622EF7E4000CD6E44 /* StatusPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22AD16522EF7E4000CD6E44 /* StatusPopUpVC.swift */; };
 		E22B3D9C22A251B3009DEF96 /* RealmUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */; };
 		E22B3E1A22A496A7009DEF96 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E1922A496A7009DEF96 /* Result.swift */; };
 		E22B3E5822A63C87009DEF96 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B3E5722A63C87009DEF96 /* StatusCell.swift */; };
@@ -106,6 +107,7 @@
 		E21B1DF622E17F06007688B3 /* UIStackView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView-Extension.swift"; sourceTree = "<group>"; };
 		E21B1DF822E18971007688B3 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		E21B1DFA22E2BDFE007688B3 /* View-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-Extension.swift"; sourceTree = "<group>"; };
+		E22AD16522EF7E4000CD6E44 /* StatusPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusPopUpVC.swift; sourceTree = "<group>"; };
 		E22B3D9B22A251B3009DEF96 /* RealmUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUnits.swift; sourceTree = "<group>"; };
 		E22B3E1922A496A7009DEF96 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E22B3E5722A63C87009DEF96 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
@@ -200,12 +202,12 @@
 				E2018CD1229DBFE700973C97 /* AppDelegate.swift */,
 				E2018D01229DC18C00973C97 /* View Controllers */,
 				E2018CD7229DBFE700973C97 /* Main.storyboard */,
-				E2508B2122C824D40092C978 /* cpa.db */,
 				E2018CDC229DBFEA00973C97 /* LaunchScreen.storyboard */,
+				E2508B2122C824D40092C978 /* cpa.db */,
 				E21B1DF122E02E14007688B3 /* Extensions */,
 				E22B3E5922A63C91009DEF96 /* Cells */,
 				E2018D04229DC1B100973C97 /* Classes */,
-				E2AEB38722B4A4ED0017D0F3 /* StatusView */,
+				E22AD16422EF56C900CD6E44 /* Views */,
 				E2018CDA229DBFEA00973C97 /* Assets.xcassets */,
 				E2018CDF229DBFEA00973C97 /* Info.plist */,
 			);
@@ -237,12 +239,13 @@
 				E2018CD5229DBFE700973C97 /* ClassListSelectionVC.swift */,
 				E2018D08229E2D5200973C97 /* ClassDetailVC.swift */,
 				E2198A5A22A0B0F100B9D42F /* UnitEntryVC.swift */,
-				E20D1D0D22B1C69300B1AE68 /* PopUpVC.swift */,
 				E2198A5C22A1B36000B9D42F /* StatusVC.swift */,
 				E2D746A422B5497E006AC0A4 /* WelcomeVC.swift */,
 				E2D746A622B54995006AC0A4 /* SchoolSelectVC.swift */,
 				E2508B2522CA94720092C978 /* HelpVC.swift */,
 				E2ECBEA222D2E2470064B59A /* QuarterSemesterVC.swift */,
+				E20D1D0D22B1C69300B1AE68 /* PopUpVC.swift */,
+				E22AD16522EF7E4000CD6E44 /* StatusPopUpVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -274,6 +277,14 @@
 				E21B1DFA22E2BDFE007688B3 /* View-Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E22AD16422EF56C900CD6E44 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E2AEB38722B4A4ED0017D0F3 /* StatusView */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E22B3E5922A63C91009DEF96 /* Cells */ = {
@@ -538,6 +549,7 @@
 				E21B1DF322E02E42007688B3 /* UILabel.UIButton-Extension.swift in Sources */,
 				E2018CD4229DBFE700973C97 /* InstructionsVC.swift in Sources */,
 				E2508B2622CA94720092C978 /* HelpVC.swift in Sources */,
+				E22AD16622EF7E4000CD6E44 /* StatusPopUpVC.swift in Sources */,
 				E2198A5B22A0B0F100B9D42F /* UnitEntryVC.swift in Sources */,
 				E2ECBEA322D2E2480064B59A /* QuarterSemesterVC.swift in Sources */,
 				E22B3D9C22A251B3009DEF96 /* RealmUnits.swift in Sources */,
