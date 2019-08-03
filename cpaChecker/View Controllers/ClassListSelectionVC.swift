@@ -68,14 +68,16 @@ class ClassListSelectionVC: UIViewController {
     }
     
     
-    /*
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
-    */
+    override func viewDidDisappear(_ animated: Bool) {
+        StatusPopUpVC.popUp.popOverVC.view.removeFromSuperview()
+    }
     
     
     
@@ -154,6 +156,13 @@ class ClassListSelectionVC: UIViewController {
             realm.delete(all)
             tableView.reloadData()
         }
+    }
+    @IBAction func statusPopUpInsert(_ sender: Any) {
+        self.add(popUp: StatusPopUpVC.popUp.popOverVC)
+    }
+    
+    @IBAction func statusPopUpRemove(_ sender: Any) {
+        StatusPopUpVC.popUp.popOverVC.view.removeFromSuperview()
     }
 }
 

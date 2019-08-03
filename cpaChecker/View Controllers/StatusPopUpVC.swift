@@ -10,7 +10,9 @@ import UIKit
 import RealmSwift
 
 
+
 class StatusPopUpVC: UIViewController {
+    
     @IBOutlet weak var accountingHave: UILabel!
     @IBOutlet weak var businessHave: UILabel!
     @IBOutlet weak var ethicsHave: UILabel!
@@ -26,8 +28,10 @@ class StatusPopUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         realm = try! Realm()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         setUI(result: Result.calculateResult(units: Array(realm.objects(RealmUnits.self)), key: UserDefaults.standard.value(forKey: "units") as! String, realmClasses: Array(realm.objects(RealmClass.self))))
-        // Do any additional setup after loading the view.
     }
     
     func setUI(result: Result) {
@@ -41,11 +45,8 @@ class StatusPopUpVC: UIViewController {
         ethicsNeeded.text = "\(SharedUnits.shared.units["totalEthics"] ?? 0)"
         totalNeeded.text = "\(SharedUnits.shared.units["totalUnits"] ?? 0)"
     }
-}
 
-extension StatusPopUpVC: RemoveStatusDelegate {
-    func removeView() {
-        print("delegate called")
-        self.removeFromParent()
+    struct popUp {
+        static let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "statusPopID") as! StatusPopUpVC
     }
 }

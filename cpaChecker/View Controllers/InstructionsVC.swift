@@ -9,12 +9,9 @@
 import UIKit
 import RealmSwift
 
-protocol RemoveStatusDelegate {
-    func removeView()
-}
-
 class InstructionsVC: UIViewController {
-    var delegate: RemoveStatusDelegate!
+    
+    
     @IBOutlet weak var scrollView: UIScrollView!
     private var accountingSubjects = false
     private var buinessSubjects = false
@@ -55,6 +52,7 @@ class InstructionsVC: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         degreeInfo.text = "Baccalaureate Degree & \(SharedUnits.shared.units["totalUnits"] ?? 0) \(SharedUnits.shared.text) Units"
+        StatusPopUpVC.popUp.popOverVC.view.removeFromSuperview()
     }
 
     
@@ -87,24 +85,15 @@ class InstructionsVC: UIViewController {
         professionalEthics = !professionalEthics
     }
     @IBAction func testPressed(_ sender: Any) {
-        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "statusPopID") as! StatusPopUpVC
-        self.addChild(popOverVC)
-        popOverVC.view.frame = self.view.frame
-        self.view.addSubview(popOverVC.view)
-        popOverVC.didMove(toParent: self)
-        
+        self.add(popUp: StatusPopUpVC.popUp.popOverVC)
     }
     
     @IBAction func testCancel(_ sender: Any) {
-        print("delegate was called")
-        delegate.removeView()
+        StatusPopUpVC.popUp.popOverVC.view.removeFromSuperview()
     }
     
     @IBAction func helpPressed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "helpVC") as! HelpVC
         self.present(vc, animated: false, completion: nil)
     }
-
-    
 }
-

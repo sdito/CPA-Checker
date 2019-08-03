@@ -98,9 +98,79 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     }
     // since in a tab bar and no segue, is this a bad way to update the realm about the units? or should I update them another way
     override func viewWillDisappear(_ animated: Bool) {
-        // works, but is it the right way to just create an instance on each view controller of the realm? or should I put it in a shared class and access it that way?
-        //print(Realm.Configuration.defaultConfiguration.fileURL)
-        // clean up textfields before doing this, dont allow anything but numbers
+        addUnitsToRealm()
+        segmentedControlStartingSegment()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        StatusPopUpVC.popUp.popOverVC.view.removeFromSuperview()
+    }
+    //alert for function resetUnitsData()
+    @IBAction func resetAlertPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Reset Units?", message: "This will reset only the data on this page.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: resetUnitsData))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.activeTextField?.text = ""
+        present(alert, animated: true, completion: nil)
+    }
+    @IBAction func statusPopUpInsert(_ sender: Any) {
+        addUnitsToRealm()
+        self.add(popUp: StatusPopUpVC.popUp.popOverVC)
+    }
+    
+    @IBAction func statusPopUpDelete(_ sender: Any) {
+        StatusPopUpVC.popUp.popOverVC.view.removeFromSuperview()
+    }
+    
+    // set all the textfields back to empty
+    func resetUnitsData(alert: UIAlertAction!) {
+        try! realm.write {
+            let realmUnitsData = realm.objects(RealmUnits.self)
+            realm.delete(realmUnitsData)
+        }
+        textFieldAmount()
+    }
+    
+    @objc func doneClicked() {
+        view.endEditing(true)
+        UIView.animate(withDuration: 0.5) {
+            self.view.frame.origin.y = 0
+        }
+        
+    }
+    
+    // to push current textfield above the keyboard if below, need to fix issue with black screen at bottom after dismissed
+    @objc func keyboardWillChange(notification: Notification) {
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect) else {
+            return
+        }
+        //kbHeight = keyboardRect.height
+        //var tally: CGFloat = 0
+        if (activeTextField?.frame.origin.y ?? 0) > keyboardRect.height {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.frame.origin.y = -((self.activeTextField?.frame.origin.y)! - keyboardRect.height)
+
+            })
+            
+            //tally += -((activeTextField?.frame.origin.y)! - keyboardRect.height)
+        } else if (activeTextField?.frame.origin.y) ?? 0 < keyboardRect.height {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.frame.origin.y = 0
+            })
+        }
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        activeTextField = textField
+        return true
+    }
+    
+    func addUnitsToRealm() {
         let f1 = RealmUnits()
         f1.identifier = "Fall 1"
         f1.units = fall1.toInt()
@@ -168,66 +238,6 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
             realm.delete(allUnitsToDelete)
             realm.add(realmObjects)
         }
-        segmentedControlStartingSegment()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-    }
-    
-    //alert for function resetUnitsData()
-    @IBAction func resetAlertPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Reset Units?", message: "This will reset only the data on this page.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: resetUnitsData))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.activeTextField?.text = ""
-        present(alert, animated: true, completion: nil)
-    }
-
-    
-    // set all the textfields back to empty
-    func resetUnitsData(alert: UIAlertAction!) {
-        try! realm.write {
-            let realmUnitsData = realm.objects(RealmUnits.self)
-            realm.delete(realmUnitsData)
-        }
-        textFieldAmount()
-    }
-    
-    @objc func doneClicked() {
-        view.endEditing(true)
-        UIView.animate(withDuration: 0.5) {
-            self.view.frame.origin.y = 0
-        }
-        
-    }
-    
-    // to push current textfield above the keyboard if below, need to fix issue with black screen at bottom after dismissed
-    @objc func keyboardWillChange(notification: Notification) {
-        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect) else {
-            return
-        }
-        //kbHeight = keyboardRect.height
-        //var tally: CGFloat = 0
-        if (activeTextField?.frame.origin.y ?? 0) > keyboardRect.height {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.view.frame.origin.y = -((self.activeTextField?.frame.origin.y)! - keyboardRect.height)
-
-            })
-            
-            //tally += -((activeTextField?.frame.origin.y)! - keyboardRect.height)
-        } else if (activeTextField?.frame.origin.y) ?? 0 < keyboardRect.height {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.view.frame.origin.y = 0
-            })
-        }
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        activeTextField = textField
-        return true
     }
     
     //probably could have done this a shorter way
