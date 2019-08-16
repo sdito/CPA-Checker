@@ -252,6 +252,7 @@ extension StatusVC: UITableViewDelegate, UITableViewDataSource {
 
 
 extension StatusVC: UIScrollViewDelegate {
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         var counter = 0
         if scrollView == statusScrollView {
