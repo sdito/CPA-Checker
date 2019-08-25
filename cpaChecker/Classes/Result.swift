@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Result {
     var totalUnits: Int
@@ -240,23 +241,55 @@ extension Result {
             }
         }
         if accountingDifference == -5 {
-            messages.append("Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.")
+            if UIDevice().name != "iPhone SE" {
+                messages.append("Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.")
+            } else {
+                messages.append("Need 5 more accounting units.")
+            }
+            
         } else if accountingDifference < 0 {
-            messages.append("Need \(abs(accountingDifference)) more accounting unit\(accS), look into more accounting electives or community college classes.")
+            if UIDevice().name != "iPhone SE" {
+                messages.append("Need \(abs(accountingDifference)) more accounting unit\(accS), look into more accounting electives or community college classes.")
+            } else {
+                messages.append("Need \(abs(accountingDifference)) more accounting unit\(accS)")
+            }
+            
         }
         if businessDifference < 0 {
-            messages.append("Need \(abs(businessDifference)) more business unit\(busS). Look through your other classes that could count and add them to the class list.")
+            if UIDevice().name != "iPhone SE" {
+                messages.append("Need \(abs(businessDifference)) more business unit\(busS). Look through your other classes that could count and add them to the class list.")
+            } else {
+                messages.append("Need \(abs(businessDifference)) more business unit\(busS)")
+            }
+            
         }
         if ethicsDifference < 0 {
-            messages.append("Need \(abs(ethicsDifference)) more ethics unit\(ethS). Check for any free elective classes that could meet the ethics requirement.")
+            if UIDevice().name != "iPhone SE" {
+                messages.append("Need \(abs(ethicsDifference)) more ethics unit\(ethS). Check for any free elective classes that could meet the ethics requirement.")
+            } else {
+                messages.append("Need \(abs(ethicsDifference)) more ethics unit\(ethS)")
+            }
+            
         }
         if totalDifference < 0 {
-            messages.append("Need \(abs(totalDifference)) more total unit\(totS). Look for some interesting free elective classes to take.")
+            if UIDevice().name != "iPhone SE" {
+                messages.append("Need \(abs(totalDifference)) more total unit\(totS). Look for some interesting free elective classes to take.")
+            } else {
+                messages.append("Need \(abs(totalDifference)) more total unit\(totS)")
+            }
+            
         }
+        
         if ethicsClasses.filter({$0.mustBeEthics == true}).count == 0 {
-            messages.append("Need a professional ethics class. Professional ethics classes have a title such as Accounting Ethics. Check the instructions for more information.")
+            if UIDevice().name != "iPhone SE" {
+                messages.append("Need a professional ethics class. Professional ethics classes have a title such as Accounting Ethics. Check the instructions for more information.")
+            } else {
+                messages.append("Need a professional ethics class")
+            }
+            
         }
         if messages.isEmpty == true {
+            
             messages.append("Good job! All the conditions are met.")
         }
         return messages

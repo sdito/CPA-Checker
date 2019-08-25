@@ -119,6 +119,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         present(alert, animated: true, completion: nil)
     }
     @IBAction func statusPopUpInsert(_ sender: Any) {
+        
         addUnitsToRealm()
         self.add(popUp: StatusPopUpVC.popUp.popOverVC)
     }
