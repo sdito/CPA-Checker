@@ -41,7 +41,7 @@ class ClassListSelectionVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         realm = try! Realm()
-        print(Realm.Configuration.defaultConfiguration.fileURL ?? "Realm location print didnt work")
+        //print(Realm.Configuration.defaultConfiguration.fileURL ?? "Realm location print didnt work")
         //headerViewGradient.setGradientBackground(colorOne: Colors.lightLightGray, colorTwo: Colors.lightGray)
         sortedClasses = SharedAllClasses.shared.sharedAllClasses
     }

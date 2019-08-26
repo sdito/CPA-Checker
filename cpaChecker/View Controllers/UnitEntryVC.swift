@@ -152,9 +152,9 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         }
         //kbHeight = keyboardRect.height
         //var tally: CGFloat = 0
-        if (activeTextField?.frame.origin.y ?? 0) > keyboardRect.height {
+        if (activeTextField?.frame.origin.y ?? 0) > keyboardRect.height - 50 {
             UIView.animate(withDuration: 0.5, animations: {
-                self.view.frame.origin.y = -((self.activeTextField?.frame.origin.y)! - keyboardRect.height)
+                self.view.frame.origin.y = -((self.activeTextField?.frame.origin.y)! - keyboardRect.height + 60)
 
             })
             

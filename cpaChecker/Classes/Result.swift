@@ -240,15 +240,16 @@ extension Result {
                 return "s"
             }
         }
-        if accountingDifference == -5 {
-            if UIDevice().name != "iPhone SE" {
-                messages.append("Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.")
-            } else {
-                messages.append("Need 5 more accounting units.")
-            }
-            
-        } else if accountingDifference < 0 {
-            if UIDevice().name != "iPhone SE" {
+//        if accountingDifference == -5 {
+//            if UIDevice().name != "iPhone SE" {
+//                messages.append("Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.")
+//            } else {
+//                messages.append("Need 5 more accounting units.")
+//            }
+//
+//        }
+        if accountingDifference < 0 {
+            if UIDevice().name != "iPhone SE" && UIDevice().name != "iPhone 5s" {
                 messages.append("Need \(abs(accountingDifference)) more accounting unit\(accS), look into more accounting electives or community college classes.")
             } else {
                 messages.append("Need \(abs(accountingDifference)) more accounting unit\(accS)")
@@ -256,7 +257,7 @@ extension Result {
             
         }
         if businessDifference < 0 {
-            if UIDevice().name != "iPhone SE" {
+            if UIDevice().name != "iPhone SE" && UIDevice().name != "iPhone 5s" {
                 messages.append("Need \(abs(businessDifference)) more business unit\(busS). Look through your other classes that could count and add them to the class list.")
             } else {
                 messages.append("Need \(abs(businessDifference)) more business unit\(busS)")
@@ -264,7 +265,7 @@ extension Result {
             
         }
         if ethicsDifference < 0 {
-            if UIDevice().name != "iPhone SE" {
+            if UIDevice().name != "iPhone SE" && UIDevice().name != "iPhone 5s" {
                 messages.append("Need \(abs(ethicsDifference)) more ethics unit\(ethS). Check for any free elective classes that could meet the ethics requirement.")
             } else {
                 messages.append("Need \(abs(ethicsDifference)) more ethics unit\(ethS)")
@@ -272,7 +273,7 @@ extension Result {
             
         }
         if totalDifference < 0 {
-            if UIDevice().name != "iPhone SE" {
+            if UIDevice().name != "iPhone SE" && UIDevice().name != "iPhone 5s" {
                 messages.append("Need \(abs(totalDifference)) more total unit\(totS). Look for some interesting free elective classes to take.")
             } else {
                 messages.append("Need \(abs(totalDifference)) more total unit\(totS)")
@@ -281,9 +282,16 @@ extension Result {
         }
         
         if ethicsClasses.filter({$0.mustBeEthics == true}).count == 0 {
-            if UIDevice().name != "iPhone SE" {
+            if UIDevice().name != "iPhone SE" && UIDevice().name != "iPhone 5s" {
                 messages.append("Need a professional ethics class. Professional ethics classes have a title such as Accounting Ethics. Check the instructions for more information.")
             } else {
+                print("called")
+                print("called")
+                print("called")
+                print("called")
+                print("called")
+                print("called")
+                print("called")
                 messages.append("Need a professional ethics class")
             }
             

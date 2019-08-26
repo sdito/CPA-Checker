@@ -39,7 +39,7 @@ class PopUpVC: UIViewController {
     
     @IBAction func isProfessionalEthics(_ sender: Any) {
         professionalEthics = !professionalEthics
-        print(professionalEthics)
+        //print(professionalEthics)
     }
     
     
