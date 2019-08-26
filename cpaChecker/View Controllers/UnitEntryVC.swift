@@ -151,10 +151,20 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
             return
         }
         //kbHeight = keyboardRect.height
-        //var tally: CGFloat = 0
-        if (activeTextField?.frame.origin.y ?? 0) > keyboardRect.height - 50 {
+        //var tally: CGFloat = 0    
+        
+        // iPhone SE and iPhone 5s keyboard notofication func doesnt work property without adjusting the height
+        var forOtherDevices: CGFloat {
+            if UIDevice().name == "iPhone SE" || UIDevice().name == "iPhone 5s" {
+                return 50
+            } else {
+                return 50
+            }
+        }
+        if (activeTextField?.frame.origin.y ?? 0) > keyboardRect.height - forOtherDevices {
             UIView.animate(withDuration: 0.5, animations: {
-                self.view.frame.origin.y = -((self.activeTextField?.frame.origin.y)! - keyboardRect.height + 60)
+                self.view.frame.origin.y = -((self.activeTextField?.frame.origin.y)! - keyboardRect.height + forOtherDevices)
+                
 
             })
             

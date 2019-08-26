@@ -85,6 +85,9 @@ struct Result {
         }
         
         //now have an array of classes that could switch, and maximum units that could be switched, need to decide which classes to switch
+        /*
+        decideWhatClassesToSwitch iterates through all the combination of classes that are both ethics and business and returns the correct unit amount when found, if no combination of classes will satisfy both the ethics and business requirements after switching, then it will return the highest amount
+        */
         func decideWhatClassesToSwitch(classes: [Class], busNeeded: Double, ethExtra: Double, values: [[Class]]?, highest: [Class]?) -> [Class]? {
             var highestAmount: [Class]? = highest
             if classes.isEmpty == true || busNeeded <= 0 || ethExtra <= 0 {
@@ -240,6 +243,7 @@ extension Result {
                 return "s"
             }
         }
+        
 //        if accountingDifference == -5 {
 //            if UIDevice().name != "iPhone SE" {
 //                messages.append("Need 5 more accounting units. Some community college accounting classes are exactly 5 units. Check them out.")
@@ -248,6 +252,9 @@ extension Result {
 //            }
 //
 //        }
+        
+        
+        //messages are split into two since iPhone SE and iPhone 5s have such a small screen, they would not be able to fit the full message
         if accountingDifference < 0 {
             if UIDevice().name != "iPhone SE" && UIDevice().name != "iPhone 5s" {
                 messages.append("Need \(abs(accountingDifference)) more accounting unit\(accS), look into more accounting electives or community college classes.")
@@ -285,13 +292,6 @@ extension Result {
             if UIDevice().name != "iPhone SE" && UIDevice().name != "iPhone 5s" {
                 messages.append("Need a professional ethics class. Professional ethics classes have a title such as Accounting Ethics. Check the instructions for more information.")
             } else {
-                print("called")
-                print("called")
-                print("called")
-                print("called")
-                print("called")
-                print("called")
-                print("called")
                 messages.append("Need a professional ethics class")
             }
             

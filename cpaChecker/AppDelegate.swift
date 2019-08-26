@@ -73,15 +73,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
             SharedAllClasses.shared.sharedAllClasses = ac
-            
-            
-            
             self.window?.rootViewController = vc
             self.window?.makeKeyAndVisible()
+            
+            
         } else {
             let otherVC: WelcomeVC = storyboard.instantiateViewController(withIdentifier: "welcome") as! WelcomeVC
+            
             self.window?.rootViewController = otherVC
             self.window?.makeKeyAndVisible()
+            
+            
         }
 
         
@@ -116,4 +118,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

@@ -132,10 +132,16 @@ extension SchoolSelectVC: UITableViewDataSource, UITableViewDelegate {
             cell?.textLabel?.textColor = .white
             cell?.accessoryType = .none
         }
+        
         cell?.textLabel?.text = school
         cell?.textLabel?.font = UIFont(name: "avenir", size: 17)
         cell?.textLabel?.numberOfLines = 0
+        
+        
+        
         cell?.selectionStyle = .none
+        //cell?.bounds = .infinite
+        
         return cell!
     }
     
@@ -153,6 +159,7 @@ extension SchoolSelectVC: UITableViewDataSource, UITableViewDelegate {
             whatSchoolSelected.insert(value)
         }
 
+        
         collegeNameLabel.text = setToString(set: whatSchoolSelected)
 
     }

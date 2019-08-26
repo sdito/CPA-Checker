@@ -35,6 +35,14 @@ class ClassListSelectionVC: UIViewController {
     var blurBackground: Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // if a user's colleges selected include a semester and quarter school, let the user decide if the app should use semester or quarter     c
+        if let units = UserDefaults.standard.value(forKey: "units") as? String {
+            if units == "user" {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "quarterSemesterID") as! QuarterSemesterVC
+                self.present(vc, animated: false, completion: nil)
+            }
+        }
         var setto = [accountingSortedOutlet!, businessSortedOutlet!, ethicsSortedOutlet!]
         setto.setAllToMinFontSize()
         
