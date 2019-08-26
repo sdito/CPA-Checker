@@ -38,7 +38,7 @@ struct Messages {
         return "Switch to \(txt) Units"
     }
     static let professionalEthics = "Professional Ethics is required as part of Ethics Study. An Example of a professional ethics class would be titled 'Accounting Ethics.' Professional ethics classes will be marked; tap on a class in the class selection list and see if the class qualifies"
-    static let aboutText = "To filter classes, select 'Accounting' 'Business' and/or 'Ethics' on the Classes tab\n\nTo add a new class to the Classes tab, select the plus button on the top. Added classes can be deleted by swiping the class on the table."
+    static let aboutText = "To filter classes, select 'Accounting' 'Business' and/or 'Ethics' on the Classes tab.\n\nTo add a new class to the Classes tab, select the plus button on the top. Added classes can be deleted by swiping the class on the table.\n\nS & Q for selecting units represents 'Semester' and 'Quarter'"
     static let newSchoolText = "Select the below button to select a new University to calculate CPA status for. Selecting a new university will not erase all the data you currently have. You will need to re-select the old university (along with the new university) if you want to add a new university to your list.\n\nAre you sure you want to select a new University?"
     static let termsText = "No guarantee in the accuracy of the app. Recalculate with an outside source to ensure accuracy.\n\nContact resources from your university to ensure accuracy."
     
