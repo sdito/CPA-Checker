@@ -95,6 +95,7 @@ class InstructionsVC: UIViewController {
     
     @IBAction func helpPressed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "helpVC") as! HelpVC
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: false, completion: nil)
     }
 }

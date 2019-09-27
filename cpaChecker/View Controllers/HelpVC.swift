@@ -41,6 +41,7 @@ class HelpVC: UIViewController {
     
     @objc func schoolButtonAction(sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "schoolSelectionVC") as! SchoolSelectVC
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: false, completion: nil)
     }
     

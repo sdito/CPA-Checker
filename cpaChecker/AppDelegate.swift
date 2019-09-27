@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UserDefaults.standard.string(forKey: "college") != nil {
             let vc: UITabBarController = storyboard.instantiateViewController(withIdentifier: "tab") as! UITabBarController
+            vc.modalPresentationStyle = .fullScreen
             let path = Bundle.main.path(forResource: "cpa", ofType: "db")!
             var schoolIdentifier: [String:Int] = [:]
             let db = try? Connection(path, readonly: true)
@@ -79,6 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         } else {
             let otherVC: WelcomeVC = storyboard.instantiateViewController(withIdentifier: "welcome") as! WelcomeVC
+            otherVC.modalPresentationStyle = .fullScreen
             
             self.window?.rootViewController = otherVC
             self.window?.makeKeyAndVisible()

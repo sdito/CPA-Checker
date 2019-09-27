@@ -17,5 +17,10 @@ class WelcomeVC: UIViewController {
        
     }
 
-
+    @IBAction func begin(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "schoolSelectionVC") as! SchoolSelectVC
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
+    
 }

@@ -48,5 +48,6 @@ class StatusPopUpVC: UIViewController {
 
     struct popUp {
         static let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "statusPopID") as! StatusPopUpVC
+        
     }
 }

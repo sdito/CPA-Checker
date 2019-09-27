@@ -40,6 +40,7 @@ class ClassListSelectionVC: UIViewController {
         if let units = UserDefaults.standard.value(forKey: "units") as? String {
             if units == "user" {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "quarterSemesterID") as! QuarterSemesterVC
+                vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: false, completion: nil)
             }
         }
@@ -143,6 +144,7 @@ class ClassListSelectionVC: UIViewController {
         view.insertBlurredBackground()
         
         let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popOverID") as! PopUpVC
+        popOverVC.modalPresentationStyle = .fullScreen
         popOverVC.delegate = self
         
         self.addChild(popOverVC)
