@@ -229,6 +229,11 @@ extension ClassListSelectionVC: UITableViewDelegate, UITableViewDataSource {
         return l
     }
     
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return sectionNames[section]
+//    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayArrayClasses[section].count
     }

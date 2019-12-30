@@ -46,7 +46,9 @@ class SchoolSelectVC: UIViewController {
     }
     @IBAction func continuePressed(_ sender: Any) {
         if whatSchoolSelected.isEmpty == true {
-            
+            let alert = UIAlertController(title: "Error", message: "Select at least one college before continuing.", preferredStyle: .alert)
+            alert.addAction(.init(title: "Ok", style: .default, handler: nil))
+            present(alert, animated: true)
         } else {
             performSegue(withIdentifier: "continuePressed", sender: nil)
         }

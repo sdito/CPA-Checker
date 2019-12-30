@@ -35,6 +35,10 @@ class PopUpVC: UIViewController {
         courseNameTextEntry.delegate = self
         numberUnitsTextEntry.delegate = self
         courseNameTextEntry.becomeFirstResponder()
+        
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } 
     }
     
     @IBAction func isProfessionalEthics(_ sender: Any) {

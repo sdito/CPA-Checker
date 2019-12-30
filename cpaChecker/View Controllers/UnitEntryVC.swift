@@ -152,13 +152,6 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         }
         //kbHeight = keyboardRect.height
         //var tally: CGFloat = 0    
-        
-        #warning("UIDevice().name is not the correct way to do that, as it takes the user's own name, need to use something else and need to fix")
-        #warning("UIDevice().name is not the correct way to do that, as it takes the user's own name, need to use something else and need to fix")
-        #warning("UIDevice().name is not the correct way to do that, as it takes the user's own name, need to use something else and need to fix")
-        #warning("UIDevice().name is not the correct way to do that, as it takes the user's own name, need to use something else and need to fix")
-        #warning("UIDevice().name is not the correct way to do that, as it takes the user's own name, need to use something else and need to fix")
-        #warning("UIDevice().name is not the correct way to do that, as it takes the user's own name, need to use something else and need to fix")
         // iPhone SE and iPhone 5s keyboard notofication func doesnt work property without adjusting the height
         var forOtherDevices: CGFloat {
             if UIDevice().name == "iPhone SE" || UIDevice().name == "iPhone 5s" {
