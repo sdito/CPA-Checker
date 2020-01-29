@@ -103,22 +103,7 @@ class HelpVC: UIViewController {
             }
         }
     }
-//    func showMailComposer() {
-//        guard MFMailComposeViewController.canSendMail() else {
-//            return
-//        }
-//        let composer = MFMailComposeViewController()
-//        composer.mailComposeDelegate = self //as? MFMailComposeViewControllerDelegate
-//        composer.setToRecipients(["cpa.checker.app@gmail.com"])
-//        composer.setSubject("CPA Checker")
-//        present(composer, animated: true)
-//    }
+    
     
 }
 
-
-//extension HelpVC: MFMailComposeViewControllerDelegate {
-//    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-//        controller.dismiss(animated: true)
-//    }
-//}

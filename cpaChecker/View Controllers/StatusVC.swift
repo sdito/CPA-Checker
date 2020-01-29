@@ -168,7 +168,7 @@ class StatusVC: UIViewController {
     }
 
     
-    func updateTableStuff() {
+    private func updateTableStuff() {
         classesForTable = result!.selectedClasses(acc: accounting, bus: business, eth: ethics, taking: taking, available: available)
         if classesForTable.isEmpty == true {
             tableView.isHidden = true
@@ -199,7 +199,7 @@ class StatusVC: UIViewController {
         combinationLabel.text = message.description
     }
 
-    func isVisible(view: UIView) -> Bool {
+    private func isVisible(view: UIView) -> Bool {
         //let screenRect = wholeView.bounds
         let scrollRect = statusScrollView.bounds
         let center = view.center
@@ -209,7 +209,7 @@ class StatusVC: UIViewController {
             return false
         }
     }
-    func setUIforButtons() {
+    private func setUIforButtons() {
         takingButtonOutlet.changeUIfor(boolean: taking)
         availableButtonOutlet.changeUIfor(boolean: available)
         accountingButtonOutlet.changeUIfor(boolean: accounting)

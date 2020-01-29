@@ -27,10 +27,9 @@ class ClassListSelectionVC: UIViewController {
     private var sortEthics = false
     var realm = try! Realm()
     
-    
     var orderedCollegeDict: [Int:[Int:String]] = [:]
     var collegeDict: [Int:String] = [:]
-    //var setTo_allCourseNums: Set<String>?
+    
     
     var blurBackground: Bool?
     override func viewDidLoad() {
@@ -160,7 +159,7 @@ class ClassListSelectionVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func deleteClasses(alert: UIAlertAction!) {
+    private func deleteClasses(alert: UIAlertAction!) {
         try! realm.write {
             let all = realm.objects(RealmClass.self)
             realm.delete(all)

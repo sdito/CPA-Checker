@@ -42,13 +42,6 @@ class InstructionsVC: UIViewController {
         super.viewDidLoad()
         realm = try! Realm()
         buttonOutlet.titleLabel?.adjustsFontSizeToFitWidth = true
-        // if a user's colleges selected include a semester and quarter school, let the user decide if the app should use semester or quarter -- now classListSelection is the first screen
-//        if let units = UserDefaults.standard.value(forKey: "units") as? String {
-//            if units == "user" {
-//                let vc = self.storyboard?.instantiateViewController(withIdentifier: "quarterSemesterID") as! QuarterSemesterVC
-//                self.present(vc, animated: false, completion: nil)
-//            }
-//        }
     }
     override func viewDidAppear(_ animated: Bool) {
         degreeInfo.text = "Baccalaureate Degree & \(SharedUnits.shared.units["totalUnits"] ?? 0) \(SharedUnits.shared.text) Units"

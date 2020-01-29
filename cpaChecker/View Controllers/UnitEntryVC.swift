@@ -28,6 +28,9 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var apOther: UITextField!
     @IBOutlet weak var ccUnits: UITextField!
 
+    
+    @IBOutlet var textFieldCollection: [UITextField]!
+    
     @IBOutlet weak var fall1S: UISegmentedControl!
     @IBOutlet weak var winter1S: UISegmentedControl!
     @IBOutlet weak var spring1S: UISegmentedControl!
@@ -48,23 +51,13 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        realm = try! Realm()
-        fall1.delegate = self
-        fall2.delegate = self
-        fall3.delegate = self
-        fall4.delegate = self
-        winter1.delegate = self
-        winter2.delegate = self
-        winter3.delegate = self
-        winter4.delegate = self
-        spring1.delegate = self
-        spring2.delegate = self
-        spring3.delegate = self
-        spring4.delegate = self
-        apOther.delegate = self
-        ccUnits.delegate = self
         
-        // could most likely go bad
+        realm = try! Realm()
+        textFieldCollection.forEach { (tf) in
+            tf.delegate = self
+        }
+        
+        
         textFieldAmount()
 
         let toolbar = UIToolbar()
@@ -72,20 +65,10 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         toolbar.setItems([doneButton], animated: false)
         toolbar.autoresizingMask = .flexibleHeight
         
-        fall1.inputAccessoryView = toolbar
-        fall2.inputAccessoryView = toolbar
-        fall3.inputAccessoryView = toolbar
-        fall4.inputAccessoryView = toolbar
-        winter1.inputAccessoryView = toolbar
-        winter2.inputAccessoryView = toolbar
-        winter3.inputAccessoryView = toolbar
-        winter4.inputAccessoryView = toolbar
-        spring1.inputAccessoryView = toolbar
-        spring2.inputAccessoryView = toolbar
-        spring3.inputAccessoryView = toolbar
-        spring4.inputAccessoryView = toolbar
-        apOther.inputAccessoryView = toolbar
-        ccUnits.inputAccessoryView = toolbar
+        textFieldCollection.forEach { (tf) in
+            tf.inputAccessoryView = toolbar
+        }
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -129,7 +112,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     }
     
     // set all the textfields back to empty
-    func resetUnitsData(alert: UIAlertAction!) {
+    private func resetUnitsData(alert: UIAlertAction!) {
         try! realm.write {
             let realmUnitsData = realm.objects(RealmUnits.self)
             realm.delete(realmUnitsData)
@@ -137,7 +120,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         textFieldAmount()
     }
     
-    @objc func doneClicked() {
+    @objc private func doneClicked() {
         view.endEditing(true)
         UIView.animate(withDuration: 0.5) {
             self.view.frame.origin.y = 0
@@ -180,7 +163,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func addUnitsToRealm() {
+    private func addUnitsToRealm() {
         let f1 = RealmUnits()
         f1.identifier = "Fall 1"
         f1.units = fall1.toInt()
@@ -298,7 +281,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         return true
     }
 
-    func textFieldAmount() {
+    private func textFieldAmount() {
         // set the standard text for unit entry, what the user had before, or if zero then empty
         let realmUnitsObjects = realm.objects(RealmUnits.self)
         fall1.setText(term: "Fall 1", objects: realmUnitsObjects)
@@ -317,7 +300,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
         ccUnits.setText(term: "Community College", objects: realmUnitsObjects)
     }
     
-    func scToSemesterOrQuarter(segmentedControl: UISegmentedControl) -> String {
+    private func scToSemesterOrQuarter(segmentedControl: UISegmentedControl) -> String {
         if segmentedControl.selectedSegmentIndex == 0 {
             return "semester"
         } else {
@@ -326,7 +309,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
     }
     
     // to set the segmented controls to the correct display of either semester or quarter when the app is loaded for the first time or a subsequent time
-    func segmentedControlStartingSegment() {
+    private func segmentedControlStartingSegment() {
         let objects = Array(realm.objects(RealmUnits.self))
         if objects.isEmpty == true {
             // preload the entry for quarters to whatever the user selected since it is the first time using the app
@@ -353,6 +336,7 @@ class UnitEntryVC: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        
     }
 }
 

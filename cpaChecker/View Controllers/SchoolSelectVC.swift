@@ -101,7 +101,7 @@ class SchoolSelectVC: UIViewController {
         SharedAllClasses.shared.sharedAllClasses = ac
         quarterOrSemesterOrChoose()
     }
-    func orderClassesForSchoolSelect(dictAll: [String:Int], using: [String]) -> [String] {
+    private func orderClassesForSchoolSelect(dictAll: [String:Int], using: [String]) -> [String] {
         if UserDefaults.standard.value(forKey: "college") == nil {
             return Array(schoolIdentifier.keys).sorted()
         } else {
